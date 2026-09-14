@@ -9,7 +9,7 @@ Dr. Tianlong (Taylor) Liu
 
 ## About this book
 
-This book provides Python examples and learning resources for applying data science and machine learning to chemical engineering problems. Topics include data preparation, feature engineering, regression, classification, model validation, clustering, uncertainty, and interpretability.
+This book will be used as supplementary teaching materials for the course CBE 4427/9133. It provides Python examples and learning resources for applying data science and machine learning to chemical engineering problems. Topics include data preparation, feature engineering, regression, classification, model validation, clustering, uncertainty, and interpretability.
 
 Some of the course materials are adapted from John Kitchin's *Data Science and Machine Learning in Chemical Engineering*. See [Attribution and license](attribution.md).
 
