@@ -3,11 +3,14 @@ from pathlib import Path
 import base64
 import hashlib
 import json
+import os
 import random
 import re
+from urllib.parse import quote, urlsplit
 import zlib
 
 import nbformat
+import yaml
 from IPython.core.interactiveshell import InteractiveShell
 from IPython.utils.capture import capture_output
 from jupyterquiz import display_quiz
@@ -16,6 +19,21 @@ ROOT = Path(__file__).resolve().parents[1]
 BOOK = ROOT / 'dsmles'
 RAW = 'https://raw.githubusercontent.com/jkitchin/s26-06642/main/dsmles/'
 PACKAGES = '"numpy<2.4" pandas matplotlib scikit-learn pycse shap xgboost umap-learn jupyterquiz==2.9.6.2 uncertainties'
+
+
+def colab_url(path):
+    """Link to this notebook in the repository used by the current build."""
+    config = yaml.safe_load((BOOK / '_config.yml').read_text())
+    repository = os.environ.get('GITHUB_REPOSITORY', '').strip()
+    branch = 'main'
+    if not repository:
+        repository = urlsplit(config['repository']['url']).path.strip('/').removesuffix('.git')
+        branch = config['repository'].get('branch', 'main')
+    if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', repository):
+        raise ValueError('The Colab repository must be OWNER/REPOSITORY')
+    notebook_path = path.relative_to(ROOT).as_posix()
+    return ('https://colab.research.google.com/github/' + repository + '/blob/'
+            + quote(branch, safe='') + '/' + quote(notebook_path, safe='/'))
 
 
 def prepare():
@@ -98,7 +116,14 @@ def course_file(name):
                 metadata={'cbe_generated': True, 'tags': ['remove-cell']})
         data_cell = nbformat.v4.new_code_cell(bootstrap,
                 metadata={'cbe_generated': True, 'tags': ['remove-cell']})
-        prefix = [setup, data_cell]
+        launch = nbformat.v4.new_markdown_cell(
+            '<a class="cbe-colab-launch" href="' + colab_url(path) + '" '
+            'target="_blank" rel="noopener noreferrer" '
+            'title="Open this notebook in Google Colab (opens in a new tab)">\n'
+            '<img src="https://colab.research.google.com/assets/colab-badge.svg" '
+            'alt="Open in Colab" width="146" height="25">\n</a>',
+            metadata={'cbe_generated': True, 'cbe_colab_launcher': True})
+        prefix = [launch, setup, data_cell]
         if path.parent.name in ['assignments', 'participation']:
             prefix.append(nbformat.v4.new_markdown_cell('```{note}\nPractice resource for CBE 4427. Your instructor specifies assigned activities, deadlines, submission requirements, and assessment criteria. Example points or rubrics below are part of the practice material.\n```', metadata={'cbe_generated': True}))
         for cell in cells:

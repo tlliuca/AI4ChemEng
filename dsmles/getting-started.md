@@ -6,7 +6,7 @@ Use the sidebar or search to find lectures, equations, worked examples, and self
 
 ## Run a notebook
 
-**Google Colab:** on a notebook page, use the launch button at the top and choose **Colab**. Sign in to Google, save your own copy, and run the cells from the top. The first setup cells install packages and load the included datasets. Colab requires an internet connection.
+**Google Colab:** click **Open in Colab** above a notebook page's title. The matching notebook from this course's GitHub repository opens in a new tab. Sign in to Google, save your own copy, and run the cells from the top. The first setup cells install packages and load the included datasets. Colab requires an internet connection. You can also choose **Colab** from the rocket menu in the toolbar.
 
 **Your computer:** download the materials below and unzip them. With Python 3.11 or 3.12 installed, open a terminal in the extracted folder and run:
 

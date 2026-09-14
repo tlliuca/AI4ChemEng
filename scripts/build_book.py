@@ -9,7 +9,7 @@ import zipfile
 
 from bs4 import BeautifulSoup
 import yaml
-from prepare_notebooks import prepare
+from prepare_notebooks import colab_url, prepare
 
 ROOT = Path(__file__).resolve().parents[1]
 BOOK = ROOT / 'dsmles'
@@ -17,6 +17,7 @@ BOOK = ROOT / 'dsmles'
 
 def validate(output):
     missing = set()
+    launchers = 0
     pages = [p for p in sorted(output.rglob('*.html')) if '_static' not in p.relative_to(output).parts]
     for path in pages:
         soup = BeautifulSoup(path.read_text(), 'html.parser')
@@ -32,13 +33,21 @@ def validate(output):
                 missing.add((str(path.relative_to(output)), reference))
         if soup.select('a[href*="colab.research.google.com/github/jkitchin/s26-06642"]'):
             raise RuntimeError('A notebook launch still points to the original course.')
+        notebook = BOOK / path.relative_to(output).with_suffix('.ipynb')
+        if notebook.is_file():
+            buttons = soup.select('article a.cbe-colab-launch')
+            if len(buttons) != 1 or buttons[0].get('href') != colab_url(notebook):
+                raise RuntimeError('Missing or incorrect visible Colab button: ' + str(path))
+            if not buttons[0].select('img[alt="Open in Colab"]'):
+                raise RuntimeError('Missing Colab button label: ' + str(path))
+            launchers += 1
     if missing:
         for page, reference in sorted(missing):
             print('Missing:', page, reference)
         raise RuntimeError(f'{len(missing)} unresolved local links or assets')
     if not (output / 'searchindex.js').is_file():
         raise RuntimeError('Missing book search index')
-    print(f'Validated {len(pages)} HTML pages, local links, assets, and search index.')
+    print(f'Validated {len(pages)} HTML pages, {launchers} visible Colab buttons, local links, assets, and search index.')
 
 
 def main():
