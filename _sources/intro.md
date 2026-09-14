@@ -1,11 +1,13 @@
 # AI in Chemical Engineering
 
-**CBE 4427 · Western University**
+**CBE 4427/9133 · Western University**
 
-Welcome to the CBE 4427 course book. Explore data science and machine learning through chemical engineering examples, from cleaning experimental data to evaluating and interpreting predictive models.
+Welcome to the CBE 4427/9133 course book. Explore data science and machine learning through chemical engineering examples, from cleaning experimental data to evaluating and interpreting predictive models.
 
 **Instructor:** Dr. Tianlong (Taylor) Liu  
 Department of Chemical and Biochemical Engineering, Western University
+
+https://www.eng.uwo.ca/chemical/sustainAI-group/people/dr-tianlong-liu.html
 
 ## Start here
 
