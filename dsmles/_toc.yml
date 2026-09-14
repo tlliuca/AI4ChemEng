@@ -1,0 +1,79 @@
+format: jb-book
+root: intro
+parts:
+- caption: Course Information
+  chapters:
+  - file: course-information
+  - file: getting-started
+- caption: Lectures
+  chapters:
+  - file: 00-introduction/introduction
+  - file: 01-numpy/numpy
+  - file: 02-pandas-intro/pandas-intro
+  - file: 03-intermediate-pandas/intermediate-pandas
+  - file: 04-feature-engineering/feature-engineering
+  - file: 05-dimensionality-reduction/dimensionality-reduction
+  - file: 06-linear-regression/linear-regression
+  - file: 07-classification/classification
+  - file: 08-regularization-model-selection/regularization-model-selection
+  - file: 09-nonlinear-methods/nonlinear-methods
+    sections:
+    - file: 09-nonlinear-methods/neural-networks-hyperparameter-tuning
+  - file: 10-ensemble-methods/ensemble-methods
+  - file: 11-clustering/clustering
+  - file: 12-uncertainty-quantification/uncertainty-quantification
+  - file: 13-model-interpretability/model-interpretability
+- caption: Optional Lectures
+  chapters:
+  - file: optional/databases
+  - file: optional/deep-learning
+  - file: optional/symbolic-regression
+  - file: optional/llms-for-research
+- caption: Practice Assignments
+  chapters:
+  - file: assignments/index
+  - file: assignments/hw01-numpy
+  - file: assignments/hw02-pandas-intro
+  - file: assignments/hw03-intermediate-pandas
+  - file: assignments/hw04-feature-engineering
+  - file: assignments/hw05-dimensionality-reduction
+  - file: assignments/hw06-linear-regression
+  - file: assignments/hw07-classification
+  - file: assignments/hw08-regularization
+  - file: assignments/hw09-nonlinear-methods
+  - file: assignments/hw10-ensemble-methods
+  - file: assignments/hw11-clustering
+  - file: assignments/hw12-uncertainty-quantification
+  - file: assignments/hw13-model-interpretability
+  - file: assignments/project
+    sections:
+    - file: assignments/project-proposal
+    - file: assignments/project-checkin
+    - file: assignments/project-report
+    - file: assignments/project-presentation
+- caption: Class Exercises
+  chapters:
+  - file: participation/index
+  - file: participation/participation-00-introduction
+  - file: participation/participation-01-numpy
+  - file: participation/participation-02-pandas-intro
+  - file: participation/participation-03-intermediate-pandas
+  - file: participation/participation-04-feature-engineering
+  - file: participation/participation-05-dimensionality-reduction
+  - file: participation/participation-06-linear-regression
+  - file: participation/participation-07-classification
+  - file: participation/participation-08-regularization
+  - file: participation/participation-09-nonlinear-methods
+  - file: participation/participation-10-ensemble-methods
+  - file: participation/participation-11-clustering
+  - file: participation/participation-12-uncertainty-quantification
+  - file: participation/participation-13-model-interpretability
+- caption: Reference
+  chapters:
+  - file: attribution
+  - file: characters
+  - file: reference-sheet
+  - file: data-academy-honors/README
+    sections:
+    - file: data-academy-honors/badges
+    - file: data-academy-honors/ranks

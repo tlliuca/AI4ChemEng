@@ -1,0 +1,60 @@
+[project]
+name = "cbe4427"
+version = "0.1.0"
+description = "Course materials for CBE 4427"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    # Core dependencies
+    "numpy",
+    "pandas",
+    "matplotlib",
+    "scikit-learn",
+    # Uncertainty quantification
+    "pycse",
+    # Model interpretability
+    "shap",
+    # Symbolic regression
+    "jaxsr",
+    # Gradient boosting
+    "xgboost",
+    # Dimensionality reduction
+    "umap-learn",
+    # Jupyter Book
+    "jupyter-book>=0.15.0,<2",
+    # Development tools
+    "jupyterlab",
+    "jupyter_black",
+    # Quizzes
+    "jupyterquiz",
+    # Deployment
+    "ghp-import",
+    "uncertainties>=3.2.3",
+]
+
+[project.optional-dependencies]
+llm = [
+    "openai",
+    "anthropic",
+]
+deep-learning = [
+    "torch",
+]
+symbolic = [
+    "pysr",
+]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = []
+
+[tool.uv]
+constraint-dependencies = [
+    "llvmlite>=0.43",
+    "numba>=0.60",
+    "pynndescent>=0.5.13",
+    "numpy<2.4",
+]

@@ -1,0 +1,11 @@
+numpy<2.4
+pandas
+matplotlib
+scikit-learn
+pycse
+shap
+xgboost
+umap-learn
+jupyterquiz==2.9.6.2
+uncertainties
+jupyterlab
