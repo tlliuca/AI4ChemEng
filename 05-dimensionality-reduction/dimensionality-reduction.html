@@ -1,0 +1,2961 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Module 05: Dimensionality Reduction &#8212; CBE 4427 · AI in Chemical Engineering</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/cbe4427.css?v=e6655e27" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05-dimensionality-reduction/dimensionality-reduction';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://tlliuca.github.io/AI4ChemEng/05-dimensionality-reduction/dimensionality-reduction.html" />
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Module 06: Linear Regression" href="../06-linear-regression/linear-regression.html" />
+    <link rel="prev" title="Module 04: Feature Engineering" href="../04-feature-engineering/feature-engineering.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cbe4427.svg" class="logo__image only-light" alt="CBE 4427 · AI in Chemical Engineering - Home"/>
+    <img src="../_static/cbe4427.svg" class="logo__image only-dark pst-js-only" alt="CBE 4427 · AI in Chemical Engineering - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    AI in Chemical Engineering
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Information</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../course-information.html">Course information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Using the course book</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-introduction/introduction.html">Module 00: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-numpy/numpy.html">Module 01: NumPy Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-pandas-intro/pandas-intro.html">Module 02: Pandas Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-intermediate-pandas/intermediate-pandas.html">Module 03: Intermediate Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-feature-engineering/feature-engineering.html">Module 04: Feature Engineering</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Module 05: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-linear-regression/linear-regression.html">Module 06: Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07-classification/classification.html">Module 07: Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08-regularization-model-selection/regularization-model-selection.html">Module 08: Regularization and Model Selection</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../09-nonlinear-methods/nonlinear-methods.html">Module 09: Nonlinear Methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../09-nonlinear-methods/neural-networks-hyperparameter-tuning.html">Neural Networks and Hyperparameter Tuning</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../10-ensemble-methods/ensemble-methods.html">Module 10: Ensemble Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-clustering/clustering.html">Module 11: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../12-uncertainty-quantification/uncertainty-quantification.html">Module 12: Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../13-model-interpretability/model-interpretability.html">Module 13: Model Interpretability</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Optional Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../optional/databases.html">Optional: Working with Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optional/deep-learning.html">Optional: Introduction to Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optional/symbolic-regression.html">Optional: Symbolic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optional/llms-for-research.html">Optional: LLMs for Scientific Research</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../assignments/index.html">Practice assignments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw01-numpy.html">Homework 1: NumPy Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw02-pandas-intro.html">Homework 2: Pandas Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw03-intermediate-pandas.html">Homework 3: Intermediate Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw04-feature-engineering.html">Homework 4: Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw05-dimensionality-reduction.html">Homework 5: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw06-linear-regression.html">Homework 6: Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw07-classification.html">Homework 7: Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw08-regularization.html">Homework 8: Regularization and Model Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw09-nonlinear-methods.html">Homework 9: Nonlinear Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw10-ensemble-methods.html">Homework 10: Ensemble Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw11-clustering.html">Homework 11: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw12-uncertainty-quantification.html">Homework 12: Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw13-model-interpretability.html">Homework 13: Model Interpretability</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../assignments/project.html">Course Project: Machine Learning for Chemical Engineering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/project-proposal.html">Project Proposal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/project-checkin.html">Project Check-in (Progress Report)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/project-report.html">Project Final Report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/project-presentation.html">Project Presentation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Class Exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../participation/index.html">In-Class Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-00-introduction.html">Module 00: Introduction - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-01-numpy.html">Module 01: NumPy Fundamentals - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-02-pandas-intro.html">Module 02: Pandas Introduction - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-03-intermediate-pandas.html">Module 03: Intermediate Pandas - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-04-feature-engineering.html">Module 04: Feature Engineering - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-05-dimensionality-reduction.html">Module 05: Dimensionality Reduction - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-06-linear-regression.html">Module 06: Linear Regression - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-07-classification.html">Module 07: Classification - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-08-regularization.html">Module 08: Regularization &amp; Model Selection - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-09-nonlinear-methods.html">Module 09: Nonlinear Methods - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-10-ensemble-methods.html">Module 10: Ensemble Methods - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-11-clustering.html">Module 11: Clustering - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-12-uncertainty-quantification.html">Module 12: Uncertainty Quantification - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-13-model-interpretability.html">Module 13: Model Interpretability - Participation Exercises</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../attribution.html">Attribution and license</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../characters.html">Data Detective Academy Characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference-sheet.html">Data Science Quick Reference Sheet</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data-academy-honors/README.html">Data Academy Honors</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data-academy-honors/badges.html">Data Academy Honors - Badges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data-academy-honors/ranks.html">Data Academy Honors - Ranks</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/tlliuca/AI4ChemEng/blob/main/dsmles/05-dimensionality-reduction/dimensionality-reduction.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tlliuca/AI4ChemEng" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tlliuca/AI4ChemEng/edit/main/dsmles/05-dimensionality-reduction/dimensionality-reduction.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/05-dimensionality-reduction/dimensionality-reduction.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Module 05: Dimensionality Reduction</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-curse-of-dimensionality">The Curse of Dimensionality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-high-dimensionality-a-problem">Why is high dimensionality a problem?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-limits-of-pairwise-visualization">The limits of pairwise visualization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-idea">The key idea</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-variance">Why variance?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-critical-choice-to-scale-or-not-to-scale">The critical choice: to scale or not to scale?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-components-should-you-keep">How many components should you keep?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-pca-what-do-the-components-mean">Interpreting PCA: What do the components mean?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#t-sne-when-linear-isn-t-enough">t-SNE: When Linear Isn’t Enough</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-t-sne-works-intuition">How t-SNE works (intuition)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-tradeoff">The key tradeoff</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-perplexity-the-local-vs-global-tradeoff">Choosing perplexity: the local vs global tradeoff</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#umap-the-best-of-both-worlds">UMAP: The Best of Both Worlds?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-umap-often-beats-t-sne">Why UMAP often beats t-SNE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tradeoffs">The tradeoffs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-umap">When to use UMAP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#umap-s-key-parameters">UMAP’s key parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-vs-t-sne-vs-umap">PCA vs t-SNE vs UMAP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-choose-a-decision-guide">How to Choose: A Decision Guide</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-your-goal">What’s your goal?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-recommended-workflow">A recommended workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-pitfalls-to-avoid">Common pitfalls to avoid</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-reading">Recommended Reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key takeaways</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-ahead">Looking ahead</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-catalyst-crisis-chapter-5-finding-the-shape-of-the-problem">The Catalyst Crisis: Chapter 5 - “Finding the Shape of the Problem”</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="module-05-dimensionality-reduction">
+<h1>Module 05: Dimensionality Reduction<a class="headerlink" href="#module-05-dimensionality-reduction" title="Link to this heading">#</a></h1>
+<p>Techniques for exploring and visualizing high-dimensional data.</p>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Understand why dimensionality reduction is useful</p></li>
+<li><p>Apply PCA for linear dimensionality reduction</p></li>
+<li><p>Use t-SNE for visualization</p></li>
+<li><p>Use UMAP for visualization and preprocessing</p></li>
+<li><p>Interpret reduced representations</p></li>
+<li><p>Apply to chemical engineering datasets</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.manifold</span><span class="w"> </span><span class="kn">import</span> <span class="n">TSNE</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">umap</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/jkitchin/Dropbox/emacs/projects/s26-06642/.venv/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="the-curse-of-dimensionality">
+<span id="index-0"></span><h2>The Curse of Dimensionality<a class="headerlink" href="#the-curse-of-dimensionality" title="Link to this heading">#</a></h2>
+<p>Real datasets in chemical engineering often have many features:</p>
+<ul class="simple">
+<li><p><strong>Process data</strong>: A modern chemical plant might have 100-500 sensors recording temperature, pressure, flow rates, compositions, and control signals every second</p></li>
+<li><p><strong>Spectroscopy</strong>: NIR or Raman spectra contain 1000s of wavelengths, each potentially carrying information about composition</p></li>
+<li><p><strong>Molecular descriptors</strong>: Cheminformatics representations of molecules can include 100s of computed properties (molecular weight, LogP, topological indices, etc.)</p></li>
+<li><p><strong>Simulation data</strong>: CFD or molecular dynamics outputs can have millions of degrees of freedom</p></li>
+</ul>
+<section id="why-is-high-dimensionality-a-problem">
+<h3>Why is high dimensionality a problem?<a class="headerlink" href="#why-is-high-dimensionality-a-problem" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Visualization</strong>: We can only see in 2D (plots) or 3D. How do you “look at” 100-dimensional data?</p></li>
+<li><p><strong>Sparsity</strong>: In high dimensions, data points become increasingly isolated. With 10 features, you need exponentially more samples to achieve the same “density” of coverage as in 2D. This makes it harder to find patterns.</p></li>
+<li><p><strong>Correlation</strong>: Many features are often redundant. In a reactor, temperature at sensor 1 and sensor 2 may be highly correlated - they’re not truly independent pieces of information.</p></li>
+<li><p><strong>Overfitting</strong>: Models with many features relative to samples can memorize noise rather than learning true patterns.</p></li>
+</ol>
+<p><strong>Dimensionality reduction</strong> addresses these problems by finding a lower-dimensional representation that preserves the important structure in your data. The key question is: what do we mean by “important”? Different methods make different choices here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Load catalyst characterization dataset</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="n">course_file</span><span class="p">(</span><span class="s1">'data/catalyst_characterization.csv'</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+<span class="c1"># Extract features and labels</span>
+<span class="n">feature_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'surface_area'</span><span class="p">,</span> <span class="s1">'pore_volume'</span><span class="p">,</span> <span class="s1">'acidity'</span><span class="p">,</span> <span class="s1">'crystallite_size'</span><span class="p">,</span>
+                 <span class="s1">'metal_dispersion'</span><span class="p">,</span> <span class="s1">'reduction_temp'</span><span class="p">,</span> <span class="s1">'impurity_level'</span><span class="p">,</span> <span class="s1">'particle_size'</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'catalyst_type'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Dataset shape: </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Catalyst types: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dataset shape: (200, 8)
+Catalyst types: ['Type_A' 'Type_B' 'Type_C']
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>surface_area</th>
+      <th>pore_volume</th>
+      <th>acidity</th>
+      <th>crystallite_size</th>
+      <th>metal_dispersion</th>
+      <th>reduction_temp</th>
+      <th>impurity_level</th>
+      <th>particle_size</th>
+      <th>catalyst_type</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>74.698093</td>
+      <td>68.974690</td>
+      <td>0.823858</td>
+      <td>321.212872</td>
+      <td>22.173454</td>
+      <td>1.650748</td>
+      <td>0.028675</td>
+      <td>1.983167</td>
+      <td>Type_C</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>112.370161</td>
+      <td>42.867606</td>
+      <td>0.827042</td>
+      <td>359.237136</td>
+      <td>29.912587</td>
+      <td>0.967211</td>
+      <td>0.046187</td>
+      <td>2.542165</td>
+      <td>Type_A</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>69.424984</td>
+      <td>65.322273</td>
+      <td>0.887644</td>
+      <td>399.046255</td>
+      <td>19.909195</td>
+      <td>1.532541</td>
+      <td>0.031537</td>
+      <td>2.108698</td>
+      <td>Type_C</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>80.224796</td>
+      <td>61.620391</td>
+      <td>0.971071</td>
+      <td>365.102131</td>
+      <td>17.806495</td>
+      <td>1.397655</td>
+      <td>0.032663</td>
+      <td>2.121097</td>
+      <td>Type_C</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>92.797020</td>
+      <td>48.650331</td>
+      <td>0.788523</td>
+      <td>318.510113</td>
+      <td>28.122352</td>
+      <td>1.207878</td>
+      <td>0.055846</td>
+      <td>2.718329</td>
+      <td>Type_A</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualizing 8 dimensions is hard!</span>
+<span class="c1"># Let's look at pairwise relationships</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'Type_A'</span><span class="p">:</span> <span class="s1">'blue'</span><span class="p">,</span> <span class="s1">'Type_B'</span><span class="p">:</span> <span class="s1">'red'</span><span class="p">,</span> <span class="s1">'Type_C'</span><span class="p">:</span> <span class="s1">'green'</span><span class="p">}</span>
+
+<span class="n">pairs</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">'surface_area'</span><span class="p">,</span> <span class="s1">'pore_volume'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'acidity'</span><span class="p">,</span> <span class="s1">'crystallite_size'</span><span class="p">),</span>
+         <span class="p">(</span><span class="s1">'metal_dispersion'</span><span class="p">,</span> <span class="s1">'reduction_temp'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'surface_area'</span><span class="p">,</span> <span class="s1">'acidity'</span><span class="p">),</span>
+         <span class="p">(</span><span class="s1">'pore_volume'</span><span class="p">,</span> <span class="s1">'particle_size'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'impurity_level'</span><span class="p">,</span> <span class="s1">'metal_dispersion'</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="o">.</span><span class="n">flat</span><span class="p">,</span> <span class="n">pairs</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Type_A'</span><span class="p">,</span> <span class="s1">'Type_B'</span><span class="p">,</span> <span class="s1">'Type_C'</span><span class="p">]:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'catalyst_type'</span><span class="p">]</span> <span class="o">==</span> <span class="n">cat</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="n">x</span><span class="p">],</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">cat</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">cat</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/26b937e919f316eb916853e7668c3be5880828c68d9e3f425b5adaf265e31430.png" src="../_images/26b937e919f316eb916853e7668c3be5880828c68d9e3f425b5adaf265e31430.png" />
+</div>
+</div>
+</section>
+<section id="the-limits-of-pairwise-visualization">
+<h3>The limits of pairwise visualization<a class="headerlink" href="#the-limits-of-pairwise-visualization" title="Link to this heading">#</a></h3>
+<p>The plots above show 6 of the possible 28 pairwise combinations of our 8 features. Already we can see some separation between catalyst types, but:</p>
+<ul class="simple">
+<li><p>We’re missing information by only looking at 2 features at a time</p></li>
+<li><p>Some pairs show good separation, others don’t - which view is “right”?</p></li>
+<li><p>With 100 features, we’d have 4,950 pairs - impossible to examine manually</p></li>
+<li><p>Patterns that exist in the <em>combination</em> of many features are invisible in 2D slices</p></li>
+</ul>
+<p>This is exactly why we need dimensionality reduction: to find a single 2D view that captures the most important structure from <em>all</em> features simultaneously.</p>
+</section>
+</section>
+<section id="principal-component-analysis-pca">
+<span id="index-1"></span><h2>Principal Component Analysis (PCA)<a class="headerlink" href="#principal-component-analysis-pca" title="Link to this heading">#</a></h2>
+<p>PCA is the workhorse of dimensionality reduction. It finds new axes (principal components) that are:</p>
+<ol class="arabic simple">
+<li><p><strong>Orthogonal</strong> to each other (uncorrelated)</p></li>
+<li><p><strong>Ordered by variance</strong> - PC1 captures the most variance, PC2 the second most, etc.</p></li>
+</ol>
+<section id="the-key-idea">
+<h3>The key idea<a class="headerlink" href="#the-key-idea" title="Link to this heading">#</a></h3>
+<p>PCA asks: “If I could only keep one direction in my data, which direction would preserve the most information?” The answer is the direction of maximum variance. Then it asks the same question for the remaining directions, subject to being perpendicular to the ones already chosen.</p>
+</section>
+<section id="why-variance">
+<h3>Why variance?<a class="headerlink" href="#why-variance" title="Link to this heading">#</a></h3>
+<p>This is a <strong>design choice</strong> with consequences. PCA assumes that variance = information. This works well when:</p>
+<ul class="simple">
+<li><p>Differences between samples are spread across many features</p></li>
+<li><p>Noise is relatively small compared to signal</p></li>
+<li><p>The interesting structure is <em>linear</em> (lies along straight lines/planes)</p></li>
+</ul>
+<p>It works poorly when:</p>
+<ul class="simple">
+<li><p>The interesting structure is nonlinear (curved manifolds)</p></li>
+<li><p>Important differences are subtle compared to unimportant large variations</p></li>
+<li><p>Outliers dominate the variance</p></li>
+</ul>
+</section>
+<section id="the-critical-choice-to-scale-or-not-to-scale">
+<h3>The critical choice: to scale or not to scale?<a class="headerlink" href="#the-critical-choice-to-scale-or-not-to-scale" title="Link to this heading">#</a></h3>
+<p>Before applying PCA, we must decide whether to standardize our features. This choice matters enormously:</p>
+<p><strong>Without scaling</strong>: Features with larger numerical ranges dominate. If surface area ranges from 50-200 m²/g but impurity level ranges from 0.01-0.1 wt%, PCA will essentially ignore impurities - they contribute almost nothing to total variance.</p>
+<p><strong>With scaling</strong> (StandardScaler): Each feature is transformed to have mean=0 and std=1. Now all features contribute equally <em>by default</em>, and PCA finds directions of maximum variance in this normalized space.</p>
+<p><strong>Which should you choose?</strong></p>
+<ul class="simple">
+<li><p><strong>Scale</strong> when features have different units or vastly different ranges (most common case)</p></li>
+<li><p><strong>Don’t scale</strong> when features are already comparable and you want to preserve natural importance (e.g., all features are concentrations in the same units)</p></li>
+</ul>
+<p>In chemical engineering, we almost always scale because we’re combining heterogeneous measurements (temperatures, pressures, compositions, etc.).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare data: extract features and scale</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'catalyst_type'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Scaling is important for PCA!</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Original shape: </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mean of scaled data: </span><span class="si">{</span><span class="n">X_scaled</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Std of scaled data: </span><span class="si">{</span><span class="n">X_scaled</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original shape: (200, 8)
+Mean of scaled data: [-0.  0.  0.  0.  0. -0.  0. -0.]
+Std of scaled data: [1. 1. 1. 1. 1. 1. 1. 1.]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit PCA</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">()</span>
+<span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+
+<span class="c1"># Explained variance</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Explained variance ratio per component:"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  PC</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">var</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">var</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">%)"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Cumulative variance with 2 components: </span><span class="si">{</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Explained variance ratio per component:
+  PC1: 0.836 (83.6%)
+  PC2: 0.045 (4.5%)
+  PC3: 0.033 (3.3%)
+  PC4: 0.025 (2.5%)
+  PC5: 0.020 (2.0%)
+  PC6: 0.017 (1.7%)
+  PC7: 0.015 (1.5%)
+  PC8: 0.010 (1.0%)
+
+Cumulative variance with 2 components: 88.0%
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Scree plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Individual variance</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> 
+            <span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'black'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Principal Component'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Explained Variance Ratio'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Scree Plot'</span><span class="p">)</span>
+
+<span class="c1"># Cumulative variance</span>
+<span class="n">cumulative</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">cumulative</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="n">cumulative</span><span class="p">,</span> <span class="s1">'o-'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'r'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'90% threshold'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Number of Components'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Cumulative Explained Variance'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Cumulative Variance'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/5d355b6b64635746f254fdde43ab9dd2aadf0063151aae7e9c1388d92e3a6cdc.png" src="../_images/5d355b6b64635746f254fdde43ab9dd2aadf0063151aae7e9c1388d92e3a6cdc.png" />
+</div>
+</div>
+</section>
+<section id="how-many-components-should-you-keep">
+<span id="index-2"></span><h3>How many components should you keep?<a class="headerlink" href="#how-many-components-should-you-keep" title="Link to this heading">#</a></h3>
+<p>This is one of the most common questions in PCA, and there’s no single right answer. Here are common strategies:</p>
+<ol class="arabic simple">
+<li><p><strong>Explained variance threshold</strong> (e.g., 90% or 95%): Keep enough components to explain a target amount of variance. This is arbitrary but practical.</p></li>
+<li><p><strong>Scree plot “elbow”</strong>: Look for where the explained variance drops off sharply. Components before the elbow capture “signal”; those after capture “noise.”</p></li>
+<li><p><strong>Kaiser criterion</strong>: Keep components with eigenvalue &gt; 1 (only for scaled data). This means keeping components that explain more variance than a single original variable.</p></li>
+<li><p><strong>Cross-validation</strong>: If using PCA for preprocessing before a predictive model, choose the number of components that gives best prediction performance.</p></li>
+</ol>
+<p><strong>The tradeoff</strong>: More components = more information preserved, but also more complexity and potential noise. Fewer components = simpler, more robust representation, but you may lose important details.</p>
+<p>For visualization, we’re usually stuck with 2 or 3 components. For preprocessing, use the cumulative variance plot to guide your choice.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Visualize in 2D</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Type_A'</span><span class="p">,</span> <span class="s1">'Type_B'</span><span class="p">,</span> <span class="s1">'Type_C'</span><span class="p">]:</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">y</span> <span class="o">==</span> <span class="n">cat</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_pca</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_pca</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">cat</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">'PC1 (</span><span class="si">{</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.1%</span><span class="si">}</span><span class="s1"> variance)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">'PC2 (</span><span class="si">{</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.1%</span><span class="si">}</span><span class="s1"> variance)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'PCA of Catalyst Properties'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f1e500d001287db09fe93b6a602de4fe67a2c5cdaaefff28e25ec79381892cf5.png" src="../_images/f1e500d001287db09fe93b6a602de4fe67a2c5cdaaefff28e25ec79381892cf5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interpret principal components: loadings</span>
+<span class="n">loadings</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="o">.</span><span class="n">T</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">'PC</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">'</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">feature_names</span><span class="p">))],</span>
+    <span class="n">index</span><span class="o">=</span><span class="n">feature_names</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"PC Loadings (contribution of each feature):"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">loadings</span><span class="p">[[</span><span class="s1">'PC1'</span><span class="p">,</span> <span class="s1">'PC2'</span><span class="p">,</span> <span class="s1">'PC3'</span><span class="p">]]</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>PC Loadings (contribution of each feature):
+                    PC1    PC2    PC3
+surface_area      0.362  0.070 -0.228
+pore_volume      -0.365 -0.031 -0.117
+acidity          -0.349 -0.026  0.639
+crystallite_size -0.323  0.868 -0.300
+metal_dispersion  0.360  0.087 -0.151
+reduction_temp   -0.359 -0.077 -0.114
+impurity_level    0.371  0.043 -0.086
+particle_size     0.338  0.474  0.627
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="interpreting-pca-what-do-the-components-mean">
+<span id="index-3"></span><h3>Interpreting PCA: What do the components mean?<a class="headerlink" href="#interpreting-pca-what-do-the-components-mean" title="Link to this heading">#</a></h3>
+<p>A major advantage of PCA over other methods is <strong>interpretability</strong>. The loadings tell us how each original feature contributes to each principal component.</p>
+<p><strong>Reading the loadings table:</strong></p>
+<ul class="simple">
+<li><p>Large positive loading: feature increases as PC increases</p></li>
+<li><p>Large negative loading: feature decreases as PC increases</p></li>
+<li><p>Near-zero loading: feature doesn’t contribute much to this PC</p></li>
+</ul>
+<p><strong>What to look for:</strong></p>
+<ul class="simple">
+<li><p>Features with similar loadings are correlated and “move together”</p></li>
+<li><p>Features with opposite signs are anti-correlated</p></li>
+<li><p>PC1 often represents overall “size” or “magnitude” if many loadings have the same sign</p></li>
+<li><p>Later PCs often capture contrasts between groups of features</p></li>
+</ul>
+<p>The biplot below shows both samples and loadings together, making it easier to see which features drive the separation between groups.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Biplot: visualize samples and loadings together</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Plot samples</span>
+<span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Type_A'</span><span class="p">,</span> <span class="s1">'Type_B'</span><span class="p">,</span> <span class="s1">'Type_C'</span><span class="p">]:</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">y</span> <span class="o">==</span> <span class="n">cat</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_pca</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_pca</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">cat</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># Plot loadings as arrows</span>
+<span class="n">scale</span> <span class="o">=</span> <span class="mi">3</span>  <span class="c1"># Scale factor for visibility</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">feature</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">feature_names</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">arrow</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">loadings</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">scale</span><span class="p">,</span> <span class="n">loadings</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">scale</span><span class="p">,</span>
+             <span class="n">head_width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">head_length</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">'black'</span><span class="p">,</span> <span class="n">ec</span><span class="o">=</span><span class="s1">'black'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">loadings</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">scale</span><span class="o">*</span><span class="mf">1.1</span><span class="p">,</span> <span class="n">loadings</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">scale</span><span class="o">*</span><span class="mf">1.1</span><span class="p">,</span> 
+            <span class="n">feature</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">'PC1 (</span><span class="si">{</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.1%</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s1">'PC2 (</span><span class="si">{</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s1">.1%</span><span class="si">}</span><span class="s1">)'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'PCA Biplot'</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/c6edfbde911caa1483795dad4c320767fd062f52c275fc1ee148a15d314e5c79.png" src="../_images/c6edfbde911caa1483795dad4c320767fd062f52c275fc1ee148a15d314e5c79.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="t-sne-when-linear-isn-t-enough">
+<span id="index-4"></span><h2>t-SNE: When Linear Isn’t Enough<a class="headerlink" href="#t-sne-when-linear-isn-t-enough" title="Link to this heading">#</a></h2>
+<p>PCA has a fundamental limitation: it can only find linear structure. If your data lies on a curved surface (a “manifold”) in high-dimensional space, PCA will fail to capture that structure.</p>
+<p><strong>t-SNE</strong> (t-distributed Stochastic Neighbor Embedding) addresses this by focusing on a different goal: preserve <em>local neighborhoods</em>. Points that are close together in the original space should remain close in the reduced space.</p>
+<section id="how-t-sne-works-intuition">
+<h3>How t-SNE works (intuition)<a class="headerlink" href="#how-t-sne-works-intuition" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Compute pairwise similarities in high-dimensional space (who are each point’s neighbors?)</p></li>
+<li><p>Create a random 2D layout</p></li>
+<li><p>Iteratively adjust the 2D positions to match the high-dimensional neighborhood relationships</p></li>
+</ol>
+</section>
+<section id="the-key-tradeoff">
+<h3>The key tradeoff<a class="headerlink" href="#the-key-tradeoff" title="Link to this heading">#</a></h3>
+<p>t-SNE sacrifices <strong>global structure</strong> for <strong>local structure</strong>. This means:</p>
+<ul class="simple">
+<li><p>Clusters are usually well-separated and visually clear</p></li>
+<li><p>But distances <em>between</em> clusters are meaningless</p></li>
+<li><p>The overall arrangement of clusters is arbitrary</p></li>
+</ul>
+<p><strong>Important</strong>: Never interpret t-SNE distances! Two clusters that appear far apart might actually be similar. Two that appear close might be very different. Only the <em>within-cluster</em> structure is meaningful.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit t-SNE</span>
+<span class="n">tsne</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_tsne</span> <span class="o">=</span> <span class="n">tsne</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+
+<span class="c1"># Visualize</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Type_A'</span><span class="p">,</span> <span class="s1">'Type_B'</span><span class="p">,</span> <span class="s1">'Type_C'</span><span class="p">]:</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">y</span> <span class="o">==</span> <span class="n">cat</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_tsne</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_tsne</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">cat</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'t-SNE 1'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'t-SNE 2'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'t-SNE of Catalyst Properties'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ccd8a8b64cfa7e82edee5e65b1b2aa005a28dbf39d4335608db609b237aa50ae.png" src="../_images/ccd8a8b64cfa7e82edee5e65b1b2aa005a28dbf39d4335608db609b237aa50ae.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Effect of perplexity</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">perp</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">100</span><span class="p">]):</span>
+    <span class="n">tsne</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="n">perp</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">X_tsne</span> <span class="o">=</span> <span class="n">tsne</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Type_A'</span><span class="p">,</span> <span class="s1">'Type_B'</span><span class="p">,</span> <span class="s1">'Type_C'</span><span class="p">]:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">y</span> <span class="o">==</span> <span class="n">cat</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_tsne</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_tsne</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">cat</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">'Perplexity = </span><span class="si">{</span><span class="n">perp</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b671f0411a43cb67bd1e597ea8216817a8fdc9df6b02ba6e8e0dfab83a9905b1.png" src="../_images/b671f0411a43cb67bd1e597ea8216817a8fdc9df6b02ba6e8e0dfab83a9905b1.png" />
+</div>
+</div>
+</section>
+<section id="choosing-perplexity-the-local-vs-global-tradeoff">
+<span id="index-5"></span><h3>Choosing perplexity: the local vs global tradeoff<a class="headerlink" href="#choosing-perplexity-the-local-vs-global-tradeoff" title="Link to this heading">#</a></h3>
+<p>Perplexity is t-SNE’s main hyperparameter. It roughly corresponds to “how many neighbors should each point consider?”</p>
+<ul class="simple">
+<li><p><strong>Low perplexity (5-10)</strong>: Focus on very local structure. You’ll see tight, fragmented clusters. Good for finding fine-grained substructure, but may split natural groups.</p></li>
+<li><p><strong>Medium perplexity (30-50)</strong>: The typical default. Balances local and broader structure. Usually a good starting point.</p></li>
+<li><p><strong>High perplexity (100+)</strong>: Consider more neighbors, capturing broader patterns. Clusters may merge. Can approach PCA-like behavior at very high values.</p></li>
+</ul>
+<p><strong>Practical advice:</strong></p>
+<ul class="simple">
+<li><p>Start with perplexity = 30 (or n_samples/3 if you have few samples)</p></li>
+<li><p>If clusters look too fragmented, increase perplexity</p></li>
+<li><p>If distinct groups are merging, decrease perplexity</p></li>
+<li><p>Always try multiple values - t-SNE results can be sensitive to this choice</p></li>
+<li><p>Perplexity must be less than n_samples</p></li>
+</ul>
+</section>
+</section>
+<section id="umap-the-best-of-both-worlds">
+<span id="index-6"></span><h2>UMAP: The Best of Both Worlds?<a class="headerlink" href="#umap-the-best-of-both-worlds" title="Link to this heading">#</a></h2>
+<p>UMAP (Uniform Manifold Approximation and Projection) was developed in 2018 and has quickly become the go-to method for visualization. It addresses many of t-SNE’s limitations:</p>
+<section id="why-umap-often-beats-t-sne">
+<h3>Why UMAP often beats t-SNE<a class="headerlink" href="#why-umap-often-beats-t-sne" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Speed</strong>: UMAP is significantly faster, especially on large datasets (10,000+ points)</p></li>
+<li><p><strong>Global structure</strong>: Unlike t-SNE, UMAP tries to preserve relationships between clusters, not just within them</p></li>
+<li><p><strong>Reproducibility</strong>: With a fixed random seed, UMAP gives consistent results</p></li>
+<li><p><strong>New data</strong>: UMAP can transform new points using a fitted model (t-SNE cannot)</p></li>
+<li><p><strong>Preprocessing</strong>: UMAP embeddings can be used as features for downstream ML models</p></li>
+</ol>
+</section>
+<section id="the-tradeoffs">
+<h3>The tradeoffs<a class="headerlink" href="#the-tradeoffs" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Less interpretable than PCA</strong>: No loadings or explained variance</p></li>
+<li><p><strong>Hyperparameter sensitive</strong>: Results depend on <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> and <code class="docutils literal notranslate"><span class="pre">min_dist</span></code></p></li>
+<li><p><strong>Still nonlinear</strong>: Can distort distances, though less than t-SNE</p></li>
+<li><p><strong>Newer = less proven</strong>: PCA has decades of theoretical backing; UMAP is more empirical</p></li>
+</ul>
+</section>
+<section id="when-to-use-umap">
+<h3>When to use UMAP<a class="headerlink" href="#when-to-use-umap" title="Link to this heading">#</a></h3>
+<p>UMAP is often the best default choice for visualization when:</p>
+<ul class="simple">
+<li><p>You have more than a few hundred samples</p></li>
+<li><p>You want to see both cluster structure and relationships between clusters</p></li>
+<li><p>You might need to project new data later</p></li>
+<li><p>Speed matters</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fit UMAP</span>
+<span class="n">reducer</span> <span class="o">=</span> <span class="n">umap</span><span class="o">.</span><span class="n">UMAP</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">min_dist</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_umap</span> <span class="o">=</span> <span class="n">reducer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+
+<span class="c1"># Visualize</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Type_A'</span><span class="p">,</span> <span class="s1">'Type_B'</span><span class="p">,</span> <span class="s1">'Type_C'</span><span class="p">]:</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">y</span> <span class="o">==</span> <span class="n">cat</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_umap</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_umap</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">cat</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'UMAP 1'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'UMAP 2'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'UMAP of Catalyst Properties'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/jkitchin/Dropbox/emacs/projects/s26-06642/.venv/lib/python3.12/site-packages/umap/umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(
+</pre></div>
+</div>
+<img alt="../_images/b9f7d5a2ea1dcb866913c113f18833f2286d4957ef6980d9654960781f93e0d5.png" src="../_images/b9f7d5a2ea1dcb866913c113f18833f2286d4957ef6980d9654960781f93e0d5.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Effect of n_neighbors parameter</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">n_neighbors</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">50</span><span class="p">]):</span>
+    <span class="n">reducer</span> <span class="o">=</span> <span class="n">umap</span><span class="o">.</span><span class="n">UMAP</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">n_neighbors</span><span class="p">,</span> <span class="n">min_dist</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">X_umap</span> <span class="o">=</span> <span class="n">reducer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Type_A'</span><span class="p">,</span> <span class="s1">'Type_B'</span><span class="p">,</span> <span class="s1">'Type_C'</span><span class="p">]:</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">y</span> <span class="o">==</span> <span class="n">cat</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_umap</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_umap</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">cat</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+    
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">'n_neighbors = </span><span class="si">{</span><span class="n">n_neighbors</span><span class="si">}</span><span class="s1">'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/jkitchin/Dropbox/emacs/projects/s26-06642/.venv/lib/python3.12/site-packages/umap/umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(
+/Users/jkitchin/Dropbox/emacs/projects/s26-06642/.venv/lib/python3.12/site-packages/umap/umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/jkitchin/Dropbox/emacs/projects/s26-06642/.venv/lib/python3.12/site-packages/umap/umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(
+</pre></div>
+</div>
+<img alt="../_images/733680b46c6a0cf39d0a5f87f2d778ab8f1cc0ff900f546b5ce6cd28297d13c5.png" src="../_images/733680b46c6a0cf39d0a5f87f2d778ab8f1cc0ff900f546b5ce6cd28297d13c5.png" />
+</div>
+</div>
+</section>
+<section id="umap-s-key-parameters">
+<h3>UMAP’s key parameters<a class="headerlink" href="#umap-s-key-parameters" title="Link to this heading">#</a></h3>
+<p>UMAP has two main hyperparameters that control the embedding:</p>
+<p><strong><code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code></strong> (similar to t-SNE’s perplexity):</p>
+<ul class="simple">
+<li><p>Controls the balance between local and global structure</p></li>
+<li><p>Low values (5-15): Emphasize local structure, tighter clusters</p></li>
+<li><p>High values (50-200): Emphasize global structure, more spread out</p></li>
+<li><p>Default of 15 works well for most cases</p></li>
+</ul>
+<p><strong><code class="docutils literal notranslate"><span class="pre">min_dist</span></code></strong> (unique to UMAP):</p>
+<ul class="simple">
+<li><p>Controls how tightly points can be packed together</p></li>
+<li><p>Low values (0.0-0.1): Points can clump tightly, good for seeing cluster density</p></li>
+<li><p>High values (0.5-1.0): Points spread out more uniformly, better for seeing individual points</p></li>
+<li><p>Default of 0.1 is usually good</p></li>
+</ul>
+<p><strong>Practical advice:</strong></p>
+<ul class="simple">
+<li><p>Start with defaults (<code class="docutils literal notranslate"><span class="pre">n_neighbors=15</span></code>, <code class="docutils literal notranslate"><span class="pre">min_dist=0.1</span></code>)</p></li>
+<li><p>If clusters are too fragmented, increase <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code></p></li>
+<li><p>If you can’t see individual points, increase <code class="docutils literal notranslate"><span class="pre">min_dist</span></code></p></li>
+<li><p>UMAP is generally less sensitive than t-SNE to parameter choices</p></li>
+</ul>
+</section>
+</section>
+<section id="pca-vs-t-sne-vs-umap">
+<h2>PCA vs t-SNE vs UMAP<a class="headerlink" href="#pca-vs-t-sne-vs-umap" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>PCA</p></th>
+<th class="head"><p>t-SNE</p></th>
+<th class="head"><p>UMAP</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Type</p></td>
+<td><p>Linear</p></td>
+<td><p>Nonlinear</p></td>
+<td><p>Nonlinear</p></td>
+</tr>
+<tr class="row-odd"><td><p>Preserves</p></td>
+<td><p>Global structure</p></td>
+<td><p>Local structure</p></td>
+<td><p>Local + global</p></td>
+</tr>
+<tr class="row-even"><td><p>Interpretable</p></td>
+<td><p>Yes (loadings)</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>Speed</p></td>
+<td><p>Fast</p></td>
+<td><p>Slow</p></td>
+<td><p>Fast</p></td>
+</tr>
+<tr class="row-even"><td><p>New data</p></td>
+<td><p>Can project</p></td>
+<td><p>Cannot project</p></td>
+<td><p>Can project</p></td>
+</tr>
+<tr class="row-odd"><td><p>Use for</p></td>
+<td><p>Features, preprocessing</p></td>
+<td><p>Visualization</p></td>
+<td><p>Visualization, preprocessing</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Side-by-side comparison</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">18</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># PCA</span>
+<span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Type_A'</span><span class="p">,</span> <span class="s1">'Type_B'</span><span class="p">,</span> <span class="s1">'Type_C'</span><span class="p">]:</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">y</span> <span class="o">==</span> <span class="n">cat</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_pca</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_pca</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">cat</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'PC1'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'PC2'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'PCA'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># t-SNE</span>
+<span class="n">tsne</span> <span class="o">=</span> <span class="n">TSNE</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">perplexity</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_tsne</span> <span class="o">=</span> <span class="n">tsne</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Type_A'</span><span class="p">,</span> <span class="s1">'Type_B'</span><span class="p">,</span> <span class="s1">'Type_C'</span><span class="p">]:</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">y</span> <span class="o">==</span> <span class="n">cat</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_tsne</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_tsne</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">cat</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'t-SNE 1'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'t-SNE 2'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'t-SNE'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># UMAP</span>
+<span class="n">reducer</span> <span class="o">=</span> <span class="n">umap</span><span class="o">.</span><span class="n">UMAP</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">min_dist</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_umap</span> <span class="o">=</span> <span class="n">reducer</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">cat</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'Type_A'</span><span class="p">,</span> <span class="s1">'Type_B'</span><span class="p">,</span> <span class="s1">'Type_C'</span><span class="p">]:</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">y</span> <span class="o">==</span> <span class="n">cat</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_umap</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_umap</span><span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">cat</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'UMAP 1'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'UMAP 2'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'UMAP'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/jkitchin/Dropbox/emacs/projects/s26-06642/.venv/lib/python3.12/site-packages/umap/umap_.py:1952: UserWarning: n_jobs value 1 overridden to 1 by setting random_state. Use no seed for parallelism.
+  warn(
+</pre></div>
+</div>
+<img alt="../_images/8ed95e2d9e03363cf753926212c190733c6bbf7caa4e268231ea4c1667ef6a5a.png" src="../_images/8ed95e2d9e03363cf753926212c190733c6bbf7caa4e268231ea4c1667ef6a5a.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Keep components that explain 90% of variance</span>
+<span class="n">pca_90</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mf">0.90</span><span class="p">)</span>
+<span class="n">X_reduced</span> <span class="o">=</span> <span class="n">pca_90</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Original features: </span><span class="si">{</span><span class="n">X_scaled</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Reduced features: </span><span class="si">{</span><span class="n">X_reduced</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Explained variance: </span><span class="si">{</span><span class="n">pca_90</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s2">.1%</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Original features: 8
+Reduced features: 3
+Explained variance: 91.4%
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="how-to-choose-a-decision-guide">
+<h2>How to Choose: A Decision Guide<a class="headerlink" href="#how-to-choose-a-decision-guide" title="Link to this heading">#</a></h2>
+<p>With three methods available, how do you decide which to use? Here’s a practical decision tree:</p>
+<section id="what-s-your-goal">
+<h3>What’s your goal?<a class="headerlink" href="#what-s-your-goal" title="Link to this heading">#</a></h3>
+<p><strong>1. “I need to reduce features for a downstream model”</strong>
+→ Use <strong>PCA</strong>. It’s fast, deterministic, and you can choose how much variance to keep. The reduced features are uncorrelated, which helps many ML algorithms.</p>
+<p><strong>2. “I need to understand which original features matter”</strong>
+→ Use <strong>PCA</strong>. It’s the only method with interpretable loadings. You can explain what each component represents.</p>
+<p><strong>3. “I just want to visualize clusters in my data”</strong>
+→ Use <strong>UMAP</strong> first. It’s fast and usually gives good results. Fall back to t-SNE if UMAP doesn’t show clear structure.</p>
+<p><strong>4. “I need to project new data points onto an existing visualization”</strong>
+→ Use <strong>UMAP</strong> or <strong>PCA</strong>. t-SNE cannot transform new points.</p>
+<p><strong>5. “I have a huge dataset (&gt;100,000 samples)”</strong>
+→ Use <strong>PCA</strong> or <strong>UMAP</strong>. t-SNE will be too slow.</p>
+</section>
+<section id="a-recommended-workflow">
+<h3>A recommended workflow<a class="headerlink" href="#a-recommended-workflow" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Always start with PCA</strong> - it’s fast and gives you explained variance as a sanity check</p></li>
+<li><p><strong>If PCA shows good separation</strong> - you might not need anything fancier</p></li>
+<li><p><strong>If PCA shows overlapping groups</strong> - try UMAP to see if there’s nonlinear structure</p></li>
+<li><p><strong>If you’re publishing or presenting</strong> - try multiple methods and show the comparison (as we did above)</p></li>
+</ol>
+</section>
+<section id="common-pitfalls-to-avoid">
+<h3>Common pitfalls to avoid<a class="headerlink" href="#common-pitfalls-to-avoid" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Don’t forget to scale your data (especially for PCA)</p></li>
+<li><p>Don’t interpret distances in t-SNE plots</p></li>
+<li><p>Don’t use t-SNE/UMAP coordinates as features without careful validation</p></li>
+<li><p>Don’t conclude “no structure” from a single t-SNE run with default parameters</p></li>
+<li><p>Don’t over-interpret small clusters - they might be artifacts of the algorithm</p></li>
+</ul>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="pqhwDAOkYPBy" data-shufflequestions="False" data-shuffleanswers="True" data-preserveresponses="false" data-numquestions="1000000" data-maxwidth="760" style="border-radius: 10px; text-align: left"><style>
+#pqhwDAOkYPBy {
+   --jq-multiple-choice-bg: #4f2683;
+   --jq-mc-button-bg: #fafafa;
+   --jq-mc-button-border: #e0e0e0e0;
+   --jq-mc-button-inset-shadow: #555555;
+   --jq-many-choice-bg: #f75c03ff;
+   --jq-numeric-bg: #392061ff;
+   --jq-numeric-input-bg: #c0c0c0;
+   --jq-numeric-input-label: #101010;
+   --jq-numeric-input-shadow: #999999;
+   --jq-string-bg: #4c1a57;
+   --jq-incorrect-color: #c80202;
+   --jq-correct-color: #009113;
+   --jq-text-color: #fafafa;
+}
+
+.Quiz {
+    max-width: 600px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+/*    margin-bottom: 15px;*/
+/*    padding-bottom: 4px;*/
+    padding-top: 4px;
+    line-height: 1.1;
+    font-size: 16pt;
+    border-radius: inherit;
+}
+
+.QuizCode {
+    font-size: 14pt;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.QuizCode>pre {
+    padding: 4px;
+}
+
+.Quiz code {
+    background-color: lightgray;
+    color: black;
+}
+
+.Quiz .QuizCode code {
+    background-color: inherit;
+    color: inherit;
+}
+
+
+.Quiz .MCButton code {
+    background-color: inherit;
+    color: inherit;
+}
+
+.MCButton .QuizCode {
+    text-align: left;
+}
+
+
+
+
+.Answer {
+    border-radius: inherit;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px 0;
+}
+
+@media only screen and (max-width:480px) {
+    .Answer {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+.Feedback {
+    font-size: 16pt;
+    text-align: center;
+/*    min-height: 2em;*/
+}
+
+.Input {
+    align: left;
+    font-size: 20pt;
+}
+
+.Input-text {
+    display: block;
+    margin: 10px;
+    color: inherit;
+    width: unset;
+    min-width: 140px;
+    max-width: 93%;
+    field-sizing: content;
+    background-color: var(--jq-numeric-input-bg);
+    color: var(--jq-text-color);
+    padding: 5px;
+    padding-left: 10px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: inherit;
+    line-height: 20pt;
+    border: none;
+    border-radius: 0.2rem;
+    transition: box-shadow 0.1s);
+}
+
+.Input-text:focus {
+    /*outline: none;*/
+    background-color: var(--jq-numeric-input-bg);
+    box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem var(--jq-numeric-input-shadow);
+}
+
+.MCButton {
+    background: var(--jq-mc-button-bg);
+    border: 1px solid var(--jq-mc-button-border);
+    border-radius: inherit;
+    color: #333333;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MCButton p {
+    color: inherit;
+}
+
+.MultipleChoiceQn {
+    padding: 10px;
+    background: var(--jq-multiple-choice-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
+}
+
+.ManyChoiceQn {
+    padding: 10px;
+    background: var(--jq-many-choice-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
+}
+
+.NumericQn {
+    background: var(--jq-numeric-bg);
+    border-radius: inherit;
+    color: var(--jq-text-color);
+    padding: 10px;
+}
+
+.NumericQn p {
+    color: inherit;
+}
+
+.StringQn {
+    background: var(--jq-string-bg);
+    border-radius: inherit;
+    color: var(--jq-text-color);
+    padding: 10px;
+}
+
+.StringQn p {
+    color: inherit;
+}
+
+
+.InpLabel {
+    color: var(--jq-numeric-input-label);
+    float: left;
+    font-size: 15pt;
+    line-height: 34px;
+    margin-right: 10px;
+}
+
+.incorrect {
+    color: var(--jq-incorrect-color);
+}
+
+.correct {
+    color: var(--jq-correct-color);
+}
+
+.correctButton {
+    /*
+    background: var(--jq-correct-color);
+   */
+    animation: correct-anim 0.6s ease;
+    animation-fill-mode: forwards;
+    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
+    color: var(--jq-text-color);
+    /*outline: none;*/
+}
+
+.incorrectButton {
+    animation: incorrect-anim 0.8s ease;
+    animation-fill-mode: forwards;
+    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
+    color: var(--jq-text-color);
+    /*outline: none;*/
+}
+
+@keyframes incorrect-anim {
+    100% {
+        background-color: var(--jq-incorrect-color);
+    }
+}
+
+@keyframes correct-anim {
+    100% {
+        background-color: var(--jq-correct-color);
+    }
+}
+</style></div><script type="application/javascript">var questionspqhwDAOkYPBy=[{"question": "What is the 'curse of dimensionality' in machine learning?", "type": "multiple_choice", "answers": [{"answer": "Having too few features to build a good model", "correct": false, "feedback": "Incorrect. The curse of dimensionality refers to problems with too MANY dimensions, not too few."}, {"answer": "Data points become increasingly sparse and isolated as the number of features increases, making pattern detection harder", "correct": true, "feedback": "Correct! In high-dimensional spaces, data becomes sparse, distances lose meaning, and exponentially more samples are needed to achieve adequate coverage."}, {"answer": "Computers run out of memory when processing large datasets", "correct": false, "feedback": "Incorrect. While memory can be a practical concern, the curse of dimensionality specifically refers to statistical and geometric problems in high-dimensional spaces."}, {"answer": "Features become perfectly correlated in high dimensions", "correct": false, "feedback": "Incorrect. While correlation between features is common, the curse of dimensionality refers to sparsity and distance-related problems, not correlation."}]}, {"question": "When should you standardize (scale) your data before applying PCA?", "type": "multiple_choice", "answers": [{"answer": "Never - PCA automatically handles different scales", "correct": false, "feedback": "Incorrect. PCA does NOT automatically handle different scales. Features with larger ranges will dominate the principal components."}, {"answer": "Only when using t-SNE or UMAP afterward", "correct": false, "feedback": "Incorrect. Scaling is important for PCA itself, regardless of what methods you use afterward."}, {"answer": "When features have different units or vastly different numerical ranges", "correct": true, "feedback": "Correct! When combining heterogeneous measurements (like temperature, pressure, and concentration), scaling ensures each feature contributes equally rather than being dominated by features with large numerical values."}, {"answer": "Only when you have more than 100 features", "correct": false, "feedback": "Incorrect. The number of features doesn't determine whether to scale - the difference in units and ranges does."}]}, {"question": "What does PCA preserve when reducing dimensionality?", "type": "multiple_choice", "answers": [{"answer": "Local neighborhood relationships between points", "correct": false, "feedback": "Incorrect. Preserving local neighborhoods is what t-SNE and UMAP focus on, not PCA."}, {"answer": "Maximum variance in the data along orthogonal linear directions", "correct": true, "feedback": "Correct! PCA finds new orthogonal axes (principal components) ordered by the amount of variance they capture. It assumes variance equals information."}, {"answer": "Cluster boundaries and group separations", "correct": false, "feedback": "Incorrect. PCA doesn't explicitly try to preserve cluster structure - it only maximizes variance, which may or may not align with cluster separations."}, {"answer": "Nonlinear manifold structure in the data", "correct": false, "feedback": "Incorrect. PCA can only capture LINEAR structure. For nonlinear manifolds, you need methods like t-SNE or UMAP."}]}, {"question": "How do you interpret PCA loadings?", "type": "multiple_choice", "answers": [{"answer": "Loadings tell you how much variance each principal component explains", "correct": false, "feedback": "Incorrect. The explained variance ratio tells you how much variance each PC explains. Loadings tell you how original features contribute to each PC."}, {"answer": "Loadings indicate the importance of each sample in the dataset", "correct": false, "feedback": "Incorrect. Loadings describe the relationship between original features and principal components, not sample importance."}, {"answer": "Large positive/negative loadings indicate features that strongly contribute to that PC; near-zero loadings indicate minimal contribution", "correct": true, "feedback": "Correct! Loadings show how each original feature contributes to each PC. Features with similar loadings are correlated, while opposite signs indicate anti-correlation."}, {"answer": "Loadings should always sum to 1.0 for each principal component", "correct": false, "feedback": "Incorrect. Loadings are coefficients that can have any value; they don't need to sum to 1."}]}, {"question": "Which approach is commonly used to decide how many principal components to keep?", "type": "multiple_choice", "answers": [{"answer": "Always keep exactly 2 components for visualization", "correct": false, "feedback": "Incorrect. While 2 components are common for visualization, the optimal number depends on your goal and should be determined by examining explained variance."}, {"answer": "Use a scree plot to find the 'elbow' where explained variance drops off, or set a cumulative variance threshold (e.g., 90%)", "correct": true, "feedback": "Correct! Common strategies include finding the elbow in the scree plot, setting a variance threshold, or using cross-validation for prediction tasks."}, {"answer": "Keep the same number of components as original features", "correct": false, "feedback": "Incorrect. That would defeat the purpose of dimensionality reduction!"}, {"answer": "Always keep components until cumulative variance reaches exactly 100%", "correct": false, "feedback": "Incorrect. Keeping all variance means keeping all components, which doesn't reduce dimensionality. Some information loss is acceptable for simpler representations."}]}, {"question": "What is the key difference between PCA and t-SNE?", "type": "multiple_choice", "answers": [{"answer": "PCA is slower but more accurate than t-SNE", "correct": false, "feedback": "Incorrect. PCA is actually FASTER than t-SNE, and 'accuracy' depends on what structure you're trying to preserve."}, {"answer": "PCA preserves global linear structure while t-SNE preserves local neighborhood relationships (potentially at the expense of global structure)", "correct": true, "feedback": "Correct! PCA finds linear directions of maximum variance (global structure), while t-SNE focuses on keeping nearby points close together (local structure), which can distort distances between clusters."}, {"answer": "t-SNE provides interpretable loadings while PCA does not", "correct": false, "feedback": "Incorrect. It's the opposite - PCA provides interpretable loadings, while t-SNE does not."}, {"answer": "t-SNE can project new data points while PCA cannot", "correct": false, "feedback": "Incorrect. It's the opposite - PCA and UMAP can project new data, but t-SNE cannot transform new points after fitting."}]}, {"question": "What does the perplexity parameter control in t-SNE?", "type": "multiple_choice", "answers": [{"answer": "The number of principal components to compute first", "correct": false, "feedback": "Incorrect. Perplexity doesn't relate to PCA. It controls how many neighbors each point considers."}, {"answer": "Roughly how many neighbors each point considers, balancing local vs. broader structure", "correct": true, "feedback": "Correct! Low perplexity (5-10) emphasizes very local structure with tight clusters. High perplexity (50+) considers more neighbors and captures broader patterns."}, {"answer": "The learning rate for the optimization algorithm", "correct": false, "feedback": "Incorrect. Learning rate is a separate parameter. Perplexity specifically controls the effective number of neighbors."}, {"answer": "The final number of dimensions in the output", "correct": false, "feedback": "Incorrect. The n_components parameter controls output dimensions. Perplexity controls neighborhood size."}]}, {"question": "Why should you NOT interpret distances between clusters in a t-SNE plot?", "type": "multiple_choice", "answers": [{"answer": "t-SNE only works with categorical data, not continuous distances", "correct": false, "feedback": "Incorrect. t-SNE works with continuous data. The issue is that it distorts global distances while preserving local structure."}, {"answer": "t-SNE sacrifices global structure to preserve local neighborhoods, so distances between clusters can be arbitrary and misleading", "correct": true, "feedback": "Correct! t-SNE focuses on keeping nearby points close together but can arbitrarily stretch or compress distances between clusters. Two clusters that appear far apart might actually be similar."}, {"answer": "The algorithm randomly assigns cluster positions each time you run it", "correct": false, "feedback": "Incorrect. While t-SNE does have randomness, the deeper issue is that it explicitly prioritizes local over global structure."}, {"answer": "t-SNE only shows relative rankings, not actual distances", "correct": false, "feedback": "Incorrect. The issue is more fundamental - t-SNE doesn't preserve global distance relationships at all, not just that it shows rankings."}]}];
+
+if (typeof Question === 'undefined') {
+// Make a random ID
+function makeid(length) {
+    var result = [];
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+    }
+    return result.join('');
+}
+// Convert LaTeX delimiters and markdown links to HTML
+function jaxify(string) {
+    let mystring = string;
+    let count = 0, count2 = 0;
+    let loc = mystring.search(/([^\\]|^)(\$)/);
+    let loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+    while (loc >= 0 || loc2 >= 0) {
+        if (loc2 >= 0) {
+            mystring = mystring.replace(/([^\\]|^)(\$\$)/, count2 % 2 ? '$1\\]' : '$1\\[');
+            count2++;
+        } else {
+            mystring = mystring.replace(/([^\\]|^)(\$)/, count % 2 ? '$1\\)' : '$1\\(');
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+    }
+    // Replace markdown links
+    mystring = mystring.replace(/<http(.*?)>/g, '<a href="http$1" target="_blank" class="Link">http$1</a>');
+    mystring = mystring.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" class="Link">$1</a>');
+    return mystring;
+}
+
+// Base class for question types
+class Question {
+    static registry = {};
+    static register(type, cls) {
+        Question.registry[type] = cls;
+    }
+    static create(qa, id, index, options, rootDiv) {
+        const Cls = Question.registry[qa.type];
+        if (!Cls) {
+            console.error(`No question class registered for type "${qa.type}"`);
+            return;
+        }
+        const q = new Cls(qa, id, index, options, rootDiv);
+        q.render();
+    }
+
+    constructor(qa, id, index, options, rootDiv) {
+        this.qa = qa;
+        this.id = id;
+        this.index = index;
+        this.options = options;
+        this.rootDiv = rootDiv;
+        // wrapper
+        this.wrapper = document.createElement('div');
+        this.wrapper.id = `quizWrap${id}`;
+        this.wrapper.className = 'Quiz';
+        this.wrapper.dataset.qnum = index;
+        this.wrapper.style.maxWidth = `${options.maxWidth}px`;
+        rootDiv.appendChild(this.wrapper);
+        // question container
+        this.outerqDiv = document.createElement('div');
+        this.outerqDiv.id = `OuterquizQn${id}${index}`;
+        this.wrapper.appendChild(this.outerqDiv);
+        // question text
+        this.qDiv = document.createElement('div');
+        this.qDiv.id = `quizQn${id}${index}`;
+        if (qa.question) {
+            this.qDiv.innerHTML = jaxify(qa.question);
+            this.outerqDiv.appendChild(this.qDiv);
+        }
+        // code block
+        if (qa.code) {
+            const codeDiv = document.createElement('div');
+            codeDiv.id = `code${id}${index}`;
+            codeDiv.className = 'QuizCode';
+            const pre = document.createElement('pre');
+            const codeEl = document.createElement('code');
+            codeEl.innerHTML = qa.code;
+            pre.appendChild(codeEl);
+            codeDiv.appendChild(pre);
+            this.outerqDiv.appendChild(codeDiv);
+        }
+        // answer container
+        this.aDiv = document.createElement('div');
+        this.aDiv.id = `quizAns${id}${index}`;
+        this.aDiv.className = 'Answer';
+        this.wrapper.appendChild(this.aDiv);
+        // feedback container (append after answers)
+        this.fbDiv = document.createElement('div');
+        this.fbDiv.id = `fb${id}`;
+        this.fbDiv.className = 'Feedback';
+        this.fbDiv.dataset.answeredcorrect = 0;
+    }
+
+    render() {
+        throw new Error('render() not implemented');
+    }
+
+    preserveResponse(val) {
+        if (!this.options.preserveResponses) return;
+        const resp = document.getElementById(`responses${this.rootDiv.id}`);
+        if (!resp) return;
+        const arr = JSON.parse(resp.dataset.responses);
+        arr[this.index] = val;
+        resp.dataset.responses = JSON.stringify(arr);
+        printResponses(resp);
+    }
+
+    typeset(container) {
+        if (typeof MathJax !== 'undefined') {
+            const v = MathJax.version;
+            if (v[0] === '2') {
+                MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+            } else {
+                MathJax.typeset([container]);
+            }
+        }
+    }
+}
+
+// Choose a random subset of an array. Can also be used to shuffle the array
+function getRandomSubarray(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, temp, index;
+    while (i--) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
+}
+
+function printResponses(responsesContainer) {
+    var responses=JSON.parse(responsesContainer.dataset.responses);
+    var stringResponses='<B>IMPORTANT!</B>To preserve this answer sequence for submission, when you have finalized your answers: <ol> <li> Copy the text in this cell below "Answer String"</li> <li> Double click on the cell directly below the Answer String, labeled "Replace Me"</li> <li> Select the whole "Replace Me" text</li> <li> Paste in your answer string and press shift-Enter.</li><li>Save the notebook using the save icon or File->Save Notebook menu item</li></ul><br><br><br><b>Answer String:</b><br> ';
+    console.log(responses);
+    responses.forEach((response, index) => {
+        if (response) {
+            console.log(index + ': ' + response);
+            stringResponses+= index + ': ' + response +"<BR>";
+        }
+    });
+    responsesContainer.innerHTML=stringResponses;
+}
+/* Callback function to determine whether a selected multiple-choice
+   button corresponded to a correct answer and to provide feedback
+   based on the answer */
+function check_mc() {
+    var id = this.id.split('-')[0];
+    //var response = this.id.split('-')[1];
+    //console.log(response);
+    //console.log("In check_mc(), id="+id);
+    //console.log(event.srcElement.id)           
+    //console.log(event.srcElement.dataset.correct)   
+    //console.log(event.srcElement.dataset.feedback)
+
+    var label = event.srcElement;
+    //console.log(label, label.nodeName);
+    var depth = 0;
+    while ((label.nodeName != "LABEL") && (depth < 20)) {
+        label = label.parentElement;
+        console.log(depth, label);
+        depth++;
+    }
+
+
+
+    var answers = label.parentElement.children;
+    //console.log(answers);
+
+    // Split behavior based on multiple choice vs many choice:
+    var fb = document.getElementById("fb" + id);
+
+
+
+    /* Multiple choice (1 answer). Allow for 0 correct
+       answers as an edge case */
+    if (fb.dataset.numcorrect <= 1) {
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            responses[qnum]= response;
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+
+        for (var i = 0; i < answers.length; i++) {
+            var child = answers[i];
+            //console.log(child);
+            child.className = "MCButton";
+        }
+
+
+
+        if (label.dataset.correct == "true") {
+            // console.log("Correct action");
+            if ("feedback" in label.dataset) {
+                fb.innerHTML = jaxify(label.dataset.feedback);
+            } else {
+                fb.innerHTML = "Correct!";
+            }
+            label.classList.add("correctButton");
+
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+
+        } else {
+            if ("feedback" in label.dataset) {
+                fb.innerHTML = jaxify(label.dataset.feedback);
+            } else {
+                fb.innerHTML = "Incorrect -- try again.";
+            }
+            //console.log("Error action");
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+    }
+    else { /* Many choice (more than 1 correct answer) */
+        var reset = false;
+        var feedback;
+         if (label.dataset.correct == "true") {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Correct!";
+            }
+            if (label.dataset.answered <= 0) {
+                if (fb.dataset.answeredcorrect < 0) {
+                    fb.dataset.answeredcorrect = 1;
+                    reset = true;
+                } else {
+                    fb.dataset.answeredcorrect++;
+                }
+                if (reset) {
+                    for (var i = 0; i < answers.length; i++) {
+                        var child = answers[i];
+                        child.className = "MCButton";
+                        child.dataset.answered = 0;
+                    }
+                }
+                label.classList.add("correctButton");
+                label.dataset.answered = 1;
+                fb.className = "Feedback";
+                fb.classList.add("correct");
+
+            }
+        } else {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Incorrect -- try again.";
+            }
+            if (fb.dataset.answeredcorrect > 0) {
+                fb.dataset.answeredcorrect = -1;
+                reset = true;
+            } else {
+                fb.dataset.answeredcorrect--;
+            }
+
+            if (reset) {
+                for (var i = 0; i < answers.length; i++) {
+                    var child = answers[i];
+                    child.className = "MCButton";
+                    child.dataset.answered = 0;
+                }
+            }
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            if (label.dataset.correct == "true") {
+                if (typeof(responses[qnum]) == "object"){
+                    if (!responses[qnum].includes(response))
+                        responses[qnum].push(response);
+                } else{
+                    responses[qnum]= [ response ];
+                }
+            } else {
+                responses[qnum]= response;
+            }
+            console.log(responses);
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End save responses stuff
+
+
+
+        var numcorrect = fb.dataset.numcorrect;
+        var answeredcorrect = fb.dataset.answeredcorrect;
+        if (answeredcorrect >= 0) {
+            fb.innerHTML = feedback + " [" + answeredcorrect + "/" + numcorrect + "]";
+        } else {
+            fb.innerHTML = feedback + " [" + 0 + "/" + numcorrect + "]";
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([fb]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+}
+
+
+/* Function to produce the HTML buttons for a multiple choice/
+   many choice question  and to update the CSS tags based on
+   the question type */
+function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
+
+    var shuffled;
+    if (shuffle_answers == true) {
+        //console.log(shuffle_answers+" read as true");
+        shuffled = getRandomSubarray(qa.answers, qa.answers.length);
+    } else {
+        //console.log(shuffle_answers+" read as false");
+        shuffled = qa.answers;
+    }
+
+
+    var num_correct = 0;
+
+    shuffled.forEach((item, index, ans_array) => {
+        //console.log(answer);
+
+        // Make input element
+        var inp = document.createElement("input");
+        inp.type = "radio";
+        inp.id = "quizo" + id + index;
+        inp.style = "display:none;";
+        aDiv.append(inp);
+
+        //Make label for input element
+        var lab = document.createElement("label");
+        lab.className = "MCButton";
+        lab.id = id + '-' + index;
+        lab.onclick = check_mc;
+        var aSpan = document.createElement('span');
+        aSpan.classsName = "";
+        //qDiv.id="quizQn"+id+index;
+        if ("answer" in item) {
+            aSpan.innerHTML = jaxify(item.answer);
+            //aSpan.innerHTML=item.answer;
+        }
+        lab.append(aSpan);
+
+        // Create div for code inside question
+        var codeSpan;
+        if ("code" in item) {
+            codeSpan = document.createElement('span');
+            codeSpan.id = "code" + id + index;
+            codeSpan.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeSpan.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = item.code;
+            lab.append(codeSpan);
+            //console.log(codeSpan);
+        }
+
+        //lab.textContent=item.answer;
+
+        // Set the data attributes for the answer
+        lab.setAttribute('data-correct', item.correct);
+        if (item.correct) {
+            num_correct++;
+        }
+        if ("feedback" in item) {
+            lab.setAttribute('data-feedback', item.feedback);
+        }
+        lab.setAttribute('data-answered', 0);
+
+        aDiv.append(lab);
+
+    });
+
+    if (num_correct > 1) {
+        outerqDiv.className = "ManyChoiceQn";
+    } else {
+        outerqDiv.className = "MultipleChoiceQn";
+    }
+
+    return num_correct;
+
+}
+// Object-oriented wrapper for MC/MANY choice
+class MCQuestion extends Question {
+    constructor(qa, id, idx, opts, rootDiv) { super(qa, id, idx, opts, rootDiv); }
+    render() {
+        //console.log("options.shuffleAnswers " + this.options.shuffleAnswers);
+        const numCorrect = make_mc(
+            this.qa,
+            this.options.shuffleAnswers,
+            this.outerqDiv,
+            this.qDiv,
+            this.aDiv,
+            this.id
+        );
+        if ('answer_cols' in this.qa) {
+            this.aDiv.style.gridTemplateColumns =
+                'repeat(' + this.qa.answer_cols + ', 1fr)';
+        }
+        this.fbDiv.dataset.numcorrect = numCorrect;
+        this.wrapper.appendChild(this.fbDiv);
+    }
+}
+Question.register('multiple_choice', MCQuestion);
+Question.register('many_choice', MCQuestion);
+function check_numeric(ths, event) {
+
+    if (event.keyCode === 13) {
+        ths.blur();
+
+        var id = ths.id.split('-')[0];
+
+        var submission = ths.value;
+        if (submission.indexOf('/') != -1) {
+            var sub_parts = submission.split('/');
+            //console.log(sub_parts);
+            submission = sub_parts[0] / sub_parts[1];
+        }
+        //console.log("Reader entered", submission);
+
+        if ("precision" in ths.dataset) {
+            var precision = ths.dataset.precision;
+            submission = Number(Number(submission).toPrecision(precision));
+        }
+
+
+        //console.log("In check_numeric(), id="+id);
+        //console.log(event.srcElement.id)           
+        //console.log(event.srcElement.dataset.feedback)
+
+        var fb = document.getElementById("fb" + id);
+        fb.style.display = "none";
+        fb.innerHTML = "Incorrect -- try again.";
+
+        var answers = JSON.parse(ths.dataset.answers);
+        //console.log(answers);
+
+        var defaultFB = "Incorrect. Try again.";
+        var correct;
+        var done = false;
+        answers.every(answer => {
+            //console.log(answer.type);
+
+            correct = false;
+            // if (answer.type=="value"){
+            if ('value' in answer) {
+                var value;
+                if ("precision" in ths.dataset) {
+                    value = answer.value.toPrecision(ths.dataset.precision);
+                } else {
+                    value = answer.value;
+                }
+                if (submission == value) {
+                    if ("feedback" in answer) {
+                        fb.innerHTML = jaxify(answer.feedback);
+                    } else {
+                        fb.innerHTML = jaxify("Correct");
+                    }
+                    correct = answer.correct;
+                    //console.log(answer.correct);
+                    done = true;
+                }
+
+                // } else if (answer.type=="range") {
+            } else if ('range' in answer) {
+                console.log(answer.range);
+                console.log(submission, submission >=answer.range[0], submission < answer.range[1])
+                if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
+                    fb.innerHTML = jaxify(answer.feedback);
+                    correct = answer.correct;
+                    console.log(answer.correct);
+                    done = true;
+                }
+            } else if (answer.type == "default") {
+                if ("feedback" in answer) {
+                    defaultFB = answer.feedback;
+                } 
+            }
+            if (done) {
+                return false; // Break out of loop if this has been marked correct
+            } else {
+                return true; // Keep looking for case that includes this as a correct answer
+            }
+        });
+        console.log("done:", done);
+
+        if ((!done) && (defaultFB != "")) {
+            fb.innerHTML = jaxify(defaultFB);
+            //console.log("Default feedback", defaultFB);
+        }
+
+        fb.style.display = "block";
+        if (correct) {
+            ths.className = "Input-text";
+            ths.classList.add("correctButton");
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+        } else {
+            ths.className = "Input-text";
+            ths.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            console.log(submission);
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            //console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            if (submission == ths.value){
+                responses[qnum]= submission;
+            } else {
+                responses[qnum]= ths.value + "(" + submission +")";
+            }
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([fb]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+        // After correct answer, if next JupyterQuiz question exists and has a text input, scroll by current question height
+        if (correct) {
+            // find the current question wrapper
+            var wrapper = ths.closest('.Quiz');
+            if (wrapper) {
+                var nextWrapper = wrapper.nextElementSibling;
+                if (nextWrapper && nextWrapper.classList.contains('Quiz')) {
+                    var nextInput = nextWrapper.querySelector('input.Input-text');
+                    if (nextInput) {
+                        var height = wrapper.getBoundingClientRect().height;
+                        console.log(height);
+                        nextInput.focus();
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+}
+// Object-oriented wrapper for numeric questions
+class NumericQuestion extends Question {
+    constructor(qa, id, idx, opts, rootDiv) {
+        super(qa, id, idx, opts, rootDiv);
+    }
+    render() {
+        make_numeric(this.qa, this.outerqDiv, this.qDiv, this.aDiv, this.id);
+        this.wrapper.appendChild(this.fbDiv);
+    }
+}
+Question.register('numeric', NumericQuestion);
+
+function isValid(el, charC) {
+    //console.log("Input char: ", charC);
+    if (charC == 46) {
+        if (el.value.indexOf('.') === -1) {
+            return true;
+        } else if (el.value.indexOf('/') != -1) {
+            var parts = el.value.split('/');
+            if (parts[1].indexOf('.') === -1) {
+                return true;
+            }
+        }
+        else {
+            return false;
+        }
+    } else if (charC == 47) {
+        if (el.value.indexOf('/') === -1) {
+            if ((el.value != "") && (el.value != ".")) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else if (charC == 45) {
+        var edex = el.value.indexOf('e');
+        if (edex == -1) {
+            edex = el.value.indexOf('E');
+        }
+
+        if (el.value == "") {
+            return true;
+        } else if (edex == (el.value.length - 1)) { // If just after e or E
+            return true;
+        } else {
+            return false;
+        }
+    } else if (charC == 101) { // "e"
+        if ((el.value.indexOf('e') === -1) && (el.value.indexOf('E') === -1) && (el.value.indexOf('/') == -1)) {
+            // Prev symbol must be digit or decimal point:
+            if (el.value.slice(-1).search(/\d/) >= 0) {
+                return true;
+            } else if (el.value.slice(-1).search(/\./) >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else {
+        if (charC > 31 && (charC < 48 || charC > 57))
+            return false;
+    }
+    return true;
+}
+
+function numeric_keypress(evnt) {
+    var charC = (evnt.which) ? evnt.which : evnt.keyCode;
+
+    if (charC == 13) {
+        check_numeric(this, evnt);
+    } else {
+        return isValid(this, charC);
+    }
+}
+
+
+
+
+
+function make_numeric(qa, outerqDiv, qDiv, aDiv, id) {
+
+
+
+    //console.log(answer);
+
+
+    outerqDiv.className = "NumericQn";
+    aDiv.style.display = 'block';
+
+    var lab = document.createElement("label");
+    lab.className = "InpLabel";
+    lab.innerHTML = "Type numeric answer here:";
+    aDiv.append(lab);
+
+    var inp = document.createElement("input");
+    inp.type = "text";
+    //inp.id="input-"+id;
+    inp.id = id + "-0";
+    inp.className = "Input-text";
+    inp.setAttribute('data-answers', JSON.stringify(qa.answers));
+    if ("precision" in qa) {
+        inp.setAttribute('data-precision', qa.precision);
+    }
+    aDiv.append(inp);
+    //console.log(inp);
+
+    //inp.addEventListener("keypress", check_numeric);
+    //inp.addEventListener("keypress", numeric_keypress);
+    /*
+    inp.addEventListener("keypress", function(event) {
+        return numeric_keypress(this, event);
+    }
+                        );
+                        */
+    //inp.onkeypress="return numeric_keypress(this, event)";
+    inp.onkeypress = numeric_keypress;
+    inp.onpaste = event => false;
+
+    inp.addEventListener("focus", function (event) {
+        this.value = "";
+        return false;
+    }
+    );
+
+
+}
+// Override show_questions to use object-oriented Question API
+function show_questions(json, container) {
+    // Accept container element or element ID
+    if (typeof container === 'string') {
+        container = document.getElementById(container);
+    }
+    if (!container) {
+        console.error('show_questions: invalid container', container);
+        return;
+    }
+
+    const shuffleQuestions = container.dataset.shufflequestions === 'True';
+    const shuffleAnswers = container.dataset.shuffleanswers === 'True';
+    const preserveResponses = container.dataset.preserveresponses === 'true';
+    const maxWidth = parseInt(container.dataset.maxwidth, 10) || 0;
+    let numQuestions = parseInt(container.dataset.numquestions, 10) || json.length;
+    if (numQuestions > json.length) numQuestions = json.length;
+
+    let questions = json;
+    if (shuffleQuestions || numQuestions < json.length) {
+        questions = getRandomSubarray(json, numQuestions);
+    }
+
+    questions.forEach((qa, index) => {
+        const id = makeid(8);
+        const options = {
+            shuffleAnswers: shuffleAnswers,
+            preserveResponses: preserveResponses,
+            maxWidth: maxWidth
+        };
+        Question.create(qa, id, index, options, container);
+    });
+
+    if (preserveResponses) {
+        const respDiv = document.createElement('div');
+        respDiv.id = 'responses' + container.id;
+        respDiv.className = 'JCResponses';
+        respDiv.dataset.responses = JSON.stringify([]);
+        respDiv.innerHTML = '<b>Select your answers and then follow the directions that will appear here.</b>';
+        container.appendChild(respDiv);
+    }
+
+    // Trigger MathJax typesetting if available
+    if (typeof MathJax != 'undefined') {
+        console.log("MathJax version", MathJax.version);
+        var version = MathJax.version;
+        setTimeout(function(){
+            var version = MathJax.version;
+            console.log('After sleep, MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([container]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
+            }
+        }, 500);
+if (typeof version == 'undefined') {
+        } else
+        {
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([container]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
+            } else {
+                console.log("MathJax not found");
+            }
+        }
+    }
+    // if (typeof MathJax !== 'undefined') {
+    //     const v = MathJax.version;
+    //     if (v[0] === '2') {
+    //         MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+    //     } else if (v[0] === '3') {
+    //         MathJax.typeset([container]);
+    //     }
+    // }
+
+    // Prevent link clicks from bubbling up
+    Array.from(container.getElementsByClassName('Link')).forEach(link => {
+        link.addEventListener('click', e => e.stopPropagation());
+    });
+}
+function levenshteinDistance(a, b) {
+    if (a.length === 0) return b.length;
+    if (b.length === 0) return a.length;
+
+    const matrix = Array(b.length + 1).fill(null).map(() => Array(a.length + 1).fill(null));
+
+    for (let i = 0; i <= a.length; i++) {
+        matrix[0][i] = i;
+    }
+
+    for (let j = 0; j <= b.length; j++) {
+        matrix[j][0] = j;
+    }
+
+    for (let j = 1; j <= b.length; j++) {
+        for (let i = 1; i <= a.length; i++) {
+            const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+            matrix[j][i] = Math.min(
+                matrix[j - 1][i] + 1, // Deletion
+                matrix[j][i - 1] + 1, // Insertion
+                matrix[j - 1][i - 1] + cost // Substitution
+            );
+        }
+    }
+    return matrix[b.length][a.length];
+}
+// Object-oriented wrapper for string input questions
+class StringQuestion extends Question {
+    constructor(qa, id, idx, opts, rootDiv) {
+        super(qa, id, idx, opts, rootDiv);
+    }
+    render() {
+        make_string(this.qa, this.outerqDiv, this.qDiv, this.aDiv, this.id);
+        this.wrapper.appendChild(this.fbDiv);
+    }
+}
+Question.register('string', StringQuestion);
+
+function check_string(ths, event) {
+    if (event.keyCode === 13) {
+        ths.blur();
+
+        var id = ths.id.split('-')[0];
+        var submission = ths.value.trim();
+        var fb = document.getElementById("fb" + id);
+        fb.style.display = "none";
+        fb.innerHTML = "Incorrect -- try again.";
+
+        var answers = JSON.parse(ths.dataset.answers);
+        var defaultFB = "Incorrect. Try again.";
+        var correct;
+        var done = false;
+
+        // Handle default answer pattern: filter out and capture default feedback
+        var filteredAnswers = [];
+        answers.forEach(answer => {
+            if (answer.type === "default") {
+                defaultFB = answer.feedback;
+            } else {
+                filteredAnswers.push(answer);
+            }
+        });
+        answers = filteredAnswers;
+
+        answers.every(answer => {
+            correct = false;
+
+            let match = false;
+            if (answer.match_case) {
+                match = submission === answer.answer;
+            } else {
+                match = submission.toLowerCase() === answer.answer.toLowerCase();
+            }
+            console.log(submission);
+            console.log(answer.answer);
+            console.log(match);
+
+            if (match) {
+                if ("feedback" in answer) {
+                    fb.innerHTML = jaxify(answer.feedback);
+                } else {
+                    fb.innerHTML = jaxify("Correct");
+                }
+                correct = answer.correct;
+                done = true;
+            } else if (answer.fuzzy_threshold) {
+                var max_length = Math.max(submission.length, answer.answer.length);
+                var ratio;
+                if (answer.match_case) {
+                    ratio = 1- (levenshteinDistance(submission, answer.answer) / max_length);
+                } else {
+                    ratio = 1- (levenshteinDistance(submission.toLowerCase(),
+                                                    answer.answer.toLowerCase()) / max_length);
+                }
+                if (ratio >= answer.fuzzy_threshold) {
+                    if ("feedback" in answer) {
+                        fb.innerHTML = jaxify("(Fuzzy) " + answer.feedback);
+                    } else {
+                        fb.innerHTML = jaxify("Correct");
+                    }
+                    correct = answer.correct;
+                    done = true;
+                }
+
+            }
+
+            if (done) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+
+        if ((!done) && (defaultFB != "")) {
+            fb.innerHTML = jaxify(defaultFB);
+        }
+
+        fb.style.display = "block";
+        if (correct) {
+            ths.className = "Input-text";
+            ths.classList.add("correctButton");
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+        } else {
+            ths.className = "Input-text";
+            ths.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            var qnum = document.getElementById("quizWrap" + id).dataset.qnum;
+            var responses = JSON.parse(responsesContainer.dataset.responses);
+            responses[qnum] = submission;
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([fb]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+        // After correct answer, if next JupyterQuiz question exists and has a text input, scroll by current question height
+        if (correct) {
+            var wrapper = ths.closest('.Quiz');
+            if (wrapper) {
+                var nextWrapper = wrapper.nextElementSibling;
+                if (nextWrapper && nextWrapper.classList.contains('Quiz')) {
+                    var nextInput = nextWrapper.querySelector('input.Input-text');
+                    if (nextInput) {
+                        var height = wrapper.getBoundingClientRect().height;
+                        nextInput.focus();
+                    }
+                }
+            }
+        }
+        return false;
+    }
+}
+
+function string_keypress(evnt) {
+    var charC = (evnt.which) ? evnt.which : evnt.keyCode;
+
+    if (charC == 13) {
+        check_string(this, evnt);
+    } 
+}
+
+
+function make_string(qa, outerqDiv, qDiv, aDiv, id) {
+    outerqDiv.className = "StringQn";
+    aDiv.style.display = 'block';
+
+    var lab = document.createElement("label");
+    lab.className = "InpLabel";
+    lab.innerHTML = "Type your answer here:";
+    aDiv.append(lab);
+
+    var inp = document.createElement("input");
+    inp.type = "text";
+    inp.id = id + "-0";
+    inp.className = "Input-text";
+    inp.setAttribute('data-answers', JSON.stringify(qa.answers));
+    // Apply optional input width (approx. number of characters, in em units)
+    if (qa.input_width != null) {
+        inp.style['min-width'] = qa.input_width + 'em';
+    }
+    aDiv.append(inp);
+
+    inp.onkeypress = string_keypress;
+    inp.onpaste = event => false;
+
+    inp.addEventListener("focus", function (event) {
+        this.value = "";
+        return false;
+    });
+}
+/*
+ * Handle asynchrony issues when re-running quizzes in Jupyter notebooks.
+ * Ensures show_questions is called after the container div is in the DOM.
+ */
+function try_show() {
+  if (document.getElementById("pqhwDAOkYPBy")) {
+    show_questions(questionspqhwDAOkYPBy, pqhwDAOkYPBy);
+  } else {
+    setTimeout(try_show, 200);
+  }
+};
+// Invoke immediately
+{
+  try_show();
+}
+}
+</script></div>
+</div>
+</section>
+</section>
+<section id="recommended-reading">
+<h2>Recommended Reading<a class="headerlink" href="#recommended-reading" title="Link to this heading">#</a></h2>
+<p>These resources provide deeper understanding of dimensionality reduction techniques:</p>
+<ol class="arabic simple">
+<li><p><strong><a class="reference external" href="https://scikit-learn.org/stable/modules/decomposition.html">Scikit-learn Decomposition</a></strong> - Official documentation on PCA, ICA, NMF, and other decomposition methods. Includes mathematical details and practical guidance.</p></li>
+<li><p><strong><a class="reference external" href="https://distill.pub/2016/misread-tsne/">How to Use t-SNE Effectively (Wattenberg et al.)</a></strong> - An interactive article explaining how t-SNE works and common pitfalls in interpretation. Essential reading before using t-SNE on your data.</p></li>
+<li><p><strong><a class="reference external" href="https://umap-learn.readthedocs.io/en/latest/">UMAP: Uniform Manifold Approximation and Projection</a></strong> - Official UMAP documentation with excellent explanations of how it differs from t-SNE and when to use each method.</p></li>
+<li><p><strong><a class="reference external" href="https://arxiv.org/abs/1404.1100">A Tutorial on Principal Component Analysis (Shlens)</a></strong> - Clear mathematical exposition of PCA from first principles. Helps build intuition for what principal components actually represent.</p></li>
+<li><p><strong><a class="reference external" href="https://www.jmlr.org/papers/v9/vandermaaten08a.html">Visualizing Data using t-SNE (van der Maaten &amp; Hinton, JMLR 2008)</a></strong> - The original t-SNE paper. Readable introduction to the algorithm and its advantages over linear methods like PCA.</p></li>
+</ol>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>In this module, we learned three complementary approaches to dimensionality reduction, each with distinct strengths:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Best For</p></th>
+<th class="head"><p>Key Parameter</p></th>
+<th class="head"><p>Limitation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>PCA</strong></p></td>
+<td><p>Preprocessing, interpretation, fast exploration</p></td>
+<td><p>n_components (variance threshold)</p></td>
+<td><p>Linear only</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>t-SNE</strong></p></td>
+<td><p>Visualizing cluster structure</p></td>
+<td><p>perplexity (5-100)</p></td>
+<td><p>Slow, no new data projection</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>UMAP</strong></p></td>
+<td><p>General-purpose visualization</p></td>
+<td><p>n_neighbors, min_dist</p></td>
+<td><p>Less interpretable than PCA</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="key-takeaways">
+<h3>Key takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Scaling matters</strong>: Always standardize features before applying these methods (unless you have a specific reason not to)</p></li>
+<li><p><strong>No free lunch</strong>: Each method makes tradeoffs</p>
+<ul class="simple">
+<li><p>PCA: interpretable but linear</p></li>
+<li><p>t-SNE: great clusters but no global structure</p></li>
+<li><p>UMAP: good balance but still a “black box”</p></li>
+</ul>
+</li>
+<li><p><strong>Start simple</strong>: Begin with PCA to understand your data’s variance structure, then try nonlinear methods if needed</p></li>
+<li><p><strong>Be skeptical</strong>: Visualizations can mislead. Don’t over-interpret clusters or distances, especially with t-SNE</p></li>
+<li><p><strong>Try multiple methods</strong>: When presenting results, showing PCA alongside UMAP gives a more complete picture</p></li>
+</ol>
+</section>
+<section id="looking-ahead">
+<h3>Looking ahead<a class="headerlink" href="#looking-ahead" title="Link to this heading">#</a></h3>
+<p>Dimensionality reduction connects to many topics we’ll cover later:</p>
+<ul class="simple">
+<li><p><strong>Regression</strong> (next module): PCA can help when you have many correlated features</p></li>
+<li><p><strong>Clustering</strong>: UMAP/t-SNE visualizations help validate cluster assignments</p></li>
+<li><p><strong>Model interpretability</strong>: PCA loadings reveal which features drive predictions</p></li>
+</ul>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>Now we’ll learn how to build predictive models using linear regression.</p>
+</section>
+<hr class="docutils" />
+<section id="the-catalyst-crisis-chapter-5-finding-the-shape-of-the-problem">
+<h2>The Catalyst Crisis: Chapter 5 - “Finding the Shape of the Problem”<a class="headerlink" href="#the-catalyst-crisis-chapter-5-finding-the-shape-of-the-problem" title="Link to this heading">#</a></h2>
+<p><em>A story about dimensionality reduction and discovering hidden structure</em></p>
+<hr class="docutils" />
+<p>Two hundred sensor columns stared back from Alex’s screen. Two hundred dimensions of data, far too many to visualize or understand.</p>
+<p>“The curse of dimensionality,” Sam said, looking over her shoulder. “That’s what the professor called it. Too many features, not enough signal.”</p>
+<p>“There has to be structure here,” Alex muttered. “Real processes don’t have two hundred independent degrees of freedom.”</p>
+<p>She ran PCA—principal component analysis—and watched the scree plot appear. The first five components captured 85% of the variance. Everything else was noise.</p>
+<p>“Five dimensions,” she said aloud. “Not two hundred. Five.”</p>
+<p>But what did those five dimensions mean? PC1 was dominated by temperature-related variables. PC2 by nutrient concentrations. The abstract math was collapsing two hundred measurements into a handful of underlying factors.</p>
+<p>Jordan pulled up a chair. He’d been quiet this week, more than usual. “Try t-SNE. It shows clusters better than PCA.”</p>
+<p>The t-SNE plot appeared on screen, and Alex felt her breath catch. The batches weren’t scattered randomly—they clumped into three distinct groups. Three modes of operation that no one had documented.</p>
+<p>“Maya, pull up the yield data.”</p>
+<p>They overlaid the yields on the t-SNE plot. One cluster was almost entirely good batches. One was entirely bad. The third was mixed.</p>
+<p>“The reactor has three natural operating regimes,” Alex said slowly. “And we’ve been treating them all as one.”</p>
+<p>Sam leaned in, finally fully engaged. “What separates them?”</p>
+<p>Alex traced the cluster boundaries back to the original features. The answer emerged gradually, like a photograph developing. The bad cluster shared one thing in common: they all used catalyst from lots manufactured in a specific time window.</p>
+<p>“It’s the catalyst,” she said. “Different lots of catalyst push the reactor into different regimes. We’ve been blaming randomness, but it’s the catalyst supply chain.”</p>
+<p>She added to the mystery board: <strong>Three operating regimes. Bad batches cluster together. Common factor: catalyst lot.</strong></p>
+<p>That night, Professor Pipeline found the team still in the lab, surrounded by plots and printouts.</p>
+<p>“Making progress?”</p>
+<p>“We found something.” Alex pointed to the t-SNE plot. “The batches cluster by catalyst lot. Something about the catalyst is driving the failures.”</p>
+<p>He nodded slowly. “So what’s the next question?”</p>
+<p>“Why. What’s different about the catalyst lots? What changed?”</p>
+<p>“Good.” He headed for the door, then paused. “You’re thinking like investigators now. Not just analysts.”</p>
+<hr class="docutils" />
+<p><em>Continue to the next lecture to follow Alex and the team as they build predictive models…</em></p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./05-dimensionality-reduction"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../04-feature-engineering/feature-engineering.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Module 04: Feature Engineering</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../06-linear-regression/linear-regression.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Module 06: Linear Regression</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-curse-of-dimensionality">The Curse of Dimensionality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-high-dimensionality-a-problem">Why is high dimensionality a problem?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-limits-of-pairwise-visualization">The limits of pairwise visualization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-idea">The key idea</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-variance">Why variance?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-critical-choice-to-scale-or-not-to-scale">The critical choice: to scale or not to scale?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-components-should-you-keep">How many components should you keep?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interpreting-pca-what-do-the-components-mean">Interpreting PCA: What do the components mean?</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#t-sne-when-linear-isn-t-enough">t-SNE: When Linear Isn’t Enough</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-t-sne-works-intuition">How t-SNE works (intuition)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-tradeoff">The key tradeoff</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-perplexity-the-local-vs-global-tradeoff">Choosing perplexity: the local vs global tradeoff</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#umap-the-best-of-both-worlds">UMAP: The Best of Both Worlds?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-umap-often-beats-t-sne">Why UMAP often beats t-SNE</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-tradeoffs">The tradeoffs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-umap">When to use UMAP</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#umap-s-key-parameters">UMAP’s key parameters</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-vs-t-sne-vs-umap">PCA vs t-SNE vs UMAP</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-choose-a-decision-guide">How to Choose: A Decision Guide</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-s-your-goal">What’s your goal?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-recommended-workflow">A recommended workflow</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-pitfalls-to-avoid">Common pitfalls to avoid</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-reading">Recommended Reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key takeaways</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#looking-ahead">Looking ahead</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-catalyst-crisis-chapter-5-finding-the-shape-of-the-problem">The Catalyst Crisis: Chapter 5 - “Finding the Shape of the Problem”</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CBE 4427 · Dr. Tianlong (Taylor) Liu · Western University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026. Adapted from John Kitchin&#39;s MIT-licensed teaching materials..
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  Original teaching materials by John Kitchin, adapted for CBE 4427.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

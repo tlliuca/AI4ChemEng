@@ -1,0 +1,1061 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data Academy Honors - Ranks &#8212; CBE 4427 · AI in Chemical Engineering</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/cbe4427.css?v=e6655e27" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'data-academy-honors/ranks';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://tlliuca.github.io/AI4ChemEng/data-academy-honors/ranks.html" />
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Data Academy Honors - Badges" href="badges.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cbe4427.svg" class="logo__image only-light" alt="CBE 4427 · AI in Chemical Engineering - Home"/>
+    <img src="../_static/cbe4427.svg" class="logo__image only-dark pst-js-only" alt="CBE 4427 · AI in Chemical Engineering - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    AI in Chemical Engineering
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Information</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../course-information.html">Course information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Using the course book</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-introduction/introduction.html">Module 00: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../01-numpy/numpy.html">Module 01: NumPy Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-pandas-intro/pandas-intro.html">Module 02: Pandas Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-intermediate-pandas/intermediate-pandas.html">Module 03: Intermediate Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-feature-engineering/feature-engineering.html">Module 04: Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-dimensionality-reduction/dimensionality-reduction.html">Module 05: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-linear-regression/linear-regression.html">Module 06: Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07-classification/classification.html">Module 07: Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08-regularization-model-selection/regularization-model-selection.html">Module 08: Regularization and Model Selection</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../09-nonlinear-methods/nonlinear-methods.html">Module 09: Nonlinear Methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../09-nonlinear-methods/neural-networks-hyperparameter-tuning.html">Neural Networks and Hyperparameter Tuning</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../10-ensemble-methods/ensemble-methods.html">Module 10: Ensemble Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-clustering/clustering.html">Module 11: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../12-uncertainty-quantification/uncertainty-quantification.html">Module 12: Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../13-model-interpretability/model-interpretability.html">Module 13: Model Interpretability</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Optional Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../optional/databases.html">Optional: Working with Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optional/deep-learning.html">Optional: Introduction to Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optional/symbolic-regression.html">Optional: Symbolic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optional/llms-for-research.html">Optional: LLMs for Scientific Research</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../assignments/index.html">Practice assignments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw01-numpy.html">Homework 1: NumPy Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw02-pandas-intro.html">Homework 2: Pandas Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw03-intermediate-pandas.html">Homework 3: Intermediate Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw04-feature-engineering.html">Homework 4: Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw05-dimensionality-reduction.html">Homework 5: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw06-linear-regression.html">Homework 6: Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw07-classification.html">Homework 7: Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw08-regularization.html">Homework 8: Regularization and Model Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw09-nonlinear-methods.html">Homework 9: Nonlinear Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw10-ensemble-methods.html">Homework 10: Ensemble Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw11-clustering.html">Homework 11: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw12-uncertainty-quantification.html">Homework 12: Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw13-model-interpretability.html">Homework 13: Model Interpretability</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../assignments/project.html">Course Project: Machine Learning for Chemical Engineering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/project-proposal.html">Project Proposal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/project-checkin.html">Project Check-in (Progress Report)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/project-report.html">Project Final Report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/project-presentation.html">Project Presentation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Class Exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../participation/index.html">In-Class Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-00-introduction.html">Module 00: Introduction - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-01-numpy.html">Module 01: NumPy Fundamentals - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-02-pandas-intro.html">Module 02: Pandas Introduction - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-03-intermediate-pandas.html">Module 03: Intermediate Pandas - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-04-feature-engineering.html">Module 04: Feature Engineering - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-05-dimensionality-reduction.html">Module 05: Dimensionality Reduction - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-06-linear-regression.html">Module 06: Linear Regression - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-07-classification.html">Module 07: Classification - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-08-regularization.html">Module 08: Regularization &amp; Model Selection - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-09-nonlinear-methods.html">Module 09: Nonlinear Methods - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-10-ensemble-methods.html">Module 10: Ensemble Methods - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-11-clustering.html">Module 11: Clustering - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-12-uncertainty-quantification.html">Module 12: Uncertainty Quantification - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-13-model-interpretability.html">Module 13: Model Interpretability - Participation Exercises</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../attribution.html">Attribution and license</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../characters.html">Data Detective Academy Characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference-sheet.html">Data Science Quick Reference Sheet</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="README.html">Data Academy Honors</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="badges.html">Data Academy Honors - Badges</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Data Academy Honors - Ranks</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tlliuca/AI4ChemEng" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tlliuca/AI4ChemEng/edit/main/dsmles/data-academy-honors/ranks.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/data-academy-honors/ranks.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Academy Honors - Ranks</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-progression">Rank Progression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-1-data-apprentice">Rank 1: Data Apprentice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#capstone-activity">Capstone Activity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recognition">Recognition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-2-data-analyst">Rank 2: Data Analyst</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#capstone-activity-choose-one">Capstone Activity (choose one)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-a-analysis-presentation">Option A: Analysis Presentation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-b-peer-teaching-session">Option B: Peer Teaching Session</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Recognition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-3-data-scientist">Rank 3: Data Scientist</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#field-experience-options-choose-one">Field Experience Options (choose one)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Capstone Activity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Recognition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-4-senior-data-scientist">Rank 4: Senior Data Scientist</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Capstone Activity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Recognition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-summary">Rank Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timeline-at-a-glance">Timeline at a Glance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes-for-success">Notes for Success</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-early">Start Early</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#document-everything">Document Everything</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ask-for-help">Ask for Help</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-your-research">Connect to Your Research</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-academy-honors-ranks">
+<h1>Data Academy Honors - Ranks<a class="headerlink" href="#data-academy-honors-ranks" title="Link to this heading">#</a></h1>
+<p>Four ranks representing progressive mastery in data science for chemical engineering. Each rank builds on the previous, culminating in Senior Data Scientist status.</p>
+<hr class="docutils" />
+<section id="rank-progression">
+<h2>Rank Progression<a class="headerlink" href="#rank-progression" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Data Apprentice → Data Analyst → Data Scientist → Senior Data Scientist
+    (Week 4)        (Week 8)       (Week 12)          (Week 16)
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="rank-1-data-apprentice">
+<h2>Rank 1: Data Apprentice<a class="headerlink" href="#rank-1-data-apprentice" title="Link to this heading">#</a></h2>
+<p><em>“Beginning the journey into data-driven discovery.”</em></p>
+<p><strong>Symbol:</strong> 🔍 (Magnifying Glass)</p>
+<p><strong>Timeline:</strong> Achievable by Week 4</p>
+<section id="requirements">
+<h3>Requirements<a class="headerlink" href="#requirements" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Badges</strong></p></td>
+<td><p>1 badge (typically Data Wrangler)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Quizzes</strong></p></td>
+<td><p>Passing average on lectures 01-03</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Capstone</strong></p></td>
+<td><p>Reflection essay</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="capstone-activity">
+<h3>Capstone Activity<a class="headerlink" href="#capstone-activity" title="Link to this heading">#</a></h3>
+<p><strong>Write a 1-page reflection:</strong>
+<em>“How Data Science Changed My View of Chemical Engineering Problems”</em></p>
+<p>Prompts to address:</p>
+<ul class="simple">
+<li><p>What surprised you about working with real data?</p></li>
+<li><p>How might data science apply to problems in your research or interests?</p></li>
+<li><p>What skills do you most want to develop further?</p></li>
+</ul>
+</section>
+<section id="recognition">
+<h3>Recognition<a class="headerlink" href="#recognition" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Digital badge for portfolio</p></li>
+<li><p>Listed in course recognition page</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="rank-2-data-analyst">
+<h2>Rank 2: Data Analyst<a class="headerlink" href="#rank-2-data-analyst" title="Link to this heading">#</a></h2>
+<p><em>“Demonstrating foundational competence in data analysis.”</em></p>
+<p><strong>Symbol:</strong> 📊 (Bar Chart)</p>
+<p><strong>Timeline:</strong> Achievable by Week 8</p>
+<section id="id1">
+<h3>Requirements<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Badges</strong></p></td>
+<td><p>2 badges</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Midterm</strong></p></td>
+<td><p>Score 70% or higher</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Capstone</strong></p></td>
+<td><p>Analysis presentation OR peer teaching</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="capstone-activity-choose-one">
+<h3>Capstone Activity (choose one)<a class="headerlink" href="#capstone-activity-choose-one" title="Link to this heading">#</a></h3>
+<section id="option-a-analysis-presentation">
+<h4>Option A: Analysis Presentation<a class="headerlink" href="#option-a-analysis-presentation" title="Link to this heading">#</a></h4>
+<p>Present a 5-minute analysis of a chemical engineering dataset:</p>
+<ul class="simple">
+<li><p>Explain your data exploration process</p></li>
+<li><p>Show key visualizations</p></li>
+<li><p>Discuss insights and limitations</p></li>
+</ul>
+</section>
+<section id="option-b-peer-teaching-session">
+<h4>Option B: Peer Teaching Session<a class="headerlink" href="#option-b-peer-teaching-session" title="Link to this heading">#</a></h4>
+<p>Create and lead a 15-minute tutorial on a course concept:</p>
+<ul class="simple">
+<li><p>Topics: Missing data, PCA interpretation, cross-validation, etc.</p></li>
+<li><p>Include hands-on exercise for peers</p></li>
+<li><p>Demonstrate deep understanding through teaching</p></li>
+</ul>
+</section>
+</section>
+<section id="id2">
+<h3>Recognition<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Digital badge for portfolio</p></li>
+<li><p>Peer teaching opportunities</p></li>
+<li><p>Study group leadership role</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="rank-3-data-scientist">
+<h2>Rank 3: Data Scientist<a class="headerlink" href="#rank-3-data-scientist" title="Link to this heading">#</a></h2>
+<p><em>“Working professional level competency in ML/data science.”</em></p>
+<p><strong>Symbol:</strong> 🎯 (Target)</p>
+<p><strong>Timeline:</strong> Achievable by Week 12</p>
+<section id="id3">
+<h3>Requirements<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Badges</strong></p></td>
+<td><p>4 badges</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Performance</strong></p></td>
+<td><p>Maintained 75%+ quiz average</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Field Experience</strong></p></td>
+<td><p>Complete one real-world experience</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Capstone</strong></p></td>
+<td><p>Full modeling project</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="field-experience-options-choose-one">
+<h3>Field Experience Options (choose one)<a class="headerlink" href="#field-experience-options-choose-one" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Experience</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Documentation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Research Collaboration</strong></p></td>
+<td><p>Analyze data from a campus research group</p></td>
+<td><p>Summary of contribution</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Industry Connection</strong></p></td>
+<td><p>Interview a data scientist at a company</p></td>
+<td><p>1-page interview summary</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Competition Participation</strong></p></td>
+<td><p>Participate in a Kaggle competition</p></td>
+<td><p>Submission evidence and reflection</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Professional Development</strong></p></td>
+<td><p>Attend a data science meetup or webinar</p></td>
+<td><p>Summary and key takeaways</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id4">
+<h3>Capstone Activity<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p><strong>Complete a Full Modeling Project:</strong></p>
+<ul class="simple">
+<li><p>Choose a chemical engineering prediction problem</p></li>
+<li><p>Apply the complete data science workflow</p></li>
+<li><p>Include proper validation and uncertainty</p></li>
+<li><p>Document all decisions and trade-offs</p></li>
+</ul>
+<p><strong>Deliverables:</strong></p>
+<ol class="arabic simple">
+<li><p>Jupyter notebook with full analysis</p></li>
+<li><p>2-page summary report</p></li>
+<li><p>Brief presentation (5-10 minutes)</p></li>
+</ol>
+</section>
+<section id="id5">
+<h3>Recognition<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Digital badge for portfolio</p></li>
+<li><p>Potential TA or peer mentor role</p></li>
+<li><p>Project may be featured in course materials</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="rank-4-senior-data-scientist">
+<h2>Rank 4: Senior Data Scientist<a class="headerlink" href="#rank-4-senior-data-scientist" title="Link to this heading">#</a></h2>
+<p><em>“Full mastery of data science for chemical engineering.”</em></p>
+<p><strong>Symbol:</strong> 🏆 (Trophy)</p>
+<p><strong>Timeline:</strong> Achievable by Week 16</p>
+<section id="id6">
+<h3>Requirements<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Requirement</p></th>
+<th class="head"><p>Details</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Badges</strong></p></td>
+<td><p>All 5 badges</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Final Exam</strong></p></td>
+<td><p>Score 70% or higher</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Project</strong></p></td>
+<td><p>Complete semester project with distinction</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Capstone</strong></p></td>
+<td><p>Presentation with uncertainty quantification</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id7">
+<h3>Capstone Activity<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p><strong>Presentation with Full Uncertainty Quantification:</strong></p>
+<p>Present your semester project (10-15 minutes) demonstrating:</p>
+<ol class="arabic simple">
+<li><p><strong>Clear Problem Statement</strong></p>
+<ul class="simple">
+<li><p>Why this problem matters</p></li>
+<li><p>What decisions depend on the answer</p></li>
+</ul>
+</li>
+<li><p><strong>Complete Methodology</strong></p>
+<ul class="simple">
+<li><p>Data sources and quality assessment</p></li>
+<li><p>Model selection justification</p></li>
+<li><p>Validation strategy</p></li>
+</ul>
+</li>
+<li><p><strong>Results with Uncertainty</strong></p>
+<ul class="simple">
+<li><p>Predictions with confidence intervals</p></li>
+<li><p>Sensitivity to assumptions</p></li>
+<li><p>Known limitations</p></li>
+</ul>
+</li>
+<li><p><strong>Interpretability</strong></p>
+<ul class="simple">
+<li><p>What drives the predictions?</p></li>
+<li><p>SHAP or similar analysis</p></li>
+<li><p>Physical/chemical interpretation</p></li>
+</ul>
+</li>
+<li><p><strong>Recommendations</strong></p>
+<ul class="simple">
+<li><p>What should stakeholders do with these results?</p></li>
+<li><p>When should the model be trusted vs. questioned?</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="id8">
+<h3>Recognition<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Digital badge for portfolio</p></li>
+<li><p>Certificate of Distinction</p></li>
+<li><p>Project archived in course materials</p></li>
+<li><p>Strong recommendation letter support</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="rank-summary">
+<h2>Rank Summary<a class="headerlink" href="#rank-summary" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Rank</p></th>
+<th class="head"><p>Badges</p></th>
+<th class="head"><p>Exam</p></th>
+<th class="head"><p>Capstone</p></th>
+<th class="head"><p>Week</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data Apprentice 🔍</p></td>
+<td><p>1</p></td>
+<td><p>-</p></td>
+<td><p>Reflection</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data Analyst 📊</p></td>
+<td><p>2</p></td>
+<td><p>Midterm 70%+</p></td>
+<td><p>Presentation OR Teaching</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>Data Scientist 🎯</p></td>
+<td><p>4</p></td>
+<td><p>75%+ avg</p></td>
+<td><p>Modeling Project + Field Exp</p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-odd"><td><p>Senior Data Scientist 🏆</p></td>
+<td><p>5</p></td>
+<td><p>Final 70%+</p></td>
+<td><p>UQ Presentation</p></td>
+<td><p>16</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="timeline-at-a-glance">
+<h2>Timeline at a Glance<a class="headerlink" href="#timeline-at-a-glance" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Week 1-4:   Lectures 01-03  →  Data Wrangler badge  →  Data Apprentice
+Week 5-8:   Lectures 04-07  →  Pattern Seeker, Model Builder  →  Data Analyst
+Week 9-12:  Lectures 08-09  →  Ensemble Master  →  Data Scientist
+Week 13-16: Lectures 10-11  →  Uncertainty Expert  →  Senior Data Scientist
+</pre></div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="notes-for-success">
+<h2>Notes for Success<a class="headerlink" href="#notes-for-success" title="Link to this heading">#</a></h2>
+<section id="start-early">
+<h3>Start Early<a class="headerlink" href="#start-early" title="Link to this heading">#</a></h3>
+<p>Don’t wait until the last week to attempt badge activities. The quizzes and activities build on each other.</p>
+</section>
+<section id="document-everything">
+<h3>Document Everything<a class="headerlink" href="#document-everything" title="Link to this heading">#</a></h3>
+<p>Keep a running notebook of your analyses. This becomes your portfolio and makes capstones easier.</p>
+</section>
+<section id="ask-for-help">
+<h3>Ask for Help<a class="headerlink" href="#ask-for-help" title="Link to this heading">#</a></h3>
+<p>Characters like Query Quinn remind us: asking good questions is a sign of strength, not weakness.</p>
+</section>
+<section id="connect-to-your-research">
+<h3>Connect to Your Research<a class="headerlink" href="#connect-to-your-research" title="Link to this heading">#</a></h3>
+<p>The most meaningful projects connect data science to problems you care about in chemical engineering.</p>
+<hr class="docutils" />
+<p><em>“The rank is not the goal—the skills are. The rank is just recognition of what you’ve learned to do.”</em></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./data-academy-honors"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="badges.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data Academy Honors - Badges</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-progression">Rank Progression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-1-data-apprentice">Rank 1: Data Apprentice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requirements">Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#capstone-activity">Capstone Activity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recognition">Recognition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-2-data-analyst">Rank 2: Data Analyst</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#capstone-activity-choose-one">Capstone Activity (choose one)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-a-analysis-presentation">Option A: Analysis Presentation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#option-b-peer-teaching-session">Option B: Peer Teaching Session</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Recognition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-3-data-scientist">Rank 3: Data Scientist</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#field-experience-options-choose-one">Field Experience Options (choose one)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Capstone Activity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Recognition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-4-senior-data-scientist">Rank 4: Senior Data Scientist</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Requirements</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Capstone Activity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Recognition</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rank-summary">Rank Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#timeline-at-a-glance">Timeline at a Glance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notes-for-success">Notes for Success</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#start-early">Start Early</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#document-everything">Document Everything</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ask-for-help">Ask for Help</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-your-research">Connect to Your Research</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CBE 4427 · Dr. Tianlong (Taylor) Liu · Western University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026. Adapted from John Kitchin&#39;s MIT-licensed teaching materials..
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  Original teaching materials by John Kitchin, adapted for CBE 4427.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

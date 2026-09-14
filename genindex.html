@@ -1,0 +1,1102 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; CBE 4427 · AI in Chemical Engineering</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/cbe4427.css?v=e6655e27" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://tlliuca.github.io/AI4ChemEng/genindex.html" />
+    <link rel="icon" href="_static/favicon.svg"/>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/cbe4427.svg" class="logo__image only-light" alt="CBE 4427 · AI in Chemical Engineering - Home"/>
+    <img src="_static/cbe4427.svg" class="logo__image only-dark pst-js-only" alt="CBE 4427 · AI in Chemical Engineering - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    AI in Chemical Engineering
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Information</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="course-information.html">Course information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started.html">Using the course book</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00-introduction/introduction.html">Module 00: Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01-numpy/numpy.html">Module 01: NumPy Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02-pandas-intro/pandas-intro.html">Module 02: Pandas Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03-intermediate-pandas/intermediate-pandas.html">Module 03: Intermediate Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-feature-engineering/feature-engineering.html">Module 04: Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-dimensionality-reduction/dimensionality-reduction.html">Module 05: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="06-linear-regression/linear-regression.html">Module 06: Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="07-classification/classification.html">Module 07: Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="08-regularization-model-selection/regularization-model-selection.html">Module 08: Regularization and Model Selection</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="09-nonlinear-methods/nonlinear-methods.html">Module 09: Nonlinear Methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html">Neural Networks and Hyperparameter Tuning</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="10-ensemble-methods/ensemble-methods.html">Module 10: Ensemble Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="11-clustering/clustering.html">Module 11: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="12-uncertainty-quantification/uncertainty-quantification.html">Module 12: Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="13-model-interpretability/model-interpretability.html">Module 13: Model Interpretability</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Optional Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="optional/databases.html">Optional: Working with Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optional/deep-learning.html">Optional: Introduction to Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optional/symbolic-regression.html">Optional: Symbolic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optional/llms-for-research.html">Optional: LLMs for Scientific Research</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="assignments/index.html">Practice assignments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assignments/hw01-numpy.html">Homework 1: NumPy Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assignments/hw02-pandas-intro.html">Homework 2: Pandas Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assignments/hw03-intermediate-pandas.html">Homework 3: Intermediate Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assignments/hw04-feature-engineering.html">Homework 4: Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assignments/hw05-dimensionality-reduction.html">Homework 5: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assignments/hw06-linear-regression.html">Homework 6: Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assignments/hw07-classification.html">Homework 7: Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assignments/hw08-regularization.html">Homework 8: Regularization and Model Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assignments/hw09-nonlinear-methods.html">Homework 9: Nonlinear Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assignments/hw10-ensemble-methods.html">Homework 10: Ensemble Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assignments/hw11-clustering.html">Homework 11: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assignments/hw12-uncertainty-quantification.html">Homework 12: Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="assignments/hw13-model-interpretability.html">Homework 13: Model Interpretability</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="assignments/project.html">Course Project: Machine Learning for Chemical Engineering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="assignments/project-proposal.html">Project Proposal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assignments/project-checkin.html">Project Check-in (Progress Report)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assignments/project-report.html">Project Final Report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assignments/project-presentation.html">Project Presentation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Class Exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="participation/index.html">In-Class Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="participation/participation-00-introduction.html">Module 00: Introduction - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="participation/participation-01-numpy.html">Module 01: NumPy Fundamentals - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="participation/participation-02-pandas-intro.html">Module 02: Pandas Introduction - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="participation/participation-03-intermediate-pandas.html">Module 03: Intermediate Pandas - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="participation/participation-04-feature-engineering.html">Module 04: Feature Engineering - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="participation/participation-05-dimensionality-reduction.html">Module 05: Dimensionality Reduction - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="participation/participation-06-linear-regression.html">Module 06: Linear Regression - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="participation/participation-07-classification.html">Module 07: Classification - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="participation/participation-08-regularization.html">Module 08: Regularization &amp; Model Selection - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="participation/participation-09-nonlinear-methods.html">Module 09: Nonlinear Methods - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="participation/participation-10-ensemble-methods.html">Module 10: Ensemble Methods - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="participation/participation-11-clustering.html">Module 11: Clustering - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="participation/participation-12-uncertainty-quantification.html">Module 12: Uncertainty Quantification - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="participation/participation-13-model-interpretability.html">Module 13: Model Interpretability - Participation Exercises</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="attribution.html">Attribution and license</a></li>
+<li class="toctree-l1"><a class="reference internal" href="characters.html">Data Detective Academy Characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reference-sheet.html">Data Science Quick Reference Sheet</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="data-academy-honors/README.html">Data Academy Honors</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="data-academy-honors/badges.html">Data Academy Honors - Badges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data-academy-honors/ranks.html">Data Academy Honors - Ranks</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/tlliuca/AI4ChemEng" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ | <a href="#X"><strong>X</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-2">activation function</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-3">advanced indexing</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-6">aggregation</a>, <a href="03-intermediate-pandas/intermediate-pandas.html#index-0">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-4">alpha regularization</a>
+</li>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-3">apply</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-2">array creation</a>
+</li>
+      <li><a href="07-classification/classification.html#index-5">AUC</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-5">bagging</a>, <a href="10-ensemble-methods/ensemble-methods.html#index-1">[1]</a>
+</li>
+      <li><a href="08-regularization-model-selection/regularization-model-selection.html#index-7">Bayesian optimization</a>
+</li>
+      <li><a href="08-regularization-model-selection/regularization-model-selection.html#index-0">bias-variance tradeoff</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="02-pandas-intro/pandas-intro.html#index-3">boolean filtering</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-4">boolean indexing</a>
+</li>
+      <li><a href="10-ensemble-methods/ensemble-methods.html#index-1">boosting</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-5">broadcasting</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-6">calibration</a>
+</li>
+      <li><a href="11-clustering/clustering.html#index-1">centroid</a>
+</li>
+      <li><a href="07-classification/classification.html#index-6">class weight</a>
+</li>
+      <li><a href="07-classification/classification.html#index-0">classification</a>
+</li>
+      <li><a href="11-clustering/clustering.html#index-0">clustering</a>
+</li>
+      <li><a href="06-linear-regression/linear-regression.html#index-0">coefficients</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="01-numpy/numpy.html#index-12">common pitfalls</a>
+</li>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-1">confidence interval</a>
+</li>
+      <li><a href="07-classification/classification.html#index-2">confusion matrix</a>
+</li>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-6">coverage</a>
+</li>
+      <li><a href="08-regularization-model-selection/regularization-model-selection.html#index-4">cross-validation</a>
+</li>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-7">cross-validation strategies</a>
+</li>
+      <li><a href="05-dimensionality-reduction/dimensionality-reduction.html#index-0">curse of dimensionality</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="02-pandas-intro/pandas-intro.html#index-1">DataFrame</a>
+</li>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-4">datetime</a>
+</li>
+      <li><a href="11-clustering/clustering.html#index-4">DBSCAN</a>
+</li>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-5">decision tree</a>, <a href="10-ensemble-methods/ensemble-methods.html#index-2">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="11-clustering/clustering.html#index-3">dendrogram</a>
+</li>
+      <li><a href="05-dimensionality-reduction/dimensionality-reduction.html#index-0">dimensionality reduction</a>
+</li>
+      <li><a href="02-pandas-intro/pandas-intro.html#index-4">dropna</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-9">dtype</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-4">early stopping</a>
+</li>
+      <li><a href="08-regularization-model-selection/regularization-model-selection.html#index-3">ElasticNet</a>
+</li>
+      <li><a href="11-clustering/clustering.html#index-2">elbow method</a>
+</li>
+      <li><a href="10-ensemble-methods/ensemble-methods.html#index-0">ensemble methods</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="11-clustering/clustering.html#index-4">eps</a>
+</li>
+      <li><a href="09-nonlinear-methods/nonlinear-methods.html#index-2">epsilon tube</a>
+</li>
+      <li><a href="06-linear-regression/linear-regression.html#index-3">evaluation metrics</a>
+</li>
+      <li><a href="05-dimensionality-reduction/dimensionality-reduction.html#index-1">explained variance</a>
+</li>
+      <li><a href="06-linear-regression/linear-regression.html#index-5">extrapolation</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="07-classification/classification.html#index-4">F1 score</a>
+</li>
+      <li><a href="04-feature-engineering/feature-engineering.html#index-0">feature engineering</a>
+</li>
+      <li><a href="06-linear-regression/linear-regression.html#index-1">feature importance</a>, <a href="10-ensemble-methods/ensemble-methods.html#index-6">[1]</a>, <a href="13-model-interpretability/model-interpretability.html#index-2">[2]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="04-feature-engineering/feature-engineering.html#index-1">feature scaling</a>, <a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-3">[1]</a>
+</li>
+      <li><a href="04-feature-engineering/feature-engineering.html#index-5">feature selection</a>, <a href="08-regularization-model-selection/regularization-model-selection.html#index-2">[1]</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-8">file I/O</a>
+</li>
+      <li><a href="02-pandas-intro/pandas-intro.html#index-4">fillna</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="09-nonlinear-methods/nonlinear-methods.html#index-4">gamma parameter</a>
+</li>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-5">Gaussian Process</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-8">genfromtxt</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="13-model-interpretability/model-interpretability.html#index-1">global explanation</a>
+</li>
+      <li><a href="10-ensemble-methods/ensemble-methods.html#index-4">Gradient Boosting</a>
+</li>
+      <li><a href="08-regularization-model-selection/regularization-model-selection.html#index-6">GridSearchCV</a>, <a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-6">[1]</a>
+</li>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-0">groupby</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-1">hidden layers</a>
+</li>
+      <li><a href="11-clustering/clustering.html#index-3">hierarchical clustering</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="08-regularization-model-selection/regularization-model-selection.html#index-7">hyperparameter optimization</a>
+</li>
+      <li><a href="08-regularization-model-selection/regularization-model-selection.html#index-5">hyperparameter tuning</a>, <a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-6">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="02-pandas-intro/pandas-intro.html#index-3">iloc</a>
+</li>
+      <li><a href="07-classification/classification.html#index-6">imbalanced classes</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="01-numpy/numpy.html#index-3">indexing</a>
+</li>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-1">inner join</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-1">join</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="08-regularization-model-selection/regularization-model-selection.html#index-4">K-fold</a>
+</li>
+      <li><a href="11-clustering/clustering.html#index-1">K-means</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="09-nonlinear-methods/nonlinear-methods.html#index-2">kernel methods</a>
+</li>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-7">KFold</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="08-regularization-model-selection/regularization-model-selection.html#index-2">L1 regularization</a>
+</li>
+      <li><a href="08-regularization-model-selection/regularization-model-selection.html#index-1">L2 regularization</a>
+</li>
+      <li><a href="04-feature-engineering/feature-engineering.html#index-3">label encoding</a>
+</li>
+      <li><a href="04-feature-engineering/feature-engineering.html#index-5">Lasso</a>
+</li>
+      <li><a href="08-regularization-model-selection/regularization-model-selection.html#index-2">Lasso regression</a>
+</li>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-4">Last-Layer Prediction Rigidity</a>
+</li>
+      <li><a href="10-ensemble-methods/ensemble-methods.html#index-4">learning_rate</a>
+</li>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-1">left join</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-7">linear algebra</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="06-linear-regression/linear-regression.html#index-0">linear regression</a>
+</li>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-3">LinearRegressionUQ</a>
+</li>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-4">LLPRRegressor</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-8">load</a>
+</li>
+      <li><a href="05-dimensionality-reduction/dimensionality-reduction.html#index-3">loadings</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-8">loadtxt</a>
+</li>
+      <li><a href="02-pandas-intro/pandas-intro.html#index-3">loc</a>
+</li>
+      <li><a href="13-model-interpretability/model-interpretability.html#index-1">local explanation</a>
+</li>
+      <li><a href="07-classification/classification.html#index-1">logistic regression</a>
+</li>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-2">long format</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="06-linear-regression/linear-regression.html#index-3">MAE</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-4">masking</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-7">matrix operations</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-6">max</a>
+</li>
+      <li><a href="10-ensemble-methods/ensemble-methods.html#index-3">max_depth</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-6">mean</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-6">median</a>
+</li>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-2">melt</a>
+</li>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-1">merge</a>
+</li>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-5">method chaining</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="01-numpy/numpy.html#index-6">min</a>
+</li>
+      <li><a href="11-clustering/clustering.html#index-4">min_samples</a>
+</li>
+      <li><a href="04-feature-engineering/feature-engineering.html#index-1">MinMaxScaler</a>
+</li>
+      <li><a href="02-pandas-intro/pandas-intro.html#index-4">missing values</a>
+</li>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-0">MLPRegressor</a>
+</li>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-8">model comparison</a>
+</li>
+      <li><a href="13-model-interpretability/model-interpretability.html#index-0">model interpretability</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-11">Monte Carlo simulation</a>, <a href="12-uncertainty-quantification/uncertainty-quantification.html#index-7">[1]</a>
+</li>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-6">MPIW</a>
+</li>
+      <li><a href="04-feature-engineering/feature-engineering.html#index-4">multicollinearity</a>, <a href="06-linear-regression/linear-regression.html#index-5">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="10-ensemble-methods/ensemble-methods.html#index-3">n_estimators</a>
+</li>
+      <li><a href="02-pandas-intro/pandas-intro.html#index-4">NaN</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-0">ndarray</a>
+</li>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-1">network architecture</a>
+</li>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-0">neural network</a>
+</li>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-2">nlinfit</a>
+</li>
+      <li><a href="09-nonlinear-methods/nonlinear-methods.html#index-0">nonlinear regression</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="01-numpy/numpy.html#index-2">np.arange</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-2">np.array</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-7">np.linalg</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-2">np.linspace</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-2">np.ones</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-2">np.zeros</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-0">numerical computing</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-0">NumPy</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="04-feature-engineering/feature-engineering.html#index-3">one-hot encoding</a>
+</li>
+      <li><a href="08-regularization-model-selection/regularization-model-selection.html#index-7">Optuna</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-1">outer join</a>
+</li>
+      <li><a href="06-linear-regression/linear-regression.html#index-2">overfitting</a>, <a href="06-linear-regression/linear-regression.html#index-5">[1]</a>, <a href="08-regularization-model-selection/regularization-model-selection.html#index-0">[2]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="02-pandas-intro/pandas-intro.html#index-0">Pandas</a>
+</li>
+      <li><a href="13-model-interpretability/model-interpretability.html#index-6">partial dependence plot</a>
+</li>
+      <li><a href="05-dimensionality-reduction/dimensionality-reduction.html#index-1">PCA</a>
+</li>
+      <li><a href="13-model-interpretability/model-interpretability.html#index-6">PDP</a>
+</li>
+      <li><a href="05-dimensionality-reduction/dimensionality-reduction.html#index-5">perplexity</a>
+</li>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-6">PICP</a>
+</li>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-3">Pipeline</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-2">pivot_table</a>
+</li>
+      <li><a href="04-feature-engineering/feature-engineering.html#index-2">polynomial features</a>, <a href="09-nonlinear-methods/nonlinear-methods.html#index-1">[1]</a>
+</li>
+      <li><a href="07-classification/classification.html#index-3">precision</a>
+</li>
+      <li><a href="05-dimensionality-reduction/dimensionality-reduction.html#index-1">principal component analysis</a>
+</li>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-1">pycse</a>
+</li>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-3">pycse.sklearn</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-1">Python lists vs NumPy</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="06-linear-regression/linear-regression.html#index-3">R-squared</a>
+</li>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-5">Random Forest</a>, <a href="10-ensemble-methods/ensemble-methods.html#index-3">[1]</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-10">random number generator</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-10">random numbers</a>
+</li>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-6">RandomizedSearchCV</a>
+</li>
+      <li><a href="09-nonlinear-methods/nonlinear-methods.html#index-3">RBF kernel</a>
+</li>
+      <li><a href="02-pandas-intro/pandas-intro.html#index-2">read_csv</a>
+</li>
+      <li><a href="07-classification/classification.html#index-3">recall</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-9">record arrays</a>
+</li>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-1">regress</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-2">relu</a>
+</li>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-7">RepeatedKFold</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-10">reproducibility</a>
+</li>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-4">resample</a>
+</li>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-2">reshaping data</a>
+</li>
+      <li><a href="06-linear-regression/linear-regression.html#index-4">residual analysis</a>
+</li>
+      <li><a href="06-linear-regression/linear-regression.html#index-4">residuals</a>
+</li>
+      <li><a href="08-regularization-model-selection/regularization-model-selection.html#index-1">Ridge regression</a>
+</li>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-1">right join</a>
+</li>
+      <li><a href="06-linear-regression/linear-regression.html#index-3">RMSE</a>
+</li>
+      <li><a href="07-classification/classification.html#index-5">ROC curve</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="01-numpy/numpy.html#index-8">save</a>
+</li>
+      <li><a href="05-dimensionality-reduction/dimensionality-reduction.html#index-2">scree plot</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-10">seeding</a>
+</li>
+      <li><a href="02-pandas-intro/pandas-intro.html#index-1">Series</a>
+</li>
+      <li><a href="13-model-interpretability/model-interpretability.html#index-4">SHAP summary plot</a>
+</li>
+      <li><a href="13-model-interpretability/model-interpretability.html#index-3">SHAP values</a>
+</li>
+      <li><a href="13-model-interpretability/model-interpretability.html#index-3">Shapley values</a>
+</li>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-6">sharpness</a>
+</li>
+      <li><a href="07-classification/classification.html#index-1">sigmoid function</a>
+</li>
+      <li><a href="11-clustering/clustering.html#index-2">silhouette score</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="01-numpy/numpy.html#index-3">slicing</a>
+</li>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-4">solver</a>
+</li>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-0">split-apply-combine</a>
+</li>
+      <li><a href="06-linear-regression/linear-regression.html#index-1">standardized coefficients</a>
+</li>
+      <li><a href="04-feature-engineering/feature-engineering.html#index-1">StandardScaler</a>, <a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-3">[1]</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-6">std</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-9">structured arrays</a>
+</li>
+      <li><a href="09-nonlinear-methods/nonlinear-methods.html#index-2">Support Vector Regression</a>
+</li>
+      <li><a href="09-nonlinear-methods/nonlinear-methods.html#index-2">SVR</a>
+</li>
+      <li><a href="13-model-interpretability/model-interpretability.html#index-7">symbolic regression</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="05-dimensionality-reduction/dimensionality-reduction.html#index-4">t-SNE</a>
+</li>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-2">tanh</a>
+</li>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-4">time series</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="08-regularization-model-selection/regularization-model-selection.html#index-7">TPE</a>
+</li>
+      <li><a href="06-linear-regression/linear-regression.html#index-2">train-test split</a>
+</li>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-3">transform</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="05-dimensionality-reduction/dimensionality-reduction.html#index-6">UMAP</a>
+</li>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-7">uncertainties package</a>
+</li>
+      <li><a href="01-numpy/numpy.html#index-11">uncertainty propagation</a>, <a href="12-uncertainty-quantification/uncertainty-quantification.html#index-7">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="12-uncertainty-quantification/uncertainty-quantification.html#index-0">uncertainty quantification</a>
+</li>
+      <li><a href="08-regularization-model-selection/regularization-model-selection.html#index-0">underfitting</a>
+</li>
+      <li><a href="09-nonlinear-methods/neural-networks-hyperparameter-tuning.html#index-0">universal approximation</a>
+</li>
+      <li><a href="11-clustering/clustering.html#index-0">unsupervised learning</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="01-numpy/numpy.html#index-1">vectorization</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="01-numpy/numpy.html#index-12">views vs copies</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="13-model-interpretability/model-interpretability.html#index-5">waterfall plot</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="03-intermediate-pandas/intermediate-pandas.html#index-2">wide format</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="X">X</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="10-ensemble-methods/ensemble-methods.html#index-5">XGBoost</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CBE 4427 · Dr. Tianlong (Taylor) Liu · Western University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026. Adapted from John Kitchin&#39;s MIT-licensed teaching materials..
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  Original teaching materials by John Kitchin, adapted for CBE 4427.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

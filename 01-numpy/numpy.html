@@ -1,0 +1,3275 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Module 01: NumPy Fundamentals &#8212; CBE 4427 · AI in Chemical Engineering</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/cbe4427.css?v=e6655e27" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '01-numpy/numpy';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://tlliuca.github.io/AI4ChemEng/01-numpy/numpy.html" />
+    <link rel="icon" href="../_static/favicon.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Module 02: Pandas Introduction" href="../02-pandas-intro/pandas-intro.html" />
+    <link rel="prev" title="Module 00: Introduction" href="../00-introduction/introduction.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cbe4427.svg" class="logo__image only-light" alt="CBE 4427 · AI in Chemical Engineering - Home"/>
+    <img src="../_static/cbe4427.svg" class="logo__image only-dark pst-js-only" alt="CBE 4427 · AI in Chemical Engineering - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    AI in Chemical Engineering
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Course Information</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../course-information.html">Course information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Using the course book</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-introduction/introduction.html">Module 00: Introduction</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Module 01: NumPy Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-pandas-intro/pandas-intro.html">Module 02: Pandas Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../03-intermediate-pandas/intermediate-pandas.html">Module 03: Intermediate Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../04-feature-engineering/feature-engineering.html">Module 04: Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../05-dimensionality-reduction/dimensionality-reduction.html">Module 05: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../06-linear-regression/linear-regression.html">Module 06: Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../07-classification/classification.html">Module 07: Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../08-regularization-model-selection/regularization-model-selection.html">Module 08: Regularization and Model Selection</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../09-nonlinear-methods/nonlinear-methods.html">Module 09: Nonlinear Methods</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../09-nonlinear-methods/neural-networks-hyperparameter-tuning.html">Neural Networks and Hyperparameter Tuning</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../10-ensemble-methods/ensemble-methods.html">Module 10: Ensemble Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../11-clustering/clustering.html">Module 11: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../12-uncertainty-quantification/uncertainty-quantification.html">Module 12: Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../13-model-interpretability/model-interpretability.html">Module 13: Model Interpretability</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Optional Lectures</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../optional/databases.html">Optional: Working with Databases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optional/deep-learning.html">Optional: Introduction to Deep Learning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optional/symbolic-regression.html">Optional: Symbolic Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optional/llms-for-research.html">Optional: LLMs for Scientific Research</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Practice Assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../assignments/index.html">Practice assignments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw01-numpy.html">Homework 1: NumPy Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw02-pandas-intro.html">Homework 2: Pandas Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw03-intermediate-pandas.html">Homework 3: Intermediate Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw04-feature-engineering.html">Homework 4: Feature Engineering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw05-dimensionality-reduction.html">Homework 5: Dimensionality Reduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw06-linear-regression.html">Homework 6: Linear Regression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw07-classification.html">Homework 7: Classification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw08-regularization.html">Homework 8: Regularization and Model Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw09-nonlinear-methods.html">Homework 9: Nonlinear Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw10-ensemble-methods.html">Homework 10: Ensemble Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw11-clustering.html">Homework 11: Clustering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw12-uncertainty-quantification.html">Homework 12: Uncertainty Quantification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../assignments/hw13-model-interpretability.html">Homework 13: Model Interpretability</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../assignments/project.html">Course Project: Machine Learning for Chemical Engineering</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/project-proposal.html">Project Proposal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/project-checkin.html">Project Check-in (Progress Report)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/project-report.html">Project Final Report</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../assignments/project-presentation.html">Project Presentation</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Class Exercises</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../participation/index.html">In-Class Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-00-introduction.html">Module 00: Introduction - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-01-numpy.html">Module 01: NumPy Fundamentals - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-02-pandas-intro.html">Module 02: Pandas Introduction - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-03-intermediate-pandas.html">Module 03: Intermediate Pandas - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-04-feature-engineering.html">Module 04: Feature Engineering - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-05-dimensionality-reduction.html">Module 05: Dimensionality Reduction - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-06-linear-regression.html">Module 06: Linear Regression - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-07-classification.html">Module 07: Classification - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-08-regularization.html">Module 08: Regularization &amp; Model Selection - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-09-nonlinear-methods.html">Module 09: Nonlinear Methods - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-10-ensemble-methods.html">Module 10: Ensemble Methods - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-11-clustering.html">Module 11: Clustering - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-12-uncertainty-quantification.html">Module 12: Uncertainty Quantification - Participation Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../participation/participation-13-model-interpretability.html">Module 13: Model Interpretability - Participation Exercises</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../attribution.html">Attribution and license</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../characters.html">Data Detective Academy Characters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../reference-sheet.html">Data Science Quick Reference Sheet</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../data-academy-honors/README.html">Data Academy Honors</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data-academy-honors/badges.html">Data Academy Honors - Badges</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data-academy-honors/ranks.html">Data Academy Honors - Ranks</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/tlliuca/AI4ChemEng/blob/main/dsmles/01-numpy/numpy.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/tlliuca/AI4ChemEng" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/tlliuca/AI4ChemEng/edit/main/dsmles/01-numpy/numpy.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/01-numpy/numpy.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Module 01: NumPy Fundamentals</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-numpy-the-foundation-of-scientific-python">Why NumPy? The Foundation of Scientific Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem-with-python-lists">The Problem with Python Lists</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-s-solution">NumPy’s Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-matters-for-chemical-engineering">Why This Matters for Chemical Engineering</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-arrays-choosing-the-right-approach">Creating Arrays: Choosing the Right Approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-and-slicing-accessing-your-data">Indexing and Slicing: Accessing Your Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-insight">The Key Insight</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-indexing">Types of Indexing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorized-operations-thinking-in-arrays">Vectorized Operations: Thinking in Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-vectorization-matters">Why Vectorization Matters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mental-shift">The Mental Shift</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting-the-magic-behind-numpy-s-elegance">Broadcasting: The Magic Behind NumPy’s Elegance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-broadcasting-works">How Broadcasting Works</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-chemical-engineering-example">A Chemical Engineering Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-functions">Aggregation Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">Linear Algebra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-data-from-files">Reading Data from Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-what">When to Use What</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-arrays-record-arrays">Structured Arrays (Record Arrays)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-structured-arrays">When to Use Structured Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-pandas-instead">When to Use Pandas Instead</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-dtype-codes">Common dtype codes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-numbers-essential-for-simulation">Random Numbers: Essential for Simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-s-random-number-generator">NumPy’s Random Number Generator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-pitfalls-mistakes-everyone-makes">Common Pitfalls: Mistakes Everyone Makes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#views-vs-copies">1. Views vs Copies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-catalyst-crisis-the-long-loop">The Catalyst Crisis: “The Long Loop”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-assessment-quiz">Self-Assessment Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-reading">Recommended Reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-numpy-mindset">Summary: NumPy Mindset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts">Core Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-numpy">When to Use NumPy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">When to Use Pandas Instead</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="module-01-numpy-fundamentals">
+<span id="index-0"></span><h1>Module 01: NumPy Fundamentals<a class="headerlink" href="#module-01-numpy-fundamentals" title="Link to this heading">#</a></h1>
+<p>NumPy is the foundation of numerical computing in Python. Nearly every data science library builds on NumPy arrays.</p>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Create and manipulate NumPy arrays</p></li>
+<li><p>Use vectorized operations (no loops!)</p></li>
+<li><p>Apply broadcasting for efficient computation</p></li>
+<li><p>Perform basic linear algebra</p></li>
+<li><p>Read data from files and work with structured arrays</p></li>
+<li><p>Generate random numbers for simulations</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="why-numpy-the-foundation-of-scientific-python">
+<span id="index-1"></span><h2>Why NumPy? The Foundation of Scientific Python<a class="headerlink" href="#why-numpy-the-foundation-of-scientific-python" title="Link to this heading">#</a></h2>
+<p>Before we dive in, it’s worth understanding <em>why</em> NumPy exists and what problem it solves.</p>
+<section id="the-problem-with-python-lists">
+<h3>The Problem with Python Lists<a class="headerlink" href="#the-problem-with-python-lists" title="Link to this heading">#</a></h3>
+<p>Python is a wonderful language, but it was designed for general-purpose programming, not numerical computing. Python lists are:</p>
+<ul class="simple">
+<li><p><strong>Flexible</strong>: Can hold mixed types (<code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">&quot;hello&quot;,</span> <span class="pre">3.14]</span></code>)</p></li>
+<li><p><strong>Dynamic</strong>: Can grow and shrink easily</p></li>
+<li><p><strong>Slow</strong>: Each element is a full Python object with overhead</p></li>
+</ul>
+<p>This flexibility comes at a cost. When you’re doing numerical work—solving differential equations, processing spectra, training machine learning models—you need to perform the <em>same operation on millions of numbers</em>. Python’s flexibility becomes a liability.</p>
+</section>
+<section id="numpy-s-solution">
+<h3>NumPy’s Solution<a class="headerlink" href="#numpy-s-solution" title="Link to this heading">#</a></h3>
+<p>NumPy provides a new data type: the <strong>ndarray</strong> (n-dimensional array). NumPy arrays are:</p>
+<ul class="simple">
+<li><p><strong>Homogeneous</strong>: All elements have the same type (e.g., all 64-bit floats)</p></li>
+<li><p><strong>Contiguous</strong>: Stored in a single block of memory</p></li>
+<li><p><strong>Vectorized</strong>: Operations apply to all elements at once, implemented in C</p></li>
+</ul>
+<p>The result? NumPy can be 10-100x faster than Python lists for numerical operations.</p>
+</section>
+<section id="why-this-matters-for-chemical-engineering">
+<h3>Why This Matters for Chemical Engineering<a class="headerlink" href="#why-this-matters-for-chemical-engineering" title="Link to this heading">#</a></h3>
+<p>Almost everything we do involves arrays of numbers:</p>
+<ul class="simple">
+<li><p>Sensor data from reactors (time series of temperatures, pressures, flows)</p></li>
+<li><p>Concentration profiles from simulations</p></li>
+<li><p>Spectroscopic data (absorbance vs wavelength)</p></li>
+<li><p>Training data for machine learning models</p></li>
+</ul>
+<p>NumPy is the foundation that Pandas, scikit-learn, TensorFlow, and virtually every scientific Python library builds upon. Master NumPy, and everything else becomes easier.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Speed comparison</span>
+<span class="n">python_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1000000</span><span class="p">))</span>
+<span class="n">numpy_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+
+<span class="c1"># Python list</span>
+<span class="o">%</span><span class="k">timeit</span> [x**2 for x in python_list]
+
+<span class="c1"># NumPy array</span>
+<span class="o">%</span><span class="k">timeit</span> numpy_array**2
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19.2 ms ± 104 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>554 μs ± 5.33 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+</pre></div>
+</div>
+</div>
+</div>
+<p>The timing results speak for themselves. On my machine, the NumPy operation is roughly <strong>50-100x faster</strong> than the Python list comprehension. For a million elements!</p>
+<p>This difference compounds quickly:</p>
+<ul class="simple">
+<li><p>Processing 1 million data points: seconds vs minutes</p></li>
+<li><p>Training a machine learning model: minutes vs hours</p></li>
+<li><p>Running a Monte Carlo simulation: hours vs days</p></li>
+</ul>
+<p>The speed difference comes from:</p>
+<ol class="arabic simple">
+<li><p><strong>Memory layout</strong>: NumPy arrays are stored contiguously, enabling cache-efficient access</p></li>
+<li><p><strong>Type consistency</strong>: No type checking needed for each element</p></li>
+<li><p><strong>Compiled code</strong>: Operations run in optimized C/Fortran, not interpreted Python</p></li>
+</ol>
+<p>This is why every scientific Python library uses NumPy under the hood.</p>
+</section>
+</section>
+<section id="creating-arrays-choosing-the-right-approach">
+<span id="index-2"></span><h2>Creating Arrays: Choosing the Right Approach<a class="headerlink" href="#creating-arrays-choosing-the-right-approach" title="Link to this heading">#</a></h2>
+<p>There are many ways to create NumPy arrays, and the right choice depends on your situation:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Situation</p></th>
+<th class="head"><p>Method</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>From existing data</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">np.array()</span></code></p></td>
+<td><p>Converting a Python list</p></td>
+</tr>
+<tr class="row-odd"><td><p>Initialize to zeros</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">np.zeros()</span></code></p></td>
+<td><p>Pre-allocating for a loop</p></td>
+</tr>
+<tr class="row-even"><td><p>Initialize to ones</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">np.ones()</span></code></p></td>
+<td><p>Creating masks or weights</p></td>
+</tr>
+<tr class="row-odd"><td><p>Evenly spaced values</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">np.linspace()</span></code></p></td>
+<td><p>Plotting a function</p></td>
+</tr>
+<tr class="row-even"><td><p>Integer sequence</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">np.arange()</span></code></p></td>
+<td><p>Loop indices</p></td>
+</tr>
+<tr class="row-odd"><td><p>Random values</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">np.random.uniform()</span></code></p></td>
+<td><p>Monte Carlo simulation</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Pro tip</strong>: Avoid growing arrays in loops. If you know the final size, pre-allocate with <code class="docutils literal notranslate"><span class="pre">np.zeros()</span></code> and fill in values. This is much faster than appending.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># From Python list</span>
+<span class="n">concentrations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>  <span class="c1"># mol/L</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Concentrations:"</span><span class="p">,</span> <span class="n">concentrations</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Type:"</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">concentrations</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Shape:"</span><span class="p">,</span> <span class="n">concentrations</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Dtype:"</span><span class="p">,</span> <span class="n">concentrations</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Concentrations: [0.1 0.2 0.5 1.  2. ]
+Type: &lt;class 'numpy.ndarray'&gt;
+Shape: (5,)
+Dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Common array creation functions</span>
+<span class="n">zeros</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">ones</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">temps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># 5 evenly spaced points from 300 to 500</span>
+<span class="n">pressures</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>   <span class="c1"># From 1 to 11, step 2</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Zeros:"</span><span class="p">,</span> <span class="n">zeros</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Ones:"</span><span class="p">,</span> <span class="n">ones</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Temperatures:"</span><span class="p">,</span> <span class="n">temps</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Pressures:"</span><span class="p">,</span> <span class="n">pressures</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Zeros: [0. 0. 0. 0. 0.]
+Ones: [1. 1. 1. 1. 1.]
+Temperatures: [300. 350. 400. 450. 500.]
+Pressures: [1 3 5 7 9]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2D arrays (matrices)</span>
+<span class="c1"># Experimental data: rows = experiments, columns = [T, P, yield]</span>
+<span class="n">experiments</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">300</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">45.2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">350</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">52.8</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">400</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">68.1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">450</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">75.4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">82.0</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Shape:"</span><span class="p">,</span> <span class="n">experiments</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># (5 rows, 3 columns)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Experiment data:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">experiments</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape: (5, 3)
+
+Experiment data:
+[[300.    1.   45.2]
+ [350.    1.5  52.8]
+ [400.    2.   68.1]
+ [450.    2.5  75.4]
+ [500.    3.   82. ]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="indexing-and-slicing-accessing-your-data">
+<span id="index-3"></span><h2>Indexing and Slicing: Accessing Your Data<a class="headerlink" href="#indexing-and-slicing-accessing-your-data" title="Link to this heading">#</a></h2>
+<p>NumPy’s indexing is one of its most powerful features. Understanding it well will save you countless hours of writing loops.</p>
+<section id="the-key-insight">
+<h3>The Key Insight<a class="headerlink" href="#the-key-insight" title="Link to this heading">#</a></h3>
+<p>In Python, you typically write loops to process data. In NumPy, you <strong>describe what you want</strong>, and NumPy figures out how to get it efficiently.</p>
+<p>Instead of:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>You write:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">data</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>This isn’t just shorter—it’s 10-100x faster because the loop runs in compiled C code.</p>
+</section>
+<section id="types-of-indexing">
+<h3>Types of Indexing<a class="headerlink" href="#types-of-indexing" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Basic indexing</strong> (integers and slices): Returns views (no copy)</p></li>
+<li><p><strong>Advanced indexing</strong> (boolean masks, integer arrays): Returns copies</p></li>
+</ol>
+<p>Understanding this distinction matters for performance and avoiding bugs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1D indexing</span>
+<span class="n">temps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First element:"</span><span class="p">,</span> <span class="n">temps</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Last element:"</span><span class="p">,</span> <span class="n">temps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First three:"</span><span class="p">,</span> <span class="n">temps</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Every other:"</span><span class="p">,</span> <span class="n">temps</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First element: 300
+Last element: 500
+First three: [300 350 400]
+Every other: [300 400 500]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2D indexing</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First row (experiment 1):"</span><span class="p">,</span> <span class="n">experiments</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First column (all temperatures):"</span><span class="p">,</span> <span class="n">experiments</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Yields (third column):"</span><span class="p">,</span> <span class="n">experiments</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Single element [2,1]:"</span><span class="p">,</span> <span class="n">experiments</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First row (experiment 1): [300.    1.   45.2]
+First column (all temperatures): [300. 350. 400. 450. 500.]
+Yields (third column): [45.2 52.8 68.1 75.4 82. ]
+Single element [2,1]: 2.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Boolean indexing - very powerful!</span>
+<span class="n">yields</span> <span class="o">=</span> <span class="n">experiments</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">temps</span> <span class="o">=</span> <span class="n">experiments</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Find experiments with yield &gt; 60%</span>
+<span class="n">high_yield</span> <span class="o">=</span> <span class="n">yields</span> <span class="o">&gt;</span> <span class="mi">60</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"High yield mask:"</span><span class="p">,</span> <span class="n">high_yield</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"High yield values:"</span><span class="p">,</span> <span class="n">yields</span><span class="p">[</span><span class="n">high_yield</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Temps for high yield:"</span><span class="p">,</span> <span class="n">temps</span><span class="p">[</span><span class="n">high_yield</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>High yield mask: [False False  True  True  True]
+High yield values: [68.1 75.4 82. ]
+Temps for high yield: [400. 450. 500.]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="vectorized-operations-thinking-in-arrays">
+<span id="index-4"></span><h2>Vectorized Operations: Thinking in Arrays<a class="headerlink" href="#vectorized-operations-thinking-in-arrays" title="Link to this heading">#</a></h2>
+<p>This is the most important concept in NumPy. <strong>Vectorization</strong> means applying an operation to an entire array at once, rather than looping through elements.</p>
+<section id="why-vectorization-matters">
+<h3>Why Vectorization Matters<a class="headerlink" href="#why-vectorization-matters" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Speed</strong>: Operations run in optimized C code, not interpreted Python</p></li>
+<li><p><strong>Clarity</strong>: <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">A</span> <span class="pre">*</span> <span class="pre">np.exp(-Ea</span> <span class="pre">/</span> <span class="pre">(R</span> <span class="pre">*</span> <span class="pre">T))</span></code> is clearer than a 5-line loop</p></li>
+<li><p><strong>Fewer bugs</strong>: No off-by-one errors, no forgetting to append</p></li>
+</ol>
+</section>
+<section id="the-mental-shift">
+<h3>The Mental Shift<a class="headerlink" href="#the-mental-shift" title="Link to this heading">#</a></h3>
+<p>If you’re coming from MATLAB, vectorization will feel natural. If you’re coming from traditional programming, it requires a mental shift:</p>
+<p><strong>Loop thinking</strong>: “For each element, do this operation”
+<strong>Array thinking</strong>: “Apply this operation to all elements”</p>
+<p>The examples below demonstrate this shift. Notice how each calculation applies to entire arrays—no loops needed!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Temperature conversion: K to °C</span>
+<span class="n">temps_K</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>
+<span class="n">temps_C</span> <span class="o">=</span> <span class="n">temps_K</span> <span class="o">-</span> <span class="mf">273.15</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Kelvin:"</span><span class="p">,</span> <span class="n">temps_K</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Celsius:"</span><span class="p">,</span> <span class="n">temps_C</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Kelvin: [300 350 400 450 500]
+Celsius: [ 26.85  76.85 126.85 176.85 226.85]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ideal gas law: PV = nRT</span>
+<span class="c1"># Calculate molar volume V/n = RT/P</span>
+
+<span class="n">R</span> <span class="o">=</span> <span class="mf">8.314</span>  <span class="c1"># J/(mol·K)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># K</span>
+<span class="n">P</span> <span class="o">=</span> <span class="mi">101325</span>  <span class="c1"># Pa (1 atm)</span>
+
+<span class="n">V_molar</span> <span class="o">=</span> <span class="n">R</span> <span class="o">*</span> <span class="n">T</span> <span class="o">/</span> <span class="n">P</span>  <span class="c1"># m³/mol</span>
+<span class="n">V_molar_L</span> <span class="o">=</span> <span class="n">V_molar</span> <span class="o">*</span> <span class="mi">1000</span>  <span class="c1"># L/mol</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Temperature (K):"</span><span class="p">,</span> <span class="n">T</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Molar volume (L/mol):"</span><span class="p">,</span> <span class="n">V_molar_L</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Temperature (K): [300. 350. 400. 450. 500.]
+Molar volume (L/mol): [24.61584012 28.71848014 32.82112016 36.92376018 41.0264002 ]
+</pre></div>
+</div>
+</div>
+</div>
+<p>These Arrhenius plots illustrate a classic chemical engineering relationship:</p>
+<p><strong>Left plot (linear scale)</strong>: Shows the exponential growth of k with temperature. The rate constant increases by several orders of magnitude across this temperature range—this is why temperature control is so critical in reactors!</p>
+<p><strong>Right plot (semi-log scale)</strong>: The hallmark of the Arrhenius equation. When we plot ln(k) vs 1/T, we get a straight line:</p>
+<ul class="simple">
+<li><p><strong>Slope</strong> = -Ea/R (gives activation energy)</p></li>
+<li><p><strong>Intercept</strong> = ln(A) (gives pre-exponential factor)</p></li>
+</ul>
+<p>This linearization is how we traditionally extract kinetic parameters from experimental data. The linear fit on a semi-log plot is a signature of Arrhenius behavior.</p>
+<p>Notice how we generated these plots with just a few lines—no loops! The vectorized operations calculated k for all 100 temperature points simultaneously.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Arrhenius equation: k = A * exp(-Ea/RT)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="mf">1e13</span>  <span class="c1"># 1/s</span>
+<span class="n">Ea</span> <span class="o">=</span> <span class="mi">80000</span>  <span class="c1"># J/mol</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mf">8.314</span>  <span class="c1"># J/(mol·K)</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">600</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">Ea</span> <span class="o">/</span> <span class="p">(</span><span class="n">R</span> <span class="o">*</span> <span class="n">T</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Temperature (K)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Rate constant k (1/s)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Arrhenius Plot (linear)'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="mi">1000</span><span class="o">/</span><span class="n">T</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'1000/T (1/K)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">'Rate constant k (1/s)'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">'Arrhenius Plot (log scale)'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7107bf91432e9351aeb90bdd7d153a9648b15e4eb39d1dc60c5d08d0aa5cd9a4.png" src="../_images/7107bf91432e9351aeb90bdd7d153a9648b15e4eb39d1dc60c5d08d0aa5cd9a4.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="broadcasting-the-magic-behind-numpy-s-elegance">
+<span id="index-5"></span><h2>Broadcasting: The Magic Behind NumPy’s Elegance<a class="headerlink" href="#broadcasting-the-magic-behind-numpy-s-elegance" title="Link to this heading">#</a></h2>
+<p>Broadcasting is NumPy’s way of handling operations between arrays of different shapes. It’s what allows you to write <code class="docutils literal notranslate"><span class="pre">array</span> <span class="pre">+</span> <span class="pre">5</span></code> (adding a scalar to every element) or multiply a matrix by a vector.</p>
+<section id="how-broadcasting-works">
+<h3>How Broadcasting Works<a class="headerlink" href="#how-broadcasting-works" title="Link to this heading">#</a></h3>
+<p>When NumPy sees arrays of different shapes, it tries to make them compatible by:</p>
+<ol class="arabic simple">
+<li><p>Comparing dimensions from right to left</p></li>
+<li><p>Dimensions match if they’re equal, or if one of them is 1</p></li>
+<li><p>Arrays with a dimension of 1 are “stretched” to match the other</p></li>
+</ol>
+</section>
+<section id="a-chemical-engineering-example">
+<h3>A Chemical Engineering Example<a class="headerlink" href="#a-chemical-engineering-example" title="Link to this heading">#</a></h3>
+<p>Suppose you want to calculate reaction rates at multiple temperatures AND multiple concentrations. Instead of writing nested loops, broadcasting does it in one line.</p>
+<p><strong>The key</strong>: Reshape one array so dimensions can be broadcast. <code class="docutils literal notranslate"><span class="pre">k.reshape(-1,</span> <span class="pre">1)</span></code> makes k a column vector (5×1), and <code class="docutils literal notranslate"><span class="pre">C</span></code> stays a row (1×4). NumPy broadcasts to create a 5×4 grid of all combinations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate reaction rates at multiple T and C combinations</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>  <span class="c1"># 5 temperatures</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>  <span class="c1"># 4 concentrations</span>
+
+<span class="c1"># Rate = k * C, where k depends on T</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">Ea</span> <span class="o">/</span> <span class="p">(</span><span class="n">R</span> <span class="o">*</span> <span class="n">T</span><span class="p">))</span>  <span class="c1"># Shape: (5,)</span>
+
+<span class="c1"># We want a 5x4 array of rates</span>
+<span class="c1"># Reshape k to (5, 1) and C stays (4,) → broadcasts to (5, 4)</span>
+<span class="n">rates</span> <span class="o">=</span> <span class="n">k</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">C</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"k shape:"</span><span class="p">,</span> <span class="n">k</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"C shape:"</span><span class="p">,</span> <span class="n">C</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"rates shape:"</span><span class="p">,</span> <span class="n">rates</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Rates (rows=T, cols=C):"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">rates</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k shape: (5,)
+C shape: (4,)
+rates shape: (5, 4)
+
+Rates (rows=T, cols=C):
+[[1.17560001e-02 5.87800005e-02 1.17560001e-01 2.35120002e-01]
+ [1.14874200e+00 5.74370998e+00 1.14874200e+01 2.29748399e+01]
+ [3.57021760e+01 1.78510880e+02 3.57021760e+02 7.14043519e+02]
+ [5.17018862e+02 2.58509431e+03 5.17018862e+03 1.03403772e+04]
+ [4.38687994e+03 2.19343997e+04 4.38687994e+04 8.77375988e+04]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="aggregation-functions">
+<span id="index-6"></span><h2>Aggregation Functions<a class="headerlink" href="#aggregation-functions" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simulated experimental yields</span>
+<span class="n">yields</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">78.2</span><span class="p">,</span> <span class="mf">82.1</span><span class="p">,</span> <span class="mf">79.5</span><span class="p">,</span> <span class="mf">81.3</span><span class="p">,</span> <span class="mf">80.0</span><span class="p">,</span> <span class="mf">79.8</span><span class="p">,</span> <span class="mf">83.2</span><span class="p">,</span> <span class="mf">77.9</span><span class="p">,</span> <span class="mf">80.5</span><span class="p">,</span> <span class="mf">81.1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mean: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">yields</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Std: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">yields</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Min: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">yields</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Max: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">yields</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Median: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">yields</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">%"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean: 80.36%
+Std: 1.56%
+Min: 77.90%
+Max: 83.20%
+Median: 80.25%
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Aggregation along axes for 2D arrays</span>
+<span class="c1"># Rows = different catalysts, Cols = replicate experiments</span>
+<span class="n">catalyst_yields</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">78</span><span class="p">,</span> <span class="mi">82</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span>  <span class="c1"># Catalyst A</span>
+    <span class="p">[</span><span class="mi">65</span><span class="p">,</span> <span class="mi">68</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">67</span><span class="p">],</span>  <span class="c1"># Catalyst B</span>
+    <span class="p">[</span><span class="mi">88</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">89</span><span class="p">,</span> <span class="mi">87</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span>  <span class="c1"># Catalyst C</span>
+<span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Mean per catalyst (across replicates):"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">catalyst_yields</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># axis=1 means across columns</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Mean per replicate (across catalysts):"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">catalyst_yields</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>  <span class="c1"># axis=0 means across rows</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Mean per catalyst (across replicates):
+[80. 66. 89.]
+
+Mean per replicate (across catalysts):
+[77.         80.33333333 78.         77.33333333 79.        ]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="linear-algebra">
+<span id="index-7"></span><h2>Linear Algebra<a class="headerlink" href="#linear-algebra" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solving linear systems: Ax = b</span>
+<span class="c1"># Material balance: 3 reactions, 3 unknowns</span>
+
+<span class="c1"># Stoichiometric matrix</span>
+<span class="n">coeff_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="c1"># Right-hand side (inlet flows)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
+
+<span class="c1"># Solve</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">coeff_matrix</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Solution x:"</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Verify: Ax should equal b</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Verification coeff_matrix @ x:"</span><span class="p">,</span> <span class="n">coeff_matrix</span> <span class="o">@</span> <span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Solution x: [17.5  7.5  2.5]
+Verification coeff_matrix @ x: [10.  5. 20.]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Matrix operations</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Determinant:"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">M</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Inverse:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">M</span><span class="p">))</span>
+
+<span class="n">eigenvalues</span><span class="p">,</span> <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Eigenvalues:"</span><span class="p">,</span> <span class="n">eigenvalues</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Eigenvectors:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eigenvectors</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Determinant: -2.0000000000000004
+
+Inverse:
+[[-2.   1. ]
+ [ 1.5 -0.5]]
+
+Eigenvalues: [-0.37228132  5.37228132]
+
+Eigenvectors:
+[[-0.82456484 -0.41597356]
+ [ 0.56576746 -0.90937671]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="reading-data-from-files">
+<span id="index-8"></span><h2>Reading Data from Files<a class="headerlink" href="#reading-data-from-files" title="Link to this heading">#</a></h2>
+<p>Real data comes from files—CSV exports from instruments, text files from simulations, or datasets shared by colleagues. NumPy provides several functions for loading numerical data:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Best For</p></th>
+<th class="head"><p>Features</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">np.loadtxt()</span></code></p></td>
+<td><p>Clean, simple data</p></td>
+<td><p>Fast, simple API</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">np.genfromtxt()</span></code></p></td>
+<td><p>Messy data with headers/missing values</p></td>
+<td><p>Handles edge cases</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">np.load()</span></code> / <code class="docutils literal notranslate"><span class="pre">np.save()</span></code></p></td>
+<td><p>NumPy binary format</p></td>
+<td><p>Fast, preserves precision</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<section id="when-to-use-what">
+<h3>When to Use What<a class="headerlink" href="#when-to-use-what" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Clean CSV with only numbers</strong>: <code class="docutils literal notranslate"><span class="pre">np.loadtxt()</span></code> is fastest and simplest</p></li>
+<li><p><strong>Headers, missing values, or mixed types</strong>: Use <code class="docutils literal notranslate"><span class="pre">np.genfromtxt()</span></code> or consider Pandas</p></li>
+<li><p><strong>Saving/loading NumPy arrays</strong>: Use <code class="docutils literal notranslate"><span class="pre">np.save()</span></code> and <code class="docutils literal notranslate"><span class="pre">np.load()</span></code> for efficiency</p></li>
+</ul>
+<p><strong>Pro tip</strong>: For complex tabular data with mixed types and labels, Pandas (next module) is often easier. But for pure numerical data, NumPy’s functions are fast and lightweight.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Copy the included example data into the working folder.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shutil</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"reactor_data.csv"</span><span class="p">,</span> <span class="s2">"catalyst_experiments.txt"</span><span class="p">]:</span>
+    <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">course_file</span><span class="p">(</span><span class="s2">"data/"</span> <span class="o">+</span> <span class="n">name</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Example data ready."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loading a simple CSV file with np.loadtxt()</span>
+<span class="c1"># Skip header row, use comma delimiter</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">'reactor_data.csv'</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">','</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Shape:"</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Data type:"</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">First 3 rows:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
+
+<span class="c1"># Access columns by index</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># Temperature</span>
+<span class="n">pressure</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># Pressure</span>
+<span class="n">flow</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>  <span class="c1"># Flow rate</span>
+<span class="n">conversion</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span>  <span class="c1"># Conversion</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Temperatures:"</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Conversions:"</span><span class="p">,</span> <span class="n">conversion</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape: (7, 4)
+Data type: float64
+
+First 3 rows:
+[[350.    1.    2.5  45.2]
+ [375.    1.2   2.8  52.1]
+ [400.    1.5   3.   61.8]]
+
+Temperatures: [350. 375. 400. 425. 450. 475. 500.]
+Conversions: [45.2 52.1 61.8 68.4 74.9 79.3 83.7]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loading data with headers using np.genfromtxt()</span>
+<span class="c1"># This is more flexible than loadtxt - handles headers and missing values</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s1">'catalyst_experiments.txt'</span><span class="p">,</span> 
+                     <span class="n">skip_header</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Skip the header row</span>
+                     <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>  <span class="c1"># Skip the string column, use only numeric columns</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Shape:"</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Data (T, P, yield, selectivity):"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape: (7, 4)
+
+Data (T, P, yield, selectivity):
+[[350.    1.   45.2  78.5]
+ [375.    1.2  52.1  81.3]
+ [400.    1.5  61.8  85.2]
+ [425.    1.8  68.4  87.9]
+ [450.    2.   74.9  89.1]
+ [475.    2.2  79.3  90.4]
+ [500.    2.5  83.7  91.8]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Saving and loading NumPy arrays (binary format)</span>
+<span class="c1"># This is the fastest way to save/load NumPy arrays</span>
+
+<span class="c1"># Save an array</span>
+<span class="n">temps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>
+<span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'temperatures.npy'</span><span class="p">,</span> <span class="n">temps</span><span class="p">)</span>
+
+<span class="c1"># Load it back</span>
+<span class="n">temps_loaded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'temperatures.npy'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Loaded array:"</span><span class="p">,</span> <span class="n">temps_loaded</span><span class="p">)</span>
+
+<span class="c1"># Save multiple arrays in one file</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savez</span><span class="p">(</span><span class="s1">'experiment.npz'</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="n">temps</span><span class="p">,</span> <span class="n">conversion</span><span class="o">=</span><span class="n">conversion</span><span class="p">)</span>
+
+<span class="c1"># Load multiple arrays</span>
+<span class="n">loaded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'experiment.npz'</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Arrays in file:"</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">loaded</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Temperature:"</span><span class="p">,</span> <span class="n">loaded</span><span class="p">[</span><span class="s1">'temperature'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Conversion:"</span><span class="p">,</span> <span class="n">loaded</span><span class="p">[</span><span class="s1">'conversion'</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded array: [300 350 400 450 500]
+
+Arrays in file: ['temperature', 'conversion']
+Temperature: [300 350 400 450 500]
+Conversion: [45.2 52.1 61.8 68.4 74.9 79.3 83.7]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="structured-arrays-record-arrays">
+<span id="index-9"></span><h2>Structured Arrays (Record Arrays)<a class="headerlink" href="#structured-arrays-record-arrays" title="Link to this heading">#</a></h2>
+<p>Sometimes you need to work with heterogeneous data—not just numbers, but mixed types with named fields. NumPy’s <strong>structured arrays</strong> (also called record arrays) allow you to define a custom data type with named fields of different types.</p>
+<section id="when-to-use-structured-arrays">
+<h3>When to Use Structured Arrays<a class="headerlink" href="#when-to-use-structured-arrays" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Small datasets with mixed types</strong>: When you need names but not full Pandas overhead</p></li>
+<li><p><strong>Interfacing with C/Fortran code</strong>: Structured arrays map directly to C structs</p></li>
+<li><p><strong>Memory-mapped files</strong>: Efficient access to large datasets on disk</p></li>
+<li><p><strong>Performance-critical code</strong>: Faster than Pandas for simple operations</p></li>
+</ul>
+</section>
+<section id="when-to-use-pandas-instead">
+<h3>When to Use Pandas Instead<a class="headerlink" href="#when-to-use-pandas-instead" title="Link to this heading">#</a></h3>
+<p>For most tabular data work, <strong>Pandas is easier and more feature-rich</strong>. Use structured arrays when:</p>
+<ul class="simple">
+<li><p>You need maximum performance for simple operations</p></li>
+<li><p>You’re interfacing with low-level code</p></li>
+<li><p>You want to keep dependencies minimal</p></li>
+</ul>
+<p>Think of structured arrays as “labeled arrays” and Pandas as “database tables.”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Creating a structured array with a custom dtype</span>
+<span class="c1"># Define the data type: (field_name, field_type)</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">'temperature'</span><span class="p">,</span> <span class="s1">'f8'</span><span class="p">),</span>  <span class="c1"># 64-bit float</span>
+    <span class="p">(</span><span class="s1">'pressure'</span><span class="p">,</span> <span class="s1">'f8'</span><span class="p">),</span>     <span class="c1"># 64-bit float</span>
+    <span class="p">(</span><span class="s1">'conversion'</span><span class="p">,</span> <span class="s1">'f8'</span><span class="p">),</span>   <span class="c1"># 64-bit float</span>
+    <span class="p">(</span><span class="s1">'catalyst'</span><span class="p">,</span> <span class="s1">'U10'</span><span class="p">)</span>     <span class="c1"># Unicode string, max 10 chars</span>
+<span class="p">])</span>
+
+<span class="c1"># Create the structured array</span>
+<span class="n">experiments</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">(</span><span class="mf">350.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">45.2</span><span class="p">,</span> <span class="s1">'Pt/Al2O3'</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">400.0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mf">62.8</span><span class="p">,</span> <span class="s1">'Pd/C'</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">450.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">75.4</span><span class="p">,</span> <span class="s1">'Ni/SiO2'</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">500.0</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mf">83.1</span><span class="p">,</span> <span class="s1">'Pt/Al2O3'</span><span class="p">),</span>
+<span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dt</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Structured array:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">experiments</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Shape:"</span><span class="p">,</span> <span class="n">experiments</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Dtype:"</span><span class="p">,</span> <span class="n">experiments</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Field names:"</span><span class="p">,</span> <span class="n">experiments</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Structured array:
+[(350., 1. , 45.2, 'Pt/Al2O3') (400., 1.5, 62.8, 'Pd/C')
+ (450., 2. , 75.4, 'Ni/SiO2') (500., 2.5, 83.1, 'Pt/Al2O3')]
+
+Shape: (4,)
+Dtype: [('temperature', '&lt;f8'), ('pressure', '&lt;f8'), ('conversion', '&lt;f8'), ('catalyst', '&lt;U10')]
+Field names: ('temperature', 'pressure', 'conversion', 'catalyst')
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Accessing fields by name - much clearer than column indices!</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"All temperatures:"</span><span class="p">,</span> <span class="n">experiments</span><span class="p">[</span><span class="s1">'temperature'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"All catalysts:"</span><span class="p">,</span> <span class="n">experiments</span><span class="p">[</span><span class="s1">'catalyst'</span><span class="p">])</span>
+
+<span class="c1"># Access a single record (row)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">First experiment:"</span><span class="p">,</span> <span class="n">experiments</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"First experiment temp:"</span><span class="p">,</span> <span class="n">experiments</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'temperature'</span><span class="p">])</span>
+
+<span class="c1"># Boolean indexing works too</span>
+<span class="n">high_conv</span> <span class="o">=</span> <span class="n">experiments</span><span class="p">[</span><span class="n">experiments</span><span class="p">[</span><span class="s1">'conversion'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">60</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">High conversion experiments:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">high_conv</span><span class="p">)</span>
+
+<span class="c1"># Find experiments with Pt catalyst</span>
+<span class="n">pt_experiments</span> <span class="o">=</span> <span class="n">experiments</span><span class="p">[</span><span class="n">experiments</span><span class="p">[</span><span class="s1">'catalyst'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'Pt/Al2O3'</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Pt/Al2O3 experiments:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pt_experiments</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>All temperatures: [350. 400. 450. 500.]
+All catalysts: ['Pt/Al2O3' 'Pd/C' 'Ni/SiO2' 'Pt/Al2O3']
+
+First experiment: (350.0, 1.0, 45.2, 'Pt/Al2O3')
+First experiment temp: 350.0
+
+High conversion experiments:
+[(400., 1.5, 62.8, 'Pd/C') (450., 2. , 75.4, 'Ni/SiO2')
+ (500., 2.5, 83.1, 'Pt/Al2O3')]
+
+Pt/Al2O3 experiments:
+[(350., 1. , 45.2, 'Pt/Al2O3') (500., 2.5, 83.1, 'Pt/Al2O3')]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Loading structured data from a file with genfromtxt</span>
+<span class="c1"># Define the dtype to match the file structure</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">([</span>
+    <span class="p">(</span><span class="s1">'catalyst_id'</span><span class="p">,</span> <span class="s1">'U10'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'temperature'</span><span class="p">,</span> <span class="s1">'f8'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'pressure'</span><span class="p">,</span> <span class="s1">'f8'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'yield'</span><span class="p">,</span> <span class="s1">'f8'</span><span class="p">),</span>
+    <span class="p">(</span><span class="s1">'selectivity'</span><span class="p">,</span> <span class="s1">'f8'</span><span class="p">)</span>
+<span class="p">])</span>
+
+<span class="c1"># Load with dtype specification</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="s1">'catalyst_experiments.txt'</span><span class="p">,</span> 
+                     <span class="n">dtype</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span>
+                     <span class="n">skip_header</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Loaded structured array:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Access by field name:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Catalyst IDs:"</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s1">'catalyst_id'</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Mean yield:"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">'yield'</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Loaded structured array:
+[('A1', 350., 1. , 45.2, 78.5) ('A2', 375., 1.2, 52.1, 81.3)
+ ('B1', 400., 1.5, 61.8, 85.2) ('B2', 425., 1.8, 68.4, 87.9)
+ ('C1', 450., 2. , 74.9, 89.1) ('C2', 475., 2.2, 79.3, 90.4)
+ ('D1', 500., 2.5, 83.7, 91.8)]
+
+Access by field name:
+Catalyst IDs: ['A1' 'A2' 'B1' 'B2' 'C1' 'C2' 'D1']
+Mean yield: 66.4857142857143
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="common-dtype-codes">
+<h3>Common dtype codes<a class="headerlink" href="#common-dtype-codes" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Type</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'f4'</span></code></p></td>
+<td><p>32-bit float</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">np.float32</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'f8'</span></code></p></td>
+<td><p>64-bit float</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">np.float64</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'i4'</span></code></p></td>
+<td><p>32-bit integer</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">np.int32</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'i8'</span></code></p></td>
+<td><p>64-bit integer</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">np.int64</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'U10'</span></code></p></td>
+<td><p>Unicode string (10 chars)</p></td>
+<td><p>Fixed-length string</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'S10'</span></code></p></td>
+<td><p>Byte string (10 bytes)</p></td>
+<td><p>ASCII only</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'?'</span></code></p></td>
+<td><p>Boolean</p></td>
+<td><p>True/False</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Tip</strong>: Use <code class="docutils literal notranslate"><span class="pre">'f8'</span></code> (64-bit float) as your default for numerical data—it matches Python’s <code class="docutils literal notranslate"><span class="pre">float</span></code> precision.</p>
+</section>
+</section>
+<section id="random-numbers-essential-for-simulation">
+<span id="index-10"></span><h2>Random Numbers: Essential for Simulation<a class="headerlink" href="#random-numbers-essential-for-simulation" title="Link to this heading">#</a></h2>
+<p>Random number generation is fundamental to many scientific applications:</p>
+<ul class="simple">
+<li><p><strong>Monte Carlo simulation</strong>: Propagating uncertainty, sampling from distributions</p></li>
+<li><p><strong>Machine learning</strong>: Initializing weights, shuffling data, dropout</p></li>
+<li><p><strong>Process simulation</strong>: Modeling noise, disturbances, variability</p></li>
+<li><p><strong>Experimental design</strong>: Random sampling, bootstrap resampling</p></li>
+</ul>
+<section id="numpy-s-random-number-generator">
+<h3>NumPy’s Random Number Generator<a class="headerlink" href="#numpy-s-random-number-generator" title="Link to this heading">#</a></h3>
+<p>Modern NumPy (1.17+) uses a new random number generator API. The recommended approach is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>  <span class="c1"># Create a generator with a seed</span>
+</pre></div>
+</div>
+<p><strong>Why use a seed?</strong> Seeds make your results reproducible. Running the same code twice with the same seed gives identical “random” numbers. This is essential for:</p>
+<ul class="simple">
+<li><p>Debugging (reproducing exactly what happened)</p></li>
+<li><p>Sharing results (others can reproduce your analysis)</p></li>
+<li><p>Testing (consistent behavior across runs)</p></li>
+</ul>
+<p><strong>When NOT to seed</strong>: When you genuinely need randomness (cryptography, production sampling)</p>
+<p id="index-11">This Monte Carlo simulation demonstrates <strong>uncertainty propagation</strong>—a critical skill for engineering.</p>
+<p><strong>What we did</strong>:</p>
+<ol class="arabic simple">
+<li><p>Our temperature measurement is uncertain: T = 400 ± 5 K (about 1.25% uncertainty)</p></li>
+<li><p>We sampled 10,000 possible temperatures from this distribution</p></li>
+<li><p>We calculated k for each sampled temperature</p></li>
+<li><p>We analyzed the resulting distribution of k values</p></li>
+</ol>
+<p><strong>What we learned</strong>:</p>
+<ul class="simple">
+<li><p>The input (T) is normally distributed and symmetric</p></li>
+<li><p>The output (k) is <strong>not</strong> normally distributed—it’s skewed!</p></li>
+<li><p>A small uncertainty in T (1.25%) creates a much larger uncertainty in k (≈20-30%)</p></li>
+</ul>
+<p>This asymmetric amplification happens because k depends <em>exponentially</em> on T. The Arrhenius equation is highly nonlinear, so symmetric input uncertainty becomes asymmetric output uncertainty.</p>
+<p><strong>Engineering implication</strong>: When designing experiments or processes, you must propagate uncertainties through your models. The final uncertainty in your prediction can be much larger (or smaller) than the measurement uncertainties you started with.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set seed for reproducibility</span>
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Uniform random numbers</span>
+<span class="n">uniform</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Uniform [0,1):"</span><span class="p">,</span> <span class="n">uniform</span><span class="p">)</span>
+
+<span class="c1"># Normal distribution (Gaussian)</span>
+<span class="n">normal</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># mean=50, std=5</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Normal (μ=50, σ=5):"</span><span class="p">,</span> <span class="n">normal</span><span class="p">)</span>
+
+<span class="c1"># Random integers</span>
+<span class="n">integers</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">integers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Random integers [1, 100):"</span><span class="p">,</span> <span class="n">integers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Uniform [0,1): [0.77395605 0.43887844 0.85859792 0.69736803 0.09417735]
+Normal (μ=50, σ=5): [43.48910247 50.63920202 48.41878704 49.91599421 45.73478036]
+Random integers [1, 100): [50 37 19 92 78]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Monte Carlo simulation: Propagating measurement uncertainty</span>
+<span class="c1"># Measure temperature: T = 400 ± 5 K</span>
+<span class="c1"># What's the uncertainty in rate constant k?</span>
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">n_samples</span> <span class="o">=</span> <span class="mi">10000</span>
+
+<span class="c1"># Sample temperatures from normal distribution</span>
+<span class="n">T_samples</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
+
+<span class="c1"># Calculate k for each sample</span>
+<span class="n">k_samples</span> <span class="o">=</span> <span class="n">A</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">Ea</span> <span class="o">/</span> <span class="p">(</span><span class="n">R</span> <span class="o">*</span> <span class="n">T_samples</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"k = </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">k_samples</span><span class="p">)</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2"> ± </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">k_samples</span><span class="p">)</span><span class="si">:</span><span class="s2">.4e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Visualize</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">T_samples</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'black'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Temperature (K)'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Count'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Input: Temperature Distribution'</span><span class="p">)</span>
+
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">k_samples</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'black'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Rate constant k (1/s)'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Count'</span><span class="p">)</span>
+<span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'Output: Rate Constant Distribution'</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k = 3.7108e+02 ± 1.1373e+02
+</pre></div>
+</div>
+<img alt="../_images/09ebcaea12ad089ea330acde9b155e9df86f494c1d7c01393f211ed56694626b.png" src="../_images/09ebcaea12ad089ea330acde9b155e9df86f494c1d7c01393f211ed56694626b.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="common-pitfalls-mistakes-everyone-makes">
+<span id="index-12"></span><h2>Common Pitfalls: Mistakes Everyone Makes<a class="headerlink" href="#common-pitfalls-mistakes-everyone-makes" title="Link to this heading">#</a></h2>
+<p>NumPy has some non-obvious behaviors that trip up beginners (and sometimes experts). Understanding these will save you debugging time.</p>
+<section id="views-vs-copies">
+<h3>1. Views vs Copies<a class="headerlink" href="#views-vs-copies" title="Link to this heading">#</a></h3>
+<p>This is the most common source of NumPy bugs. When you slice an array, you get a <strong>view</strong>, not a copy. Modifying the view modifies the original!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pitfall 1: Views vs Copies</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>  <span class="c1"># This is a VIEW, not a copy!</span>
+
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>  <span class="c1"># This modifies 'a' too!</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"a:"</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>  <span class="c1"># [1, 99, 3, 4, 5]</span>
+
+<span class="c1"># Use .copy() if you need an independent copy</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"a (with copy):"</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>  <span class="c1"># [1, 2, 3, 4, 5]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a: [ 1 99  3  4  5]
+a (with copy): [1 2 3 4 5]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pitfall 2: Integer division</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>  <span class="c1"># Integer array</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Integer array / 2:"</span><span class="p">,</span> <span class="n">a</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Fine, returns floats</span>
+
+<span class="c1"># But be careful with floor division</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Integer array // 2:"</span><span class="p">,</span> <span class="n">a</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>  <span class="c1"># Integer division</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Integer array / 2: [0.5 1.  1.5]
+Integer array // 2: [0 1 1]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Pitfall 3: Shape mismatches</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>  <span class="c1"># Different length!</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Error:"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Error: operands could not be broadcast together with shapes (3,) (2,) 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="the-catalyst-crisis-the-long-loop">
+<h2>The Catalyst Crisis: “The Long Loop”<a class="headerlink" href="#the-catalyst-crisis-the-long-loop" title="Link to this heading">#</a></h2>
+<p><em>Continued from Introduction…</em></p>
+<hr class="docutils" />
+<p>Alex’s code had been running for twelve minutes.</p>
+<p>She watched the progress bar crawl across her screen, each percentage point taking an eternity. All she was doing was calculating summary statistics for the ChemCorp sensor data—10,000 rows, nothing fancy. But her nested loops were grinding through the data like a car stuck in first gear.</p>
+<p>“That’s… a lot of for loops.”</p>
+<p>Alex turned to find Maya peering at her screen with the expression of someone watching a car accident.</p>
+<p>“It works,” Alex said defensively.</p>
+<p>“It works like a horse-drawn carriage works. Technically functional. Here—” Maya pulled up a chair. “Can I show you something?”</p>
+<p>She typed a few lines, replacing Alex’s twelve nested loops with something that looked almost too simple:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">means</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">stds</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The code finished in 0.3 seconds.</p>
+<p>“NumPy doesn’t loop through elements,” Maya explained. “It operates on entire arrays at once. The loop still happens, but in compiled C code, not interpreted Python.”</p>
+<p>Alex stared at the output. Same numbers. Fraction of the time. “I spent three hours writing that loop structure.”</p>
+<p>“And now you’ll never write it again.” Maya grinned. “That’s learning, right?”</p>
+<p>Later that night, Alex sat in the graduate student lounge, reworking her analysis with vectorized operations. The ChemCorp data transformed from an unwieldy beast into something almost manageable. She could process a day’s worth of sensor readings in seconds instead of minutes.</p>
+<p>But something else caught her attention. As she explored the data, she noticed gaps—timestamps where sensors should have reported but didn’t. Not random gaps. Clusters of missing values, always during the same time windows.</p>
+<p>She opened her notebook—the physical one, old habit from industry—and sketched the pattern. Gaps at 11 PM. Gaps at 3 AM. Gaps at 7 AM.</p>
+<p>Shift changes.</p>
+<p>She didn’t know what it meant yet. But she’d learned something today: the data wasn’t just numbers. It was evidence. And evidence always told a story if you knew how to listen.</p>
+<p>She added a sticky note to the mystery board: <strong>Missing data clusters around shift changes. Why?</strong></p>
+<p><em>To be continued…</em></p>
+</section>
+<section id="self-assessment-quiz">
+<h2>Self-Assessment Quiz<a class="headerlink" href="#self-assessment-quiz" title="Link to this heading">#</a></h2>
+<p>Test your understanding of NumPy fundamentals with this quiz.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="OVvTqwXTeJYM" data-shufflequestions="False" data-shuffleanswers="True" data-preserveresponses="false" data-numquestions="1000000" data-maxwidth="760" style="border-radius: 10px; text-align: left"><style>
+#OVvTqwXTeJYM {
+   --jq-multiple-choice-bg: #4f2683;
+   --jq-mc-button-bg: #fafafa;
+   --jq-mc-button-border: #e0e0e0e0;
+   --jq-mc-button-inset-shadow: #555555;
+   --jq-many-choice-bg: #f75c03ff;
+   --jq-numeric-bg: #392061ff;
+   --jq-numeric-input-bg: #c0c0c0;
+   --jq-numeric-input-label: #101010;
+   --jq-numeric-input-shadow: #999999;
+   --jq-string-bg: #4c1a57;
+   --jq-incorrect-color: #c80202;
+   --jq-correct-color: #009113;
+   --jq-text-color: #fafafa;
+}
+
+.Quiz {
+    max-width: 600px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+/*    margin-bottom: 15px;*/
+/*    padding-bottom: 4px;*/
+    padding-top: 4px;
+    line-height: 1.1;
+    font-size: 16pt;
+    border-radius: inherit;
+}
+
+.QuizCode {
+    font-size: 14pt;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.QuizCode>pre {
+    padding: 4px;
+}
+
+.Quiz code {
+    background-color: lightgray;
+    color: black;
+}
+
+.Quiz .QuizCode code {
+    background-color: inherit;
+    color: inherit;
+}
+
+
+.Quiz .MCButton code {
+    background-color: inherit;
+    color: inherit;
+}
+
+.MCButton .QuizCode {
+    text-align: left;
+}
+
+
+
+
+.Answer {
+    border-radius: inherit;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr;
+    margin: 10px 0;
+}
+
+@media only screen and (max-width:480px) {
+    .Answer {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+.Feedback {
+    font-size: 16pt;
+    text-align: center;
+/*    min-height: 2em;*/
+}
+
+.Input {
+    align: left;
+    font-size: 20pt;
+}
+
+.Input-text {
+    display: block;
+    margin: 10px;
+    color: inherit;
+    width: unset;
+    min-width: 140px;
+    max-width: 93%;
+    field-sizing: content;
+    background-color: var(--jq-numeric-input-bg);
+    color: var(--jq-text-color);
+    padding: 5px;
+    padding-left: 10px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: inherit;
+    line-height: 20pt;
+    border: none;
+    border-radius: 0.2rem;
+    transition: box-shadow 0.1s);
+}
+
+.Input-text:focus {
+    /*outline: none;*/
+    background-color: var(--jq-numeric-input-bg);
+    box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem var(--jq-numeric-input-shadow);
+}
+
+.MCButton {
+    background: var(--jq-mc-button-bg);
+    border: 1px solid var(--jq-mc-button-border);
+    border-radius: inherit;
+    color: #333333;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.MCButton p {
+    color: inherit;
+}
+
+.MultipleChoiceQn {
+    padding: 10px;
+    background: var(--jq-multiple-choice-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
+}
+
+.ManyChoiceQn {
+    padding: 10px;
+    background: var(--jq-many-choice-bg);
+    color: var(--jq-text-color);
+    border-radius: inherit;
+}
+
+.NumericQn {
+    background: var(--jq-numeric-bg);
+    border-radius: inherit;
+    color: var(--jq-text-color);
+    padding: 10px;
+}
+
+.NumericQn p {
+    color: inherit;
+}
+
+.StringQn {
+    background: var(--jq-string-bg);
+    border-radius: inherit;
+    color: var(--jq-text-color);
+    padding: 10px;
+}
+
+.StringQn p {
+    color: inherit;
+}
+
+
+.InpLabel {
+    color: var(--jq-numeric-input-label);
+    float: left;
+    font-size: 15pt;
+    line-height: 34px;
+    margin-right: 10px;
+}
+
+.incorrect {
+    color: var(--jq-incorrect-color);
+}
+
+.correct {
+    color: var(--jq-correct-color);
+}
+
+.correctButton {
+    /*
+    background: var(--jq-correct-color);
+   */
+    animation: correct-anim 0.6s ease;
+    animation-fill-mode: forwards;
+    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
+    color: var(--jq-text-color);
+    /*outline: none;*/
+}
+
+.incorrectButton {
+    animation: incorrect-anim 0.8s ease;
+    animation-fill-mode: forwards;
+    box-shadow: inset 0 0 5px var(--jq-mc-button-inset-shadow);
+    color: var(--jq-text-color);
+    /*outline: none;*/
+}
+
+@keyframes incorrect-anim {
+    100% {
+        background-color: var(--jq-incorrect-color);
+    }
+}
+
+@keyframes correct-anim {
+    100% {
+        background-color: var(--jq-correct-color);
+    }
+}
+</style></div><script type="application/javascript">var questionsOVvTqwXTeJYM=[{"question": "Why is NumPy significantly faster than Python lists for numerical operations?", "type": "multiple_choice", "answers": [{"answer": "NumPy uses parallel processing across multiple CPU cores automatically", "correct": false, "feedback": "NumPy doesn't automatically parallelize operations. The speed comes from vectorization and compiled C code, not parallel processing."}, {"answer": "NumPy arrays are homogeneous, stored contiguously in memory, and operations run in compiled C code (vectorization)", "correct": true, "feedback": "Correct! NumPy's speed comes from three factors: (1) homogeneous types eliminate per-element type checking, (2) contiguous memory enables cache-efficient access, and (3) operations run in optimized C/Fortran code rather than interpreted Python."}, {"answer": "NumPy compresses the data to use less memory", "correct": false, "feedback": "NumPy doesn't compress data. Its speed comes from vectorization and efficient memory layout, not compression."}, {"answer": "Python lists have a bug that makes them slow", "correct": false, "feedback": "Python lists aren't buggy - they're designed for flexibility (mixed types, dynamic sizing). This flexibility has overhead that NumPy avoids by requiring homogeneous types."}]}, {"question": "Which function would you use to create an array of 100 evenly spaced values between 0 and 10 (inclusive)?", "type": "multiple_choice", "answers": [{"answer": "np.arange(0, 10, 100)", "correct": false, "feedback": "np.arange(start, stop, step) takes a step size, not the number of points. This would try to create values from 0 to 10 with step 100, giving only one value."}, {"answer": "np.linspace(0, 10, 100)", "correct": true, "feedback": "Correct! np.linspace(start, stop, num) creates num evenly spaced values from start to stop (inclusive by default). This is the right choice when you know how many points you want."}, {"answer": "np.zeros(100) + np.arange(100) * 0.1", "correct": false, "feedback": "While this creates 100 values, it's overly complex. np.linspace is the direct solution for creating evenly spaced values."}, {"answer": "np.array(range(0, 10, 0.1))", "correct": false, "feedback": "Python's range() doesn't accept float step values. Even if it did, this would create approximately 100 values, not exactly 100."}]}, {"question": "Given a 2D array 'data' with shape (5, 3), what does 'data[:, 1]' return?", "type": "multiple_choice", "answers": [{"answer": "The first row of the array", "correct": false, "feedback": "The first row would be data[0, :] or data[0]. The ':' before the comma selects all rows."}, {"answer": "The second column of the array (all 5 values)", "correct": true, "feedback": "Correct! The colon ':' selects all rows, and '1' selects the second column (0-indexed). This returns a 1D array of shape (5,) containing all values from the second column."}, {"answer": "A single element at position (0, 1)", "correct": false, "feedback": "A single element would be data[0, 1]. The ':' selects all rows, so this returns an entire column."}, {"answer": "The last column of the array", "correct": false, "feedback": "The last column would be data[:, -1] or data[:, 2]. Index 1 refers to the second column (0-indexed)."}]}, {"question": "What does boolean indexing return?", "type": "multiple_choice", "answers": [{"answer": "A view of the original array", "correct": false, "feedback": "Boolean indexing returns a copy, not a view. This is different from basic slicing, which returns a view."}, {"answer": "A copy containing only elements where the condition is True", "correct": true, "feedback": "Correct! Boolean indexing creates a new array containing only the elements where the boolean mask is True. Since it's a copy, modifying the result won't affect the original array."}, {"answer": "A boolean array of the same shape as the input", "correct": false, "feedback": "The boolean condition creates a mask, but applying that mask to an array extracts the matching elements, returning a smaller array of values."}, {"answer": "The indices where the condition is True", "correct": false, "feedback": "To get indices, you would use np.where() or np.nonzero(). Boolean indexing directly returns the values, not their indices."}]}, {"question": "In NumPy broadcasting, if you multiply an array of shape (5, 1) by an array of shape (4,), what is the shape of the result?", "type": "multiple_choice", "answers": [{"answer": "Error - shapes are incompatible", "correct": false, "feedback": "These shapes are compatible for broadcasting! Dimensions are compared from right to left: (5,1) and (4,) become (5,1) and (1,4), then broadcast to (5,4)."}, {"answer": "(5, 4)", "correct": true, "feedback": "Correct! Broadcasting stretches dimensions of size 1 to match. The (5,1) array broadcasts along columns, and the (4,) array broadcasts along rows, producing a (5,4) result."}, {"answer": "(5,)", "correct": false, "feedback": "The result would be larger, not smaller. Broadcasting expands arrays to create all combinations of the input values."}, {"answer": "(4, 5)", "correct": false, "feedback": "Close, but the order matters. The first array determines rows (5), the second determines columns (4), giving (5,4)."}]}, {"question": "What does np.mean(data, axis=0) compute for a 2D array where rows are experiments and columns are variables?", "type": "multiple_choice", "answers": [{"answer": "The mean of each experiment (across variables)", "correct": false, "feedback": "That would be axis=1. axis=0 operates across rows (down the columns)."}, {"answer": "The mean of each variable (across experiments)", "correct": true, "feedback": "Correct! axis=0 means 'collapse along axis 0' (rows), so you compute the mean down each column. The result has one value per column - the mean of that variable across all experiments."}, {"answer": "The overall mean of all elements", "correct": false, "feedback": "The overall mean would be np.mean(data) with no axis argument. Specifying axis computes means along that dimension."}, {"answer": "A 2D array of means", "correct": false, "feedback": "The result is 1D (one value per column). axis=0 reduces the array along that dimension."}]}, {"question": "Why is it important to set a random seed (e.g., rng = np.random.default_rng(42)) in scientific computing?", "type": "multiple_choice", "answers": [{"answer": "It makes the random numbers more random", "correct": false, "feedback": "Seeds don't affect randomness quality. They determine the starting point of the pseudo-random sequence, making it reproducible."}, {"answer": "It makes results reproducible - the same seed gives the same sequence of random numbers", "correct": true, "feedback": "Correct! Setting a seed ensures anyone running your code gets identical 'random' numbers. This is essential for debugging, sharing results, and scientific reproducibility."}, {"answer": "It prevents memory errors when generating large arrays", "correct": false, "feedback": "Seeds don't affect memory usage. They only determine which sequence of pseudo-random numbers is generated."}, {"answer": "It's required by NumPy or the code will crash", "correct": false, "feedback": "Seeds are optional. Without a seed, NumPy uses system entropy for initialization, giving different results each run."}]}, {"question": "What is the key difference between basic slicing (e.g., a[1:4]) and .copy()?", "type": "multiple_choice", "answers": [{"answer": "Slicing is faster but less accurate", "correct": false, "feedback": "Both give the same values. The difference is whether they share memory with the original array."}, {"answer": "Basic slicing returns a view (shares memory with original), .copy() creates an independent copy", "correct": true, "feedback": "Correct! A view shares memory with the original - modifying the view modifies the original. A copy is independent - changes don't affect the original. Use .copy() when you need to modify data without side effects."}, {"answer": ".copy() only works on 1D arrays", "correct": false, "feedback": ".copy() works on arrays of any dimension. The view vs copy distinction applies to all array operations."}, {"answer": "There is no difference; they behave identically", "correct": false, "feedback": "There's a crucial difference! Modifying a view modifies the original array. This is a common source of bugs in NumPy code."}]}];
+
+if (typeof Question === 'undefined') {
+// Make a random ID
+function makeid(length) {
+    var result = [];
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+    }
+    return result.join('');
+}
+// Convert LaTeX delimiters and markdown links to HTML
+function jaxify(string) {
+    let mystring = string;
+    let count = 0, count2 = 0;
+    let loc = mystring.search(/([^\\]|^)(\$)/);
+    let loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+    while (loc >= 0 || loc2 >= 0) {
+        if (loc2 >= 0) {
+            mystring = mystring.replace(/([^\\]|^)(\$\$)/, count2 % 2 ? '$1\\]' : '$1\\[');
+            count2++;
+        } else {
+            mystring = mystring.replace(/([^\\]|^)(\$)/, count % 2 ? '$1\\)' : '$1\\(');
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+    }
+    // Replace markdown links
+    mystring = mystring.replace(/<http(.*?)>/g, '<a href="http$1" target="_blank" class="Link">http$1</a>');
+    mystring = mystring.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" class="Link">$1</a>');
+    return mystring;
+}
+
+// Base class for question types
+class Question {
+    static registry = {};
+    static register(type, cls) {
+        Question.registry[type] = cls;
+    }
+    static create(qa, id, index, options, rootDiv) {
+        const Cls = Question.registry[qa.type];
+        if (!Cls) {
+            console.error(`No question class registered for type "${qa.type}"`);
+            return;
+        }
+        const q = new Cls(qa, id, index, options, rootDiv);
+        q.render();
+    }
+
+    constructor(qa, id, index, options, rootDiv) {
+        this.qa = qa;
+        this.id = id;
+        this.index = index;
+        this.options = options;
+        this.rootDiv = rootDiv;
+        // wrapper
+        this.wrapper = document.createElement('div');
+        this.wrapper.id = `quizWrap${id}`;
+        this.wrapper.className = 'Quiz';
+        this.wrapper.dataset.qnum = index;
+        this.wrapper.style.maxWidth = `${options.maxWidth}px`;
+        rootDiv.appendChild(this.wrapper);
+        // question container
+        this.outerqDiv = document.createElement('div');
+        this.outerqDiv.id = `OuterquizQn${id}${index}`;
+        this.wrapper.appendChild(this.outerqDiv);
+        // question text
+        this.qDiv = document.createElement('div');
+        this.qDiv.id = `quizQn${id}${index}`;
+        if (qa.question) {
+            this.qDiv.innerHTML = jaxify(qa.question);
+            this.outerqDiv.appendChild(this.qDiv);
+        }
+        // code block
+        if (qa.code) {
+            const codeDiv = document.createElement('div');
+            codeDiv.id = `code${id}${index}`;
+            codeDiv.className = 'QuizCode';
+            const pre = document.createElement('pre');
+            const codeEl = document.createElement('code');
+            codeEl.innerHTML = qa.code;
+            pre.appendChild(codeEl);
+            codeDiv.appendChild(pre);
+            this.outerqDiv.appendChild(codeDiv);
+        }
+        // answer container
+        this.aDiv = document.createElement('div');
+        this.aDiv.id = `quizAns${id}${index}`;
+        this.aDiv.className = 'Answer';
+        this.wrapper.appendChild(this.aDiv);
+        // feedback container (append after answers)
+        this.fbDiv = document.createElement('div');
+        this.fbDiv.id = `fb${id}`;
+        this.fbDiv.className = 'Feedback';
+        this.fbDiv.dataset.answeredcorrect = 0;
+    }
+
+    render() {
+        throw new Error('render() not implemented');
+    }
+
+    preserveResponse(val) {
+        if (!this.options.preserveResponses) return;
+        const resp = document.getElementById(`responses${this.rootDiv.id}`);
+        if (!resp) return;
+        const arr = JSON.parse(resp.dataset.responses);
+        arr[this.index] = val;
+        resp.dataset.responses = JSON.stringify(arr);
+        printResponses(resp);
+    }
+
+    typeset(container) {
+        if (typeof MathJax !== 'undefined') {
+            const v = MathJax.version;
+            if (v[0] === '2') {
+                MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+            } else {
+                MathJax.typeset([container]);
+            }
+        }
+    }
+}
+
+// Choose a random subset of an array. Can also be used to shuffle the array
+function getRandomSubarray(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, temp, index;
+    while (i--) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
+}
+
+function printResponses(responsesContainer) {
+    var responses=JSON.parse(responsesContainer.dataset.responses);
+    var stringResponses='<B>IMPORTANT!</B>To preserve this answer sequence for submission, when you have finalized your answers: <ol> <li> Copy the text in this cell below "Answer String"</li> <li> Double click on the cell directly below the Answer String, labeled "Replace Me"</li> <li> Select the whole "Replace Me" text</li> <li> Paste in your answer string and press shift-Enter.</li><li>Save the notebook using the save icon or File->Save Notebook menu item</li></ul><br><br><br><b>Answer String:</b><br> ';
+    console.log(responses);
+    responses.forEach((response, index) => {
+        if (response) {
+            console.log(index + ': ' + response);
+            stringResponses+= index + ': ' + response +"<BR>";
+        }
+    });
+    responsesContainer.innerHTML=stringResponses;
+}
+/* Callback function to determine whether a selected multiple-choice
+   button corresponded to a correct answer and to provide feedback
+   based on the answer */
+function check_mc() {
+    var id = this.id.split('-')[0];
+    //var response = this.id.split('-')[1];
+    //console.log(response);
+    //console.log("In check_mc(), id="+id);
+    //console.log(event.srcElement.id)           
+    //console.log(event.srcElement.dataset.correct)   
+    //console.log(event.srcElement.dataset.feedback)
+
+    var label = event.srcElement;
+    //console.log(label, label.nodeName);
+    var depth = 0;
+    while ((label.nodeName != "LABEL") && (depth < 20)) {
+        label = label.parentElement;
+        console.log(depth, label);
+        depth++;
+    }
+
+
+
+    var answers = label.parentElement.children;
+    //console.log(answers);
+
+    // Split behavior based on multiple choice vs many choice:
+    var fb = document.getElementById("fb" + id);
+
+
+
+    /* Multiple choice (1 answer). Allow for 0 correct
+       answers as an edge case */
+    if (fb.dataset.numcorrect <= 1) {
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            responses[qnum]= response;
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+
+        for (var i = 0; i < answers.length; i++) {
+            var child = answers[i];
+            //console.log(child);
+            child.className = "MCButton";
+        }
+
+
+
+        if (label.dataset.correct == "true") {
+            // console.log("Correct action");
+            if ("feedback" in label.dataset) {
+                fb.innerHTML = jaxify(label.dataset.feedback);
+            } else {
+                fb.innerHTML = "Correct!";
+            }
+            label.classList.add("correctButton");
+
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+
+        } else {
+            if ("feedback" in label.dataset) {
+                fb.innerHTML = jaxify(label.dataset.feedback);
+            } else {
+                fb.innerHTML = "Incorrect -- try again.";
+            }
+            //console.log("Error action");
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+    }
+    else { /* Many choice (more than 1 correct answer) */
+        var reset = false;
+        var feedback;
+         if (label.dataset.correct == "true") {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Correct!";
+            }
+            if (label.dataset.answered <= 0) {
+                if (fb.dataset.answeredcorrect < 0) {
+                    fb.dataset.answeredcorrect = 1;
+                    reset = true;
+                } else {
+                    fb.dataset.answeredcorrect++;
+                }
+                if (reset) {
+                    for (var i = 0; i < answers.length; i++) {
+                        var child = answers[i];
+                        child.className = "MCButton";
+                        child.dataset.answered = 0;
+                    }
+                }
+                label.classList.add("correctButton");
+                label.dataset.answered = 1;
+                fb.className = "Feedback";
+                fb.classList.add("correct");
+
+            }
+        } else {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Incorrect -- try again.";
+            }
+            if (fb.dataset.answeredcorrect > 0) {
+                fb.dataset.answeredcorrect = -1;
+                reset = true;
+            } else {
+                fb.dataset.answeredcorrect--;
+            }
+
+            if (reset) {
+                for (var i = 0; i < answers.length; i++) {
+                    var child = answers[i];
+                    child.className = "MCButton";
+                    child.dataset.answered = 0;
+                }
+            }
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            if (label.dataset.correct == "true") {
+                if (typeof(responses[qnum]) == "object"){
+                    if (!responses[qnum].includes(response))
+                        responses[qnum].push(response);
+                } else{
+                    responses[qnum]= [ response ];
+                }
+            } else {
+                responses[qnum]= response;
+            }
+            console.log(responses);
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End save responses stuff
+
+
+
+        var numcorrect = fb.dataset.numcorrect;
+        var answeredcorrect = fb.dataset.answeredcorrect;
+        if (answeredcorrect >= 0) {
+            fb.innerHTML = feedback + " [" + answeredcorrect + "/" + numcorrect + "]";
+        } else {
+            fb.innerHTML = feedback + " [" + 0 + "/" + numcorrect + "]";
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([fb]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+}
+
+
+/* Function to produce the HTML buttons for a multiple choice/
+   many choice question  and to update the CSS tags based on
+   the question type */
+function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
+
+    var shuffled;
+    if (shuffle_answers == true) {
+        //console.log(shuffle_answers+" read as true");
+        shuffled = getRandomSubarray(qa.answers, qa.answers.length);
+    } else {
+        //console.log(shuffle_answers+" read as false");
+        shuffled = qa.answers;
+    }
+
+
+    var num_correct = 0;
+
+    shuffled.forEach((item, index, ans_array) => {
+        //console.log(answer);
+
+        // Make input element
+        var inp = document.createElement("input");
+        inp.type = "radio";
+        inp.id = "quizo" + id + index;
+        inp.style = "display:none;";
+        aDiv.append(inp);
+
+        //Make label for input element
+        var lab = document.createElement("label");
+        lab.className = "MCButton";
+        lab.id = id + '-' + index;
+        lab.onclick = check_mc;
+        var aSpan = document.createElement('span');
+        aSpan.classsName = "";
+        //qDiv.id="quizQn"+id+index;
+        if ("answer" in item) {
+            aSpan.innerHTML = jaxify(item.answer);
+            //aSpan.innerHTML=item.answer;
+        }
+        lab.append(aSpan);
+
+        // Create div for code inside question
+        var codeSpan;
+        if ("code" in item) {
+            codeSpan = document.createElement('span');
+            codeSpan.id = "code" + id + index;
+            codeSpan.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeSpan.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = item.code;
+            lab.append(codeSpan);
+            //console.log(codeSpan);
+        }
+
+        //lab.textContent=item.answer;
+
+        // Set the data attributes for the answer
+        lab.setAttribute('data-correct', item.correct);
+        if (item.correct) {
+            num_correct++;
+        }
+        if ("feedback" in item) {
+            lab.setAttribute('data-feedback', item.feedback);
+        }
+        lab.setAttribute('data-answered', 0);
+
+        aDiv.append(lab);
+
+    });
+
+    if (num_correct > 1) {
+        outerqDiv.className = "ManyChoiceQn";
+    } else {
+        outerqDiv.className = "MultipleChoiceQn";
+    }
+
+    return num_correct;
+
+}
+// Object-oriented wrapper for MC/MANY choice
+class MCQuestion extends Question {
+    constructor(qa, id, idx, opts, rootDiv) { super(qa, id, idx, opts, rootDiv); }
+    render() {
+        //console.log("options.shuffleAnswers " + this.options.shuffleAnswers);
+        const numCorrect = make_mc(
+            this.qa,
+            this.options.shuffleAnswers,
+            this.outerqDiv,
+            this.qDiv,
+            this.aDiv,
+            this.id
+        );
+        if ('answer_cols' in this.qa) {
+            this.aDiv.style.gridTemplateColumns =
+                'repeat(' + this.qa.answer_cols + ', 1fr)';
+        }
+        this.fbDiv.dataset.numcorrect = numCorrect;
+        this.wrapper.appendChild(this.fbDiv);
+    }
+}
+Question.register('multiple_choice', MCQuestion);
+Question.register('many_choice', MCQuestion);
+function check_numeric(ths, event) {
+
+    if (event.keyCode === 13) {
+        ths.blur();
+
+        var id = ths.id.split('-')[0];
+
+        var submission = ths.value;
+        if (submission.indexOf('/') != -1) {
+            var sub_parts = submission.split('/');
+            //console.log(sub_parts);
+            submission = sub_parts[0] / sub_parts[1];
+        }
+        //console.log("Reader entered", submission);
+
+        if ("precision" in ths.dataset) {
+            var precision = ths.dataset.precision;
+            submission = Number(Number(submission).toPrecision(precision));
+        }
+
+
+        //console.log("In check_numeric(), id="+id);
+        //console.log(event.srcElement.id)           
+        //console.log(event.srcElement.dataset.feedback)
+
+        var fb = document.getElementById("fb" + id);
+        fb.style.display = "none";
+        fb.innerHTML = "Incorrect -- try again.";
+
+        var answers = JSON.parse(ths.dataset.answers);
+        //console.log(answers);
+
+        var defaultFB = "Incorrect. Try again.";
+        var correct;
+        var done = false;
+        answers.every(answer => {
+            //console.log(answer.type);
+
+            correct = false;
+            // if (answer.type=="value"){
+            if ('value' in answer) {
+                var value;
+                if ("precision" in ths.dataset) {
+                    value = answer.value.toPrecision(ths.dataset.precision);
+                } else {
+                    value = answer.value;
+                }
+                if (submission == value) {
+                    if ("feedback" in answer) {
+                        fb.innerHTML = jaxify(answer.feedback);
+                    } else {
+                        fb.innerHTML = jaxify("Correct");
+                    }
+                    correct = answer.correct;
+                    //console.log(answer.correct);
+                    done = true;
+                }
+
+                // } else if (answer.type=="range") {
+            } else if ('range' in answer) {
+                console.log(answer.range);
+                console.log(submission, submission >=answer.range[0], submission < answer.range[1])
+                if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
+                    fb.innerHTML = jaxify(answer.feedback);
+                    correct = answer.correct;
+                    console.log(answer.correct);
+                    done = true;
+                }
+            } else if (answer.type == "default") {
+                if ("feedback" in answer) {
+                    defaultFB = answer.feedback;
+                } 
+            }
+            if (done) {
+                return false; // Break out of loop if this has been marked correct
+            } else {
+                return true; // Keep looking for case that includes this as a correct answer
+            }
+        });
+        console.log("done:", done);
+
+        if ((!done) && (defaultFB != "")) {
+            fb.innerHTML = jaxify(defaultFB);
+            //console.log("Default feedback", defaultFB);
+        }
+
+        fb.style.display = "block";
+        if (correct) {
+            ths.className = "Input-text";
+            ths.classList.add("correctButton");
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+        } else {
+            ths.className = "Input-text";
+            ths.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            console.log(submission);
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            //console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            if (submission == ths.value){
+                responses[qnum]= submission;
+            } else {
+                responses[qnum]= ths.value + "(" + submission +")";
+            }
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([fb]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+        // After correct answer, if next JupyterQuiz question exists and has a text input, scroll by current question height
+        if (correct) {
+            // find the current question wrapper
+            var wrapper = ths.closest('.Quiz');
+            if (wrapper) {
+                var nextWrapper = wrapper.nextElementSibling;
+                if (nextWrapper && nextWrapper.classList.contains('Quiz')) {
+                    var nextInput = nextWrapper.querySelector('input.Input-text');
+                    if (nextInput) {
+                        var height = wrapper.getBoundingClientRect().height;
+                        console.log(height);
+                        nextInput.focus();
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+}
+// Object-oriented wrapper for numeric questions
+class NumericQuestion extends Question {
+    constructor(qa, id, idx, opts, rootDiv) {
+        super(qa, id, idx, opts, rootDiv);
+    }
+    render() {
+        make_numeric(this.qa, this.outerqDiv, this.qDiv, this.aDiv, this.id);
+        this.wrapper.appendChild(this.fbDiv);
+    }
+}
+Question.register('numeric', NumericQuestion);
+
+function isValid(el, charC) {
+    //console.log("Input char: ", charC);
+    if (charC == 46) {
+        if (el.value.indexOf('.') === -1) {
+            return true;
+        } else if (el.value.indexOf('/') != -1) {
+            var parts = el.value.split('/');
+            if (parts[1].indexOf('.') === -1) {
+                return true;
+            }
+        }
+        else {
+            return false;
+        }
+    } else if (charC == 47) {
+        if (el.value.indexOf('/') === -1) {
+            if ((el.value != "") && (el.value != ".")) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else if (charC == 45) {
+        var edex = el.value.indexOf('e');
+        if (edex == -1) {
+            edex = el.value.indexOf('E');
+        }
+
+        if (el.value == "") {
+            return true;
+        } else if (edex == (el.value.length - 1)) { // If just after e or E
+            return true;
+        } else {
+            return false;
+        }
+    } else if (charC == 101) { // "e"
+        if ((el.value.indexOf('e') === -1) && (el.value.indexOf('E') === -1) && (el.value.indexOf('/') == -1)) {
+            // Prev symbol must be digit or decimal point:
+            if (el.value.slice(-1).search(/\d/) >= 0) {
+                return true;
+            } else if (el.value.slice(-1).search(/\./) >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else {
+        if (charC > 31 && (charC < 48 || charC > 57))
+            return false;
+    }
+    return true;
+}
+
+function numeric_keypress(evnt) {
+    var charC = (evnt.which) ? evnt.which : evnt.keyCode;
+
+    if (charC == 13) {
+        check_numeric(this, evnt);
+    } else {
+        return isValid(this, charC);
+    }
+}
+
+
+
+
+
+function make_numeric(qa, outerqDiv, qDiv, aDiv, id) {
+
+
+
+    //console.log(answer);
+
+
+    outerqDiv.className = "NumericQn";
+    aDiv.style.display = 'block';
+
+    var lab = document.createElement("label");
+    lab.className = "InpLabel";
+    lab.innerHTML = "Type numeric answer here:";
+    aDiv.append(lab);
+
+    var inp = document.createElement("input");
+    inp.type = "text";
+    //inp.id="input-"+id;
+    inp.id = id + "-0";
+    inp.className = "Input-text";
+    inp.setAttribute('data-answers', JSON.stringify(qa.answers));
+    if ("precision" in qa) {
+        inp.setAttribute('data-precision', qa.precision);
+    }
+    aDiv.append(inp);
+    //console.log(inp);
+
+    //inp.addEventListener("keypress", check_numeric);
+    //inp.addEventListener("keypress", numeric_keypress);
+    /*
+    inp.addEventListener("keypress", function(event) {
+        return numeric_keypress(this, event);
+    }
+                        );
+                        */
+    //inp.onkeypress="return numeric_keypress(this, event)";
+    inp.onkeypress = numeric_keypress;
+    inp.onpaste = event => false;
+
+    inp.addEventListener("focus", function (event) {
+        this.value = "";
+        return false;
+    }
+    );
+
+
+}
+// Override show_questions to use object-oriented Question API
+function show_questions(json, container) {
+    // Accept container element or element ID
+    if (typeof container === 'string') {
+        container = document.getElementById(container);
+    }
+    if (!container) {
+        console.error('show_questions: invalid container', container);
+        return;
+    }
+
+    const shuffleQuestions = container.dataset.shufflequestions === 'True';
+    const shuffleAnswers = container.dataset.shuffleanswers === 'True';
+    const preserveResponses = container.dataset.preserveresponses === 'true';
+    const maxWidth = parseInt(container.dataset.maxwidth, 10) || 0;
+    let numQuestions = parseInt(container.dataset.numquestions, 10) || json.length;
+    if (numQuestions > json.length) numQuestions = json.length;
+
+    let questions = json;
+    if (shuffleQuestions || numQuestions < json.length) {
+        questions = getRandomSubarray(json, numQuestions);
+    }
+
+    questions.forEach((qa, index) => {
+        const id = makeid(8);
+        const options = {
+            shuffleAnswers: shuffleAnswers,
+            preserveResponses: preserveResponses,
+            maxWidth: maxWidth
+        };
+        Question.create(qa, id, index, options, container);
+    });
+
+    if (preserveResponses) {
+        const respDiv = document.createElement('div');
+        respDiv.id = 'responses' + container.id;
+        respDiv.className = 'JCResponses';
+        respDiv.dataset.responses = JSON.stringify([]);
+        respDiv.innerHTML = '<b>Select your answers and then follow the directions that will appear here.</b>';
+        container.appendChild(respDiv);
+    }
+
+    // Trigger MathJax typesetting if available
+    if (typeof MathJax != 'undefined') {
+        console.log("MathJax version", MathJax.version);
+        var version = MathJax.version;
+        setTimeout(function(){
+            var version = MathJax.version;
+            console.log('After sleep, MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([container]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
+            }
+        }, 500);
+if (typeof version == 'undefined') {
+        } else
+        {
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                if (MathJax.hasOwnProperty('typeset') ) {
+                    MathJax.typeset([container]);
+                } else {
+                    console.log('WARNING: Trying to force load MathJax 3');
+                    window.MathJax = {
+                        tex: {
+                            inlineMath: [['$', '$'], ['\\(', '\\)']]
+                        },
+                        svg: {
+                            fontCache: 'global'
+                        }
+                    };
+
+                    (function () {
+                        var script = document.createElement('script');
+                        script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+                        script.async = true;
+                        document.head.appendChild(script);
+                    })();
+                }
+            } else {
+                console.log("MathJax not found");
+            }
+        }
+    }
+    // if (typeof MathJax !== 'undefined') {
+    //     const v = MathJax.version;
+    //     if (v[0] === '2') {
+    //         MathJax.Hub.Queue(['Typeset', MathJax.Hub]);
+    //     } else if (v[0] === '3') {
+    //         MathJax.typeset([container]);
+    //     }
+    // }
+
+    // Prevent link clicks from bubbling up
+    Array.from(container.getElementsByClassName('Link')).forEach(link => {
+        link.addEventListener('click', e => e.stopPropagation());
+    });
+}
+function levenshteinDistance(a, b) {
+    if (a.length === 0) return b.length;
+    if (b.length === 0) return a.length;
+
+    const matrix = Array(b.length + 1).fill(null).map(() => Array(a.length + 1).fill(null));
+
+    for (let i = 0; i <= a.length; i++) {
+        matrix[0][i] = i;
+    }
+
+    for (let j = 0; j <= b.length; j++) {
+        matrix[j][0] = j;
+    }
+
+    for (let j = 1; j <= b.length; j++) {
+        for (let i = 1; i <= a.length; i++) {
+            const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+            matrix[j][i] = Math.min(
+                matrix[j - 1][i] + 1, // Deletion
+                matrix[j][i - 1] + 1, // Insertion
+                matrix[j - 1][i - 1] + cost // Substitution
+            );
+        }
+    }
+    return matrix[b.length][a.length];
+}
+// Object-oriented wrapper for string input questions
+class StringQuestion extends Question {
+    constructor(qa, id, idx, opts, rootDiv) {
+        super(qa, id, idx, opts, rootDiv);
+    }
+    render() {
+        make_string(this.qa, this.outerqDiv, this.qDiv, this.aDiv, this.id);
+        this.wrapper.appendChild(this.fbDiv);
+    }
+}
+Question.register('string', StringQuestion);
+
+function check_string(ths, event) {
+    if (event.keyCode === 13) {
+        ths.blur();
+
+        var id = ths.id.split('-')[0];
+        var submission = ths.value.trim();
+        var fb = document.getElementById("fb" + id);
+        fb.style.display = "none";
+        fb.innerHTML = "Incorrect -- try again.";
+
+        var answers = JSON.parse(ths.dataset.answers);
+        var defaultFB = "Incorrect. Try again.";
+        var correct;
+        var done = false;
+
+        // Handle default answer pattern: filter out and capture default feedback
+        var filteredAnswers = [];
+        answers.forEach(answer => {
+            if (answer.type === "default") {
+                defaultFB = answer.feedback;
+            } else {
+                filteredAnswers.push(answer);
+            }
+        });
+        answers = filteredAnswers;
+
+        answers.every(answer => {
+            correct = false;
+
+            let match = false;
+            if (answer.match_case) {
+                match = submission === answer.answer;
+            } else {
+                match = submission.toLowerCase() === answer.answer.toLowerCase();
+            }
+            console.log(submission);
+            console.log(answer.answer);
+            console.log(match);
+
+            if (match) {
+                if ("feedback" in answer) {
+                    fb.innerHTML = jaxify(answer.feedback);
+                } else {
+                    fb.innerHTML = jaxify("Correct");
+                }
+                correct = answer.correct;
+                done = true;
+            } else if (answer.fuzzy_threshold) {
+                var max_length = Math.max(submission.length, answer.answer.length);
+                var ratio;
+                if (answer.match_case) {
+                    ratio = 1- (levenshteinDistance(submission, answer.answer) / max_length);
+                } else {
+                    ratio = 1- (levenshteinDistance(submission.toLowerCase(),
+                                                    answer.answer.toLowerCase()) / max_length);
+                }
+                if (ratio >= answer.fuzzy_threshold) {
+                    if ("feedback" in answer) {
+                        fb.innerHTML = jaxify("(Fuzzy) " + answer.feedback);
+                    } else {
+                        fb.innerHTML = jaxify("Correct");
+                    }
+                    correct = answer.correct;
+                    done = true;
+                }
+
+            }
+
+            if (done) {
+                return false;
+            } else {
+                return true;
+            }
+        });
+
+        if ((!done) && (defaultFB != "")) {
+            fb.innerHTML = jaxify(defaultFB);
+        }
+
+        fb.style.display = "block";
+        if (correct) {
+            ths.className = "Input-text";
+            ths.classList.add("correctButton");
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+        } else {
+            ths.className = "Input-text";
+            ths.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            var qnum = document.getElementById("quizWrap" + id).dataset.qnum;
+            var responses = JSON.parse(responsesContainer.dataset.responses);
+            responses[qnum] = submission;
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([fb]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+        // After correct answer, if next JupyterQuiz question exists and has a text input, scroll by current question height
+        if (correct) {
+            var wrapper = ths.closest('.Quiz');
+            if (wrapper) {
+                var nextWrapper = wrapper.nextElementSibling;
+                if (nextWrapper && nextWrapper.classList.contains('Quiz')) {
+                    var nextInput = nextWrapper.querySelector('input.Input-text');
+                    if (nextInput) {
+                        var height = wrapper.getBoundingClientRect().height;
+                        nextInput.focus();
+                    }
+                }
+            }
+        }
+        return false;
+    }
+}
+
+function string_keypress(evnt) {
+    var charC = (evnt.which) ? evnt.which : evnt.keyCode;
+
+    if (charC == 13) {
+        check_string(this, evnt);
+    } 
+}
+
+
+function make_string(qa, outerqDiv, qDiv, aDiv, id) {
+    outerqDiv.className = "StringQn";
+    aDiv.style.display = 'block';
+
+    var lab = document.createElement("label");
+    lab.className = "InpLabel";
+    lab.innerHTML = "Type your answer here:";
+    aDiv.append(lab);
+
+    var inp = document.createElement("input");
+    inp.type = "text";
+    inp.id = id + "-0";
+    inp.className = "Input-text";
+    inp.setAttribute('data-answers', JSON.stringify(qa.answers));
+    // Apply optional input width (approx. number of characters, in em units)
+    if (qa.input_width != null) {
+        inp.style['min-width'] = qa.input_width + 'em';
+    }
+    aDiv.append(inp);
+
+    inp.onkeypress = string_keypress;
+    inp.onpaste = event => false;
+
+    inp.addEventListener("focus", function (event) {
+        this.value = "";
+        return false;
+    });
+}
+/*
+ * Handle asynchrony issues when re-running quizzes in Jupyter notebooks.
+ * Ensures show_questions is called after the container div is in the DOM.
+ */
+function try_show() {
+  if (document.getElementById("OVvTqwXTeJYM")) {
+    show_questions(questionsOVvTqwXTeJYM, OVvTqwXTeJYM);
+  } else {
+    setTimeout(try_show, 200);
+  }
+};
+// Invoke immediately
+{
+  try_show();
+}
+}
+</script></div>
+</div>
+</section>
+<section id="recommended-reading">
+<h2>Recommended Reading<a class="headerlink" href="#recommended-reading" title="Link to this heading">#</a></h2>
+<p>These resources will deepen your understanding of NumPy and numerical computing:</p>
+<ol class="arabic simple">
+<li><p><strong><a class="reference external" href="https://numpy.org/doc/stable/user/index.html">NumPy User Guide</a></strong> - The official NumPy documentation with comprehensive coverage of array creation, indexing, broadcasting, and linear algebra. The “NumPy fundamentals” section is particularly valuable.</p></li>
+<li><p><strong><a class="reference external" href="https://www.labri.fr/perso/nrougier/from-python-to-numpy/">From Python to NumPy by Nicolas Rougier</a></strong> - A free online book that takes you from Python basics to advanced NumPy techniques. Excellent explanations of vectorization and why it matters for performance.</p></li>
+<li><p><strong><a class="reference external" href="https://numpy.org/doc/stable/user/absolute_beginners.html">NumPy: the absolute basics for beginners</a></strong> - Official beginner’s guide that covers array fundamentals, broadcasting rules, and common operations with clear examples.</p></li>
+<li><p><strong><a class="reference external" href="https://github.com/rougier/numpy-100">100 NumPy Exercises</a></strong> - A collection of exercises ranging from beginner to expert level. Great for practicing and solidifying your NumPy skills.</p></li>
+<li><p><strong><a class="reference external" href="https://www.nature.com/articles/s41586-020-2649-2">Array Programming with NumPy (Harris et al., Nature 2020)</a></strong> - The definitive paper on NumPy’s design and its role in scientific computing. Provides context for why NumPy is the foundation of the Python scientific ecosystem.</p></li>
+</ol>
+</section>
+<section id="summary-numpy-mindset">
+<h2>Summary: NumPy Mindset<a class="headerlink" href="#summary-numpy-mindset" title="Link to this heading">#</a></h2>
+<p>NumPy requires a different way of thinking about computation. Here’s what to remember:</p>
+<section id="core-concepts">
+<h3>Core Concepts<a class="headerlink" href="#core-concepts" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concept</p></th>
+<th class="head"><p>Key Idea</p></th>
+<th class="head"><p>Why It Matters</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Arrays</strong></p></td>
+<td><p>Homogeneous, typed containers</p></td>
+<td><p>10-100x faster than lists</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Vectorization</strong></p></td>
+<td><p>Operate on entire arrays</p></td>
+<td><p>Eliminates slow Python loops</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Broadcasting</strong></p></td>
+<td><p>Automatic shape matching</p></td>
+<td><p>Clean code, fewer bugs</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Views</strong></p></td>
+<td><p>Slices share memory</p></td>
+<td><p>Fast, but be careful with modifications</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>File I/O</strong></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">loadtxt</span></code>, <code class="docutils literal notranslate"><span class="pre">genfromtxt</span></code>, <code class="docutils literal notranslate"><span class="pre">save/load</span></code></p></td>
+<td><p>Work with real data from files</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Structured Arrays</strong></p></td>
+<td><p>Named fields with mixed types</p></td>
+<td><p>Bridge between arrays and tables</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="when-to-use-numpy">
+<h3>When to Use NumPy<a class="headerlink" href="#when-to-use-numpy" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Any numerical computation with arrays of numbers</p></li>
+<li><p>Building blocks for machine learning features</p></li>
+<li><p>Scientific calculations (physics, chemistry, engineering)</p></li>
+<li><p>Image and signal processing</p></li>
+<li><p>Loading simple numerical data from CSV/text files</p></li>
+</ul>
+</section>
+<section id="id1">
+<h3>When to Use Pandas Instead<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Tabular data with labeled columns</p></li>
+<li><p>Mixed data types (numbers, strings, dates)</p></li>
+<li><p>Time series with datetime indices</p></li>
+<li><p>Data cleaning and exploration</p></li>
+<li><p>Complex data with many column types and labels</p></li>
+</ul>
+</section>
+<section id="key-takeaways">
+<h3>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Think in arrays</strong>: Write operations that apply to whole arrays, not individual elements</p></li>
+<li><p><strong>Avoid loops</strong>: If you’re writing a for loop over array elements, there’s probably a better way</p></li>
+<li><p><strong>Scale matters</strong>: Always scale/normalize features before combining them</p></li>
+<li><p><strong>Copy when needed</strong>: Use <code class="docutils literal notranslate"><span class="pre">.copy()</span></code> if you need to modify a slice without affecting the original</p></li>
+<li><p><strong>Seed for reproducibility</strong>: Always set a random seed for reproducible results</p></li>
+<li><p><strong>Choose the right loader</strong>: Use <code class="docutils literal notranslate"><span class="pre">loadtxt</span></code> for clean data, <code class="docutils literal notranslate"><span class="pre">genfromtxt</span></code> for messy data, Pandas for complex tabular data</p></li>
+</ol>
+</section>
+</section>
+<section id="next-steps">
+<h2>Next Steps<a class="headerlink" href="#next-steps" title="Link to this heading">#</a></h2>
+<p>In the next module, we’ll learn Pandas, which builds on NumPy to provide labeled data structures for tabular data. If NumPy is the engine, Pandas is the dashboard—same power, but easier to interact with for real-world data.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./01-numpy"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../00-introduction/introduction.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Module 00: Introduction</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../02-pandas-intro/pandas-intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Module 02: Pandas Introduction</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-numpy-the-foundation-of-scientific-python">Why NumPy? The Foundation of Scientific Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-problem-with-python-lists">The Problem with Python Lists</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-s-solution">NumPy’s Solution</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-matters-for-chemical-engineering">Why This Matters for Chemical Engineering</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-arrays-choosing-the-right-approach">Creating Arrays: Choosing the Right Approach</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#indexing-and-slicing-accessing-your-data">Indexing and Slicing: Accessing Your Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-key-insight">The Key Insight</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#types-of-indexing">Types of Indexing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vectorized-operations-thinking-in-arrays">Vectorized Operations: Thinking in Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-vectorization-matters">Why Vectorization Matters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mental-shift">The Mental Shift</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#broadcasting-the-magic-behind-numpy-s-elegance">Broadcasting: The Magic Behind NumPy’s Elegance</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-broadcasting-works">How Broadcasting Works</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-chemical-engineering-example">A Chemical Engineering Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aggregation-functions">Aggregation Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra">Linear Algebra</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-data-from-files">Reading Data from Files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-what">When to Use What</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-arrays-record-arrays">Structured Arrays (Record Arrays)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-structured-arrays">When to Use Structured Arrays</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-pandas-instead">When to Use Pandas Instead</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-dtype-codes">Common dtype codes</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#random-numbers-essential-for-simulation">Random Numbers: Essential for Simulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-s-random-number-generator">NumPy’s Random Number Generator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-pitfalls-mistakes-everyone-makes">Common Pitfalls: Mistakes Everyone Makes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#views-vs-copies">1. Views vs Copies</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-catalyst-crisis-the-long-loop">The Catalyst Crisis: “The Long Loop”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-assessment-quiz">Self-Assessment Quiz</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recommended-reading">Recommended Reading</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-numpy-mindset">Summary: NumPy Mindset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concepts">Core Concepts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-numpy">When to Use NumPy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">When to Use Pandas Instead</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#next-steps">Next Steps</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By CBE 4427 · Dr. Tianlong (Taylor) Liu · Western University
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026. Adapted from John Kitchin&#39;s MIT-licensed teaching materials..
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  Original teaching materials by John Kitchin, adapted for CBE 4427.
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
