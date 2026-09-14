@@ -6,6 +6,7 @@ Welcome to the CBE 4427/9133 course book. Explore data science and machine learn
 
 **Instructor:** Dr. Tianlong (Taylor) Liu  
 Department of Chemical and Biochemical Engineering, Western University
+
 https://www.eng.uwo.ca/chemical/sustainAI-group/people/dr-tianlong-liu.html
 
 ## Start here
