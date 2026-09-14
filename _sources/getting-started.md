@@ -23,7 +23,7 @@ Some optional topics need additional packages, services, or computing resources;
 
 ## Save your work
 
-Keep your edited notebooks in your own folder or Colab account, and download a backup when you finish. Reading or answering a quiz here does not save a submission for the instructor.
+Create a Colab account. Keep your edited notebooks in your own folder or Colab account, and download a backup when you finish. Reading or answering a quiz here does not save a submission for the instructor.
 
 ## Course requirements
 
