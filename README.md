@@ -10,6 +10,8 @@ This repository owns the course materials and publishes the book through GitHub 
 
 Students can read the public website without GitHub accounts. Python runs in Colab or local Jupyter. Edits pushed to `main` trigger the book build and publication.
 
+The workflow also saves the compiled website at the repository root with `.nojekyll`. This keeps the existing GitHub Pages branch publication and the Actions deployment consistent. Edit the course source under `dsmles`; the root HTML files and asset folders are generated automatically. `.course-published-files.json` records those generated files so updates preserve the source and remove obsolete website files.
+
 ## Build locally
 
 With Python 3.12:

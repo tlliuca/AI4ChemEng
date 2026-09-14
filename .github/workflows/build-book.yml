@@ -33,14 +33,17 @@ jobs:
         run: python scripts/bootstrap_source.py
       - name: Build and validate the course website
         run: python scripts/build_book.py
-      - name: Save the complete course materials in this repository
-        if: steps.source.outputs.imported == 'true' && github.event_name != 'pull_request'
+      - name: Save course materials and the compiled GitHub Pages website
+        if: github.event_name != 'pull_request'
         run: |
+          python scripts/export_pages.py --stage
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add dsmles upstream
-          git commit -m "Import the complete licensed CBE 4427 course materials"
-          git push origin HEAD:main
+          if ! git diff --cached --quiet; then
+            git commit -m "Update the compiled CBE 4427 course website"
+            git push origin HEAD:main
+          fi
       - uses: actions/upload-pages-artifact@v4
         if: github.event_name != 'pull_request'
         with:
