@@ -1,5 +1,7 @@
 # Data Academy Honors - Ranks
 
+This is an optional enrichment activity for CBE4427/9133. Badges and ranks do not carry a separate course-grade weight. See [Course information](../course-information.md#assessment) for assessed work.
+
 Four ranks representing progressive mastery in data science for chemical engineering. Each rank builds on the previous, culminating in Senior Data Scientist status.
 
 ---

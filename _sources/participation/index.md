@@ -1,6 +1,6 @@
 # In-Class Participation Exercises
 
-Active learning activities designed for use during lectures. Each module includes 3 exercises of varying types to promote engagement and deeper understanding.
+Active learning activities designed for use during lectures. Each module includes two or three exercises of varying types to promote engagement and deeper understanding.
 
 ## Exercise Types
 
@@ -18,10 +18,10 @@ Active learning activities designed for use during lectures. Each module include
 
 | Module | Exercises | Focus |
 |--------|-----------|-------|
-| [00: Introduction](participation-00-introduction.ipynb) | 0.1-0.3 | ML applications, prediction, sharing experience |
+| [00: Introduction](participation-00-introduction.ipynb) | 0.1-0.2 | Sharing data experience, ML applications |
 | [01: NumPy](participation-01-numpy.ipynb) | 1.1-1.3 | Vectorization, broadcasting, when loops are okay |
 | [02: Pandas Intro](participation-02-pandas-intro.ipynb) | 2.1-2.3 | Data types, exploration race, missing data strategies |
-| [03: Intermediate Pandas](participation-03-intermediate-pandas.ipynb) | 3.1-3.3 | GroupBy, data wrangling frustrations, spot the bug |
+| [03: Intermediate Pandas](participation-03-intermediate-pandas.ipynb) | 3.1-3.2 | GroupBy, spot the bug |
 
 ### Feature Engineering & Dimensionality
 
@@ -53,14 +53,11 @@ Active learning activities designed for use during lectures. Each module include
 1. **Before class**: Review the exercises for the day's module
 2. **During class**: Pause at designated points for each exercise
 3. **After exercises**: Brief whole-class discussion or share-out
-4. **Participation credit**: Students complete exercises in their own copy
+4. **Keep your work**: Students complete exercises in their own copy and follow the instructor's directions for feedback.
 
-## Optional grading suggestions for instructors
+## Assessment and feedback
 
-- **Completion-based**: Check if students attempted each exercise
-- **Effort-based**: Brief instructor review of quality
-- **Peer review**: Students review each other's responses
-- **Random selection**: Grade a subset of exercises each week
+These activities support class discussion and practice. This book does not allocate a separate participation-grade component. See [Course information](../course-information.md#assessment) and the official outline for assessed work. Your instructor may use discussion, self-review, or peer feedback to support learning.
 
 ## Files
 

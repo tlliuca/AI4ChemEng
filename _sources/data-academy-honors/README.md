@@ -1,7 +1,7 @@
 # Data Academy Honors
 
 ```{note}
-This optional companion activity uses the included command files with a compatible AI assistant. The website itself does not run slash commands or record badges. It is not part of CBE 4427 assessment unless assigned by the instructor.
+This optional companion activity uses the included command files with a compatible AI assistant. The website itself does not run slash commands or record badges. Badges do not carry a separate course-grade weight. Follow the official course outline and instructor directions for assessed work.
 ```
 
 A recognition program for demonstrating mastery of data science and machine learning concepts. Complete badges to earn ranks and show your expertise as a Data Detective.
@@ -56,7 +56,7 @@ A recognition program for demonstrating mastery of data science and machine lear
 
 Each badge requires:
 1. **Quiz Performance**: Average 75%+ on section quizzes
-2. **Assignments**: Complete coding assignments
+2. **Tutorial practice**: Work through coding tutorials
 3. **Badge Activity**: One hands-on activity demonstrating the skill
 
 ### Advancing Ranks

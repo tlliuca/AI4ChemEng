@@ -1,32 +1,34 @@
-# Practice assignments
+# Tutorials
 
-Assignments are designed to reinforce lecture material and provide hands-on practice.
+These 13 notebooks support CBE4427/9133 tutorial sessions and provide practice in coding, data processing, and machine learning. Your instructor will select the activities to complete alongside the lectures.
 
-## Assignment Guidelines
+## How to use the tutorials
 
-- Submit as Jupyter notebooks (.ipynb)
-- Include all code, outputs, and written answers
+1. Open the selected notebook in Colab and save your own copy.
+2. Run the setup cells before working through the selected exercises.
+3. Include code, outputs, and explanations of what your results mean.
+4. Follow your instructor's directions for sharing work or receiving feedback.
 
+The tutorial notebooks are separate from the **five assessed assignments** specified in each official course outline. See [Course information](../course-information.md#assessment) for the undergraduate and graduate assessment weights, and OWL Brightspace for assessed assignment instructions.
 
-## Assignment List
+## Tutorial list
 
-| Assignment | Topic |
-|------------|-------|
-| [HW1](hw01-numpy.ipynb) | NumPy Fundamentals |
-| [HW2](hw02-pandas-intro.ipynb) | Pandas Introduction |
-| [HW3](hw03-intermediate-pandas.ipynb) | Intermediate Pandas |
-| [HW4](hw04-feature-engineering.ipynb) | Feature Engineering |
-| [HW5](hw05-dimensionality-reduction.ipynb) | Dimensionality Reduction |
-| [HW6](hw06-linear-regression.ipynb) | Linear Regression |
-| [HW7](hw07-classification.ipynb) | Classification |
-| [HW8](hw08-regularization.ipynb) | Regularization and CV |
-| [HW9](hw09-nonlinear-methods.ipynb) | Nonlinear Methods |
-| [HW10](hw10-ensemble-methods.ipynb) | Ensemble Methods |
-| [HW11](hw11-clustering.ipynb) | Clustering |
-| [HW12](hw12-uncertainty-quantification.ipynb) | Uncertainty Quantification |
-| [HW13](hw13-model-interpretability.ipynb) | Model Interpretability |
-| [Project](project.ipynb) | Final Project |
+| Tutorial | Topic |
+|---|---|
+| [Tutorial 1](hw01-numpy.ipynb) | NumPy Fundamentals |
+| [Tutorial 2](hw02-pandas-intro.ipynb) | Pandas Introduction |
+| [Tutorial 3](hw03-intermediate-pandas.ipynb) | Intermediate Pandas |
+| [Tutorial 4](hw04-feature-engineering.ipynb) | Feature Engineering |
+| [Tutorial 5](hw05-dimensionality-reduction.ipynb) | Dimensionality Reduction |
+| [Tutorial 6](hw06-linear-regression.ipynb) | Linear Regression |
+| [Tutorial 7](hw07-classification.ipynb) | Classification |
+| [Tutorial 8](hw08-regularization.ipynb) | Regularization and Model Selection |
+| [Tutorial 9](hw09-nonlinear-methods.ipynb) | Nonlinear Methods |
+| [Tutorial 10](hw10-ensemble-methods.ipynb) | Ensemble Methods |
+| [Tutorial 11](hw11-clustering.ipynb) | Clustering |
+| [Tutorial 12](hw12-uncertainty-quantification.ipynb) | Uncertainty Quantification |
+| [Tutorial 13](hw13-model-interpretability.ipynb) | Model Interpretability |
 
-## Course requirements
+## Project resources
 
-Follow the official CBE 4427 outline and instructor announcements for assigned work, deadlines, collaboration, and permitted AI use.
+The [course project](project.ipynb) has its own report and presentation requirements. Proposal, check-in, report, and presentation templates are provided as planning resources. Follow the instructor's project brief for the requirements that apply to you.
