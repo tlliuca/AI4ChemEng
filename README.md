@@ -1,12 +1,12 @@
-# CBE 4427 · AI in Chemical Engineering
+# CBE4427/9133 · AI in Chemical Engineering
 
 A Jupyter Book website for Dr. Tianlong (Taylor) Liu, Western University. Adapted from John Kitchin's Spring 2026 course materials.
 
 ## Course website
 
-[Open the CBE 4427 course book](https://tlliuca.github.io/AI4ChemEng/)
+[Open the CBE4427/9133 course book](https://tlliuca.github.io/AI4ChemEng/)
 
-This repository owns the course materials and publishes the book through GitHub Actions. The initial workflow imports the MIT-licensed source at the recorded commit, applies the CBE 4427 adaptation, and saves the complete notebooks and datasets in this repository. Later builds use this repository's own files.
+This repository owns the course materials and publishes the book through GitHub Actions. The initial workflow imports the MIT-licensed source at the recorded commit, applies the CBE4427/9133 adaptation, and saves the complete notebooks and datasets in this repository. Later builds use this repository's own files.
 
 Students can read the public website without GitHub accounts. Python runs in Colab or local Jupyter. Edits pushed to `main` trigger the book build and publication.
 
@@ -33,11 +33,11 @@ Open `http://localhost:8000`. Repository and Colab buttons already point to `tll
 | Welcome page | `dsmles/intro.md` |
 | Course information and link to approved outline | `dsmles/course-information.md` |
 | Navigation | `dsmles/_toc.yml` |
-| Lectures and practice activities | Corresponding `.ipynb` files in `dsmles` |
+| Lectures, tutorials, and class exercises | Corresponding `.ipynb` files in `dsmles` |
 | Colors | `dsmles/_static/cbe4427.css` |
 | Title and book settings | `dsmles/_config.yml` |
 
-Push changes to `main` to update the website. CMU's original syllabus is excluded from the book. Official CBE 4427 requirements have not been invented; insert the approved outline before presenting this as the course syllabus.
+Push changes to `main` to update the website. CMU's original syllabus is excluded from the book. The course-information page summarizes the supplied undergraduate and graduate outlines: undergraduate assignments/project 50%/50%; graduate assignments/report/presentation 40%/30%/30%; five assessed assignments with the lowest dropped in both courses. The undergraduate report/presentation split is not specified in the supplied outline. The 13 tutorial notebooks are separate practice resources, and the instructor's OWL Brightspace briefs govern detailed rubrics and submission requirements.
 
 The notebooks embed their small datasets and quiz definitions. After editing datasets or quizzes, run `python scripts/prepare_notebooks.py` and commit the updated notebooks. Full local checkouts use local files first.
 

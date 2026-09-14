@@ -84,7 +84,7 @@ def prepare():
                 resources.add(str(p.resolve().relative_to(BOOK)))
         contents = {name: (BOOK / name).read_text() for name in sorted(resources)}
         payload = base64.b64encode(zlib.compress(json.dumps(contents).encode(), 9)).decode()
-        bootstrap = '''# Included CBE 4427 data; no original-course server is contacted.
+        bootstrap = '''# Included CBE4427/9133 data; no original-course server is contacted.
 from pathlib import Path
 import base64, json, tempfile, zlib
 _course_embedded = json.loads(zlib.decompress(base64.b64decode(PAYLOAD)))
@@ -125,7 +125,14 @@ def course_file(name):
             metadata={'cbe_generated': True, 'cbe_colab_launcher': True})
         prefix = [launch, setup, data_cell]
         if path.parent.name in ['assignments', 'participation']:
-            prefix.append(nbformat.v4.new_markdown_cell('```{note}\nPractice resource for CBE 4427. Your instructor specifies assigned activities, deadlines, submission requirements, and assessment criteria. Example points or rubrics below are part of the practice material.\n```', metadata={'cbe_generated': True}))
+            if path.parent.name == 'assignments' and re.fullmatch(r'hw\d+-.+', path.stem):
+                resource = 'Tutorial resource for CBE4427/9133. Use this notebook for tutorial practice as directed by your instructor. The 13 tutorial notebooks are separate from the five assessed assignments.'
+            elif path.parent.name == 'assignments':
+                resource = 'Project planning resource for CBE4427/9133. The official course outline and instructor project brief govern assessment. Suggested structures and checklists do not add assessed components or marking criteria.'
+            else:
+                resource = 'Class exercise for CBE4427/9133. Complete the activities selected by your instructor. This book does not allocate a separate participation-grade component.'
+            resource += ' See [Course information](https://tlliuca.github.io/AI4ChemEng/course-information.html#assessment) for the undergraduate and graduate assessment requirements.'
+            prefix.append(nbformat.v4.new_markdown_cell('```{note}\n' + resource + '\n```', metadata={'cbe_generated': True}))
         for cell in cells:
             if cell.cell_type != 'code' or 'display_quiz(' not in cell.source:
                 continue

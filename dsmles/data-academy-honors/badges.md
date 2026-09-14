@@ -1,5 +1,7 @@
 # Data Academy Honors - Badges
 
+This is an optional enrichment activity for CBE4427/9133. Badges and ranks do not carry a separate course-grade weight. See [Course information](../course-information.md#assessment) for assessed work.
+
 Five badges representing core competencies in data science and machine learning for chemical engineering applications.
 
 ---
@@ -8,7 +10,7 @@ Five badges representing core competencies in data science and machine learning 
 
 Each badge requires:
 1. **Quiz Average**: 75%+ on relevant section quizzes
-2. **Assignments**: Complete all coding assignments in the section
+2. **Tutorial practice**: Work through the coding tutorials in the section
 3. **Badge Activity**: Complete one activity from the options below
 
 ---

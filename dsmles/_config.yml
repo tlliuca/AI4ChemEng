@@ -1,5 +1,5 @@
-title: CBE 4427 · AI in Chemical Engineering
-author: CBE 4427 · Dr. Tianlong (Taylor) Liu · Western University
+title: CBE4427/9133 · AI in Chemical Engineering
+author: CBE4427/9133 · Dr. Tianlong (Taylor) Liu · Western University
 copyright: 2026. Adapted from John Kitchin's MIT-licensed teaching materials.
 logo: _static/cbe4427.svg
 only_build_toc_files: true
@@ -15,7 +15,7 @@ html:
   use_repository_button: true
   use_edit_page_button: true
   home_page_in_navbar: true
-  extra_footer: Original teaching materials by John Kitchin, adapted for CBE 4427.
+  extra_footer: Original teaching materials by John Kitchin, adapted for CBE4427/9133.
 launch_buttons:
   binderhub_url: ''
   colab_url: https://colab.research.google.com
@@ -26,7 +26,7 @@ sphinx:
     - _static
     html_css_files:
     - cbe4427.css
-    html_title: CBE 4427 · AI in Chemical Engineering
+    html_title: CBE4427/9133 · AI in Chemical Engineering
     html_baseurl: https://tlliuca.github.io/AI4ChemEng/
 repository:
   url: https://github.com/tlliuca/AI4ChemEng

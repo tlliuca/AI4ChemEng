@@ -51,7 +51,7 @@ def main():
             destination = (ROOT / archive_paths.get(relative, relative)).resolve()
             if ROOT not in destination.parents:
                 raise ValueError('Invalid source path')
-            # The prepared CBE 4427 files take precedence over upstream files.
+            # The prepared CBE4427/9133 files take precedence over upstream files.
             if destination.exists():
                 continue
             destination.parent.mkdir(parents=True, exist_ok=True)
@@ -67,7 +67,7 @@ def main():
     intro.write_text(json.dumps(notebook, ensure_ascii=False, indent=1) + '\n')
     MARKER.parent.mkdir(parents=True, exist_ok=True)
     MARKER.write_text(json.dumps({'source': 'https://github.com/jkitchin/s26-06642', 'commit': COMMIT, 'archive_sha256': SHA256, 'license': 'MIT (declared in upstream/README.org)'}, indent=2) + '\n')
-    print('Imported the verified source; CBE 4427 customizations retained.')
+    print('Imported the verified source; CBE4427/9133 customizations retained.')
     report(True)
 
 

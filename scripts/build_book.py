@@ -1,4 +1,4 @@
-"""Build the CBE 4427 book and verify all local page and asset references."""
+"""Build the CBE4427/9133 book and verify all local page and asset references."""
 from pathlib import Path
 import os
 import re

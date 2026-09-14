@@ -1,10 +1,10 @@
 # Attribution and license
 
-This book is adapted for CBE 4427 at Western University from **Data Science and Machine Learning in Chemical Engineering**, by **John Kitchin**, Carnegie Mellon University.
+This book is adapted for CBE4427/9133 at Western University from **Data Science and Machine Learning in Chemical Engineering**, by **John Kitchin**, Carnegie Mellon University.
 
 The [original repository](https://github.com/jkitchin/s26-06642) declares an MIT license in its README. This copy preserves the original author's copyright and license notices.
 
-The CBE 4427 edition changes the course introduction, instructor information, presentation, notebook setup, and hosting configuration. The original lecture content, examples, and saved outputs remain attributed to John Kitchin. Course-specific requirements come from the official CBE 4427 outline.
+The CBE4427/9133 edition changes the course introduction, instructor information, presentation, notebook setup, and hosting configuration. The original lecture content, examples, and saved outputs remain attributed to John Kitchin. Course-specific requirements come from the official CBE4427/9133 outline.
 
 Source snapshot: `3352ef2fb897`. Third-party materials retain their respective notices.
 

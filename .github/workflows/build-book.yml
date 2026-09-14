@@ -1,4 +1,4 @@
-name: Publish CBE 4427 course book
+name: Publish CBE4427/9133 course book
 
 on:
   push:
@@ -41,7 +41,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add dsmles upstream
           if ! git diff --cached --quiet; then
-            git commit -m "Update the compiled CBE 4427 course website"
+            git commit -m "Update the compiled CBE4427/9133 course website"
             git push origin HEAD:main
           fi
       - uses: actions/upload-pages-artifact@v4

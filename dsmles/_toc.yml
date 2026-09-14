@@ -29,7 +29,7 @@ parts:
   - file: optional/deep-learning
   - file: optional/symbolic-regression
   - file: optional/llms-for-research
-- caption: Practice Assignments
+- caption: Tutorials
   chapters:
   - file: assignments/index
   - file: assignments/hw01-numpy
@@ -45,6 +45,8 @@ parts:
   - file: assignments/hw11-clustering
   - file: assignments/hw12-uncertainty-quantification
   - file: assignments/hw13-model-interpretability
+- caption: Project Resources
+  chapters:
   - file: assignments/project
     sections:
     - file: assignments/project-proposal

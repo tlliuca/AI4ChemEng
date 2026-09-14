@@ -23,8 +23,8 @@ Some optional topics need additional packages, services, or computing resources;
 
 ## Save your work
 
-Create a Colab account. Keep your edited notebooks in your own folder or Colab account, and download a backup when you finish. Reading or answering a quiz here does not save a submission for the instructor.
+Sign in with your Google account, choose **File → Save a copy in Drive**, and work in your own copy. Download a backup when you finish. Your changes do not update the course website. Reading or answering a quiz here does not save a submission for the instructor.
 
 ## Course requirements
 
-Use the official CBE 4427 outline and instructor announcements for assigned work, assessment weights, deadlines, permitted AI use, and submission instructions.
+See [Course information](course-information.md#assessment) for the undergraduate and graduate assessment schemes. The 13 tutorials are practice resources; the five assessed assignments are specified separately on OWL Brightspace. Follow your official course outline and instructor announcements for deadlines, permitted AI use, and submission instructions.
