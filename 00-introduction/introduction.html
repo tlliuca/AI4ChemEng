@@ -572,7 +572,7 @@
 <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab" width="146" height="25">
 </a><section class="tex2jax_ignore mathjax_ignore" id="module-00-introduction">
 <h1>Module 00: Introduction<a class="headerlink" href="#module-00-introduction" title="Link to this heading">#</a></h1>
-<p>Welcome to Data Science and Machine Learning in Chemical Engineering!</p>
+<p>Welcome to Data Science and Machine Learning in Chemical Engineering!!</p>
 <section id="learning-objectives">
 <h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
 <p>By the end of this module, you will:</p>
@@ -737,7 +737,7 @@ All packages imported successfully!
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">arrhenius_rate</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">A</span><span class="o">=</span><span class="mf">1e13</span><span class="p">,</span> <span class="n">Ea</span><span class="o">=</span><span class="mi">80000</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mf">8.314</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Calculate reaction rate constant using Arrhenius equation.</span>
-<span class="sd">    </span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    T : float</span>
@@ -748,7 +748,7 @@ All packages imported successfully!
 <span class="sd">        Activation energy (J/mol)</span>
 <span class="sd">    R : float</span>
 <span class="sd">        Gas constant (J/mol/K)</span>
-<span class="sd">    </span>
+
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    float</span>
@@ -815,9 +815,9 @@ k(500 K) = 4.39e+04 1/s
 
 <span class="c1"># "True" yield model (unknown to us in practice)</span>
 <span class="n">yield_true</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="mi">50</span> <span class="o">+</span> 
-    <span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="n">temperature</span> <span class="o">-</span> <span class="mi">400</span><span class="p">)</span> <span class="o">+</span> 
-    <span class="mi">2</span> <span class="o">*</span> <span class="n">pressure</span> <span class="o">+</span> 
+    <span class="mi">50</span> <span class="o">+</span>
+    <span class="mf">0.1</span> <span class="o">*</span> <span class="p">(</span><span class="n">temperature</span> <span class="o">-</span> <span class="mi">400</span><span class="p">)</span> <span class="o">+</span>
+    <span class="mi">2</span> <span class="o">*</span> <span class="n">pressure</span> <span class="o">+</span>
     <span class="mi">100</span> <span class="o">*</span> <span class="n">catalyst_loading</span> <span class="o">+</span>
     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="n">n_experiments</span><span class="p">)</span>  <span class="c1"># noise</span>
 <span class="p">)</span>
