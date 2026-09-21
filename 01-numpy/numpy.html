@@ -571,7 +571,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-s-random-number-generator">NumPy’s Random Number Generator</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-pitfalls-mistakes-everyone-makes">Common Pitfalls: Mistakes Everyone Makes</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-pitfalls-mistakes-everyone-makes"><strong>Common Pitfalls: Mistakes Everyone Makes</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#views-vs-copies">1. Views vs Copies</a></li>
 </ul>
 </li>
@@ -729,7 +729,7 @@
 </tbody>
 </table>
 </div>
-<p><strong>Pro tip</strong>: Avoid growing arrays in loops. If you know the final size, pre-allocate with <code class="docutils literal notranslate"><span class="pre">np.zeros()</span></code> and fill in values. This is much faster than appending.</p>
+<p><strong>Pro tip</strong>: Avoid growing arrays in loops. If you know the final size, pre-allocate with <strong><code class="docutils literal notranslate"><span class="pre">np.zeros()</span></code></strong> and fill in values. This is much faster than appending.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># From Python list</span>
@@ -839,16 +839,20 @@ Experiment data:
 <span class="n">temps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">300</span><span class="p">,</span> <span class="mi">350</span><span class="p">,</span> <span class="mi">400</span><span class="p">,</span> <span class="mi">450</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"First element:"</span><span class="p">,</span> <span class="n">temps</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Last element:"</span><span class="p">,</span> <span class="n">temps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Last element:"</span><span class="p">,</span> <span class="n">temps</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"First three:"</span><span class="p">,</span> <span class="n">temps</span><span class="p">[:</span><span class="mi">3</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Every other:"</span><span class="p">,</span> <span class="n">temps</span><span class="p">[::</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Every other:"</span><span class="p">,</span> <span class="n">temps</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>First element: 300
 Last element: 500
+Last element: 300
 First three: [300 350 400]
 Every other: [300 400 500]
+Every other: [500 450 400 350 300]
 </pre></div>
 </div>
 </div>
@@ -994,7 +998,7 @@ Molar volume (L/mol): [24.61584012 28.71848014 32.82112016 36.92376018 41.026400
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7107bf91432e9351aeb90bdd7d153a9648b15e4eb39d1dc60c5d08d0aa5cd9a4.png" src="../_images/7107bf91432e9351aeb90bdd7d153a9648b15e4eb39d1dc60c5d08d0aa5cd9a4.png" />
+<img alt="../_images/be7ae10c726b4a569d0d5b04618c26b05342177c45c2ba6ee9bd9441a0527ad5.png" src="../_images/be7ae10c726b4a569d0d5b04618c26b05342177c45c2ba6ee9bd9441a0527ad5.png" />
 </div>
 </div>
 </section>
@@ -1007,7 +1011,7 @@ Molar volume (L/mol): [24.61584012 28.71848014 32.82112016 36.92376018 41.026400
 <p>When NumPy sees arrays of different shapes, it tries to make them compatible by:</p>
 <ol class="arabic simple">
 <li><p>Comparing dimensions from right to left</p></li>
-<li><p>Dimensions match if they’re equal, or if one of them is 1</p></li>
+<li><p>Dimensions match if they’re equal, or <strong>if one of them is 1</strong></p></li>
 <li><p>Arrays with a dimension of 1 are “stretched” to match the other</p></li>
 </ol>
 </section>
@@ -1214,6 +1218,11 @@ Eigenvectors:
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"reactor_data.csv"</span><span class="p">,</span> <span class="s2">"catalyst_experiments.txt"</span><span class="p">]:</span>
     <span class="n">shutil</span><span class="o">.</span><span class="n">copyfile</span><span class="p">(</span><span class="n">course_file</span><span class="p">(</span><span class="s2">"data/"</span> <span class="o">+</span> <span class="n">name</span><span class="p">),</span> <span class="n">name</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Example data ready."</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Example data ready.
 </pre></div>
 </div>
 </div>
@@ -1607,13 +1616,13 @@ Random integers [1, 100): [50 37 19 92 78]
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>k = 3.7108e+02 ± 1.1373e+02
 </pre></div>
 </div>
-<img alt="../_images/09ebcaea12ad089ea330acde9b155e9df86f494c1d7c01393f211ed56694626b.png" src="../_images/09ebcaea12ad089ea330acde9b155e9df86f494c1d7c01393f211ed56694626b.png" />
+<img alt="../_images/85811ac6b12e958e96e63d3ff740a24a92b304dc214cfabd98db723fd4d959c1.png" src="../_images/85811ac6b12e958e96e63d3ff740a24a92b304dc214cfabd98db723fd4d959c1.png" />
 </div>
 </div>
 </section>
 </section>
 <section id="common-pitfalls-mistakes-everyone-makes">
-<span id="index-11"></span><h2>Common Pitfalls: Mistakes Everyone Makes<a class="headerlink" href="#common-pitfalls-mistakes-everyone-makes" title="Link to this heading">#</a></h2>
+<span id="index-11"></span><h2><strong>Common Pitfalls: Mistakes Everyone Makes</strong><a class="headerlink" href="#common-pitfalls-mistakes-everyone-makes" title="Link to this heading">#</a></h2>
 <p>NumPy has some non-obvious behaviors that trip up beginners (and sometimes experts). Understanding these will save you debugging time.</p>
 <section id="views-vs-copies">
 <h3>1. Views vs Copies<a class="headerlink" href="#views-vs-copies" title="Link to this heading">#</a></h3>
@@ -3204,7 +3213,7 @@ function try_show() {
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#numpy-s-random-number-generator">NumPy’s Random Number Generator</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-pitfalls-mistakes-everyone-makes">Common Pitfalls: Mistakes Everyone Makes</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-pitfalls-mistakes-everyone-makes"><strong>Common Pitfalls: Mistakes Everyone Makes</strong></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#views-vs-copies">1. Views vs Copies</a></li>
 </ul>
 </li>
