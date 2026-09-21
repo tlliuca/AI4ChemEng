@@ -669,10 +669,8 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>19.2 ms ± 104 μs per loop (mean ± std. dev. of 7 runs, 100 loops each)
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>554 μs ± 5.33 μs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>466 ms ± 80 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+3.54 ms ± 1.24 ms per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </pre></div>
 </div>
 </div>
@@ -736,6 +734,7 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># From Python list</span>
 <span class="n">concentrations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>  <span class="c1"># mol/L</span>
+<span class="n">concentrations2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">python_list</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Concentrations:"</span><span class="p">,</span> <span class="n">concentrations</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Type:"</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">concentrations</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Shape:"</span><span class="p">,</span> <span class="n">concentrations</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
