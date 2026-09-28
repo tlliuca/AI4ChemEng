@@ -654,6 +654,37 @@
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Ref codes:</span>
+<span class="n">rows</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># recal what .shap returns</span>
+<span class="n">missing_conversion</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'conversion'</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="c1"># recall what .isna() returns</span>
+<span class="n">mean_temperature_r2</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'reactor'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'R2'</span><span class="p">,</span> <span class="s1">'temperature'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">night_count</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">'shift'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'Night'</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">max_conversion</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'conversion'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"1. Rows: </span><span class="si">{</span><span class="n">rows</span><span class="si">}</span><span class="s2">; columns: </span><span class="si">{</span><span class="n">columns</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"2. Missing conversion values: </span><span class="si">{</span><span class="n">missing_conversion</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"3. Mean temperature for R2: </span><span class="si">{</span><span class="n">mean_temperature_r2</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"4. Night-shift experiments: </span><span class="si">{</span><span class="n">night_count</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"5. Maximum conversion: </span><span class="si">{</span><span class="n">max_conversion</span><span class="si">:</span><span class="s2">.9f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Valid conversion measurements:"</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">'conversion'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">())</span>
+<span class="k">assert</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">df</span><span class="p">[</span><span class="s1">'conversion'</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span> <span class="o">+</span> <span class="n">missing_conversion</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1. Rows: 100; columns: 5
+2. Missing conversion values: 5
+3. Mean temperature for R2: 405.417955
+4. Night-shift experiments: 44
+5. Maximum conversion: 0.934303852
+Valid conversion measurements: 95
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="exercise-2-3-discussion-missing-data-strategies">
 <h2>Exercise 2.3: Discussion - Missing Data Strategies<a class="headerlink" href="#exercise-2-3-discussion-missing-data-strategies" title="Link to this heading">#</a></h2>
