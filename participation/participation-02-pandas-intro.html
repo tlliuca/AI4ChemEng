@@ -620,6 +620,48 @@
 </tbody>
 </table>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">StringIO</span>
+
+<span class="n">csv_content</span> <span class="o">=</span> <span class="s2">"""</span>
+<span class="s2">experiment_id,temperature,pressure,catalyst,yield,date,notes</span>
+<span class="s2">EXP001,350.5,1.2,Pt/Al2O3,78.3,2024-01-15,Good run</span>
+<span class="s2">EXP002,375.0,1.5,Pd/C,82.1,2024-01-16,</span>
+<span class="s2">EXP003,400.0,1.8,Pt/Al2O3,NaN,2024-01-17,Equipment failure</span>
+<span class="s2">"""</span>
+<span class="n">csv_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">csv_content</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"pandas version:"</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">csv_df</span><span class="o">.</span><span class="n">dtypes</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Missing values:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">csv_df</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pandas version: 2.2.3
+experiment_id     object
+temperature      float64
+pressure         float64
+catalyst          object
+yield            float64
+date              object
+notes             object
+
+Missing values:
+experiment_id    0
+temperature      0
+pressure         0
+catalyst         0
+yield            1
+date             0
+notes            1
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="exercise-2-2-mini-exercise-data-exploration-race">
 <h2>Exercise 2.2: Mini-Exercise - Data Exploration Race<a class="headerlink" href="#exercise-2-2-mini-exercise-data-exploration-race" title="Link to this heading">#</a></h2>
