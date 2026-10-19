@@ -1084,7 +1084,7 @@ Max: [1. 1. 1.]
 </section>
 <section id="critical-warning-fit-on-training-data-only">
 <h3>Critical Warning: Fit on Training Data Only!<a class="headerlink" href="#critical-warning-fit-on-training-data-only" title="Link to this heading">#</a></h3>
-<p>A common mistake is fitting the scaler on all data, then splitting. This causes <strong>data leakage</strong>—information from the test set contaminates training.</p>
+<p>A <strong>common mistake</strong> is fitting the scaler on all data, then splitting. This causes <strong>data leakage</strong>—information from the test set contaminates training.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># WRONG</span>
 <span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="c1"># Sees all data!</span>
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
@@ -1178,7 +1178,7 @@ Features   Degree 2     Degree 3     Degree 4
 </section>
 <section id="interaction-only-features">
 <h3>Interaction-Only Features<a class="headerlink" href="#interaction-only-features" title="Link to this heading">#</a></h3>
-<p>Sometimes you want interactions (x₁×x₂) but not higher powers (x₁²). This is common when you believe features interact but each has a linear effect individually.</p>
+<p>Sometimes you want interactions (x₁×x₂) but not higher powers (x₁²). This is common when you believe <strong>features interact but each has a linear effect individually.</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interaction features only (no x^2 terms)</span>
