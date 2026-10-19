@@ -672,7 +672,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-908e1a01-4b90-4538-ad73-852bfce42751" class="colab-df-container">
+  <div id="df-5dffc397-aa45-4888-925e-930fd67d68bb" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -733,7 +733,7 @@
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-908e1a01-4b90-4538-ad73-852bfce42751')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-5dffc397-aa45-4888-925e-930fd67d68bb')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -785,12 +785,12 @@
 
     <script>
       const buttonEl =
-        document.querySelector('#df-908e1a01-4b90-4538-ad73-852bfce42751 button.colab-df-convert');
+        document.querySelector('#df-5dffc397-aa45-4888-925e-930fd67d68bb button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-908e1a01-4b90-4538-ad73-852bfce42751');
+        const element = document.querySelector('#df-5dffc397-aa45-4888-925e-930fd67d68bb');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -1453,9 +1453,9 @@ True informative features: X1_strong, X2_moderate, X3_weak
 </div>
 <p>The F-scores clearly distinguish informative from noise features:</p>
 <ul class="simple">
-<li><p><strong>X1_strong</strong> (F≈180): Highest score, strongest relationship with y</p></li>
-<li><p><strong>X2_moderate</strong> (F≈25): Second highest, moderate relationship</p></li>
-<li><p><strong>X3_weak</strong> (F≈2): Low score—the true weak predictor is hard to distinguish from noise</p></li>
+<li><p><strong>X1_strong</strong> (F≈1631): Highest score, strongest relationship with y</p></li>
+<li><p><strong>X2_moderate</strong> (F≈10): Second highest, moderate relationship</p></li>
+<li><p><strong>X3_weak</strong> (F≈0.1): Low score—the true weak predictor is hard to distinguish from noise</p></li>
 <li><p><strong>Noise features</strong> (F≈0-1): As expected, no significant relationship</p></li>
 </ul>
 <p>Notice that X3_weak barely beats some noise features! With only a coefficient of 0.5 in the true model, this feature contributes little to y. In a real analysis, you might reasonably exclude it—sometimes weak features add more noise than signal.</p>
