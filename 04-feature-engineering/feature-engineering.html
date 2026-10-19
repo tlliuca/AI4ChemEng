@@ -543,7 +543,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-informed-feature-creation">Domain-Informed Feature Creation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-reaction-rate-prediction">Example: Reaction Rate Prediction</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-insight">Key Insight</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-domain-transformations-in-chemical-engineering">Common Domain Transformations in Chemical Engineering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-domain-transformations-in-chemical-engineering-keep-these-in-mind">Common Domain Transformations in Chemical Engineering <strong>(Keep these in mind)</strong></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-scaling">Feature Scaling</a><ul class="nav section-nav flex-column">
@@ -597,7 +597,7 @@
 <h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
 <p>By the end of this lecture, you will be able to:</p>
 <ol class="arabic simple">
-<li><p>Understand why feature engineering often matters more than algorithm choice</p></li>
+<li><p>Understand <strong>why feature engineering often matters more than algorithm choice</strong></p></li>
 <li><p>Create domain-informed features from raw measurements</p></li>
 <li><p>Apply common transformations (log, polynomial, interactions)</p></li>
 <li><p>Handle categorical variables appropriately</p></li>
@@ -672,7 +672,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html">
-  <div id="df-347cc3c5-e0ea-48b6-b763-cfa1c1029989" class="colab-df-container">
+  <div id="df-908e1a01-4b90-4538-ad73-852bfce42751" class="colab-df-container">
     <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -733,7 +733,7 @@
     <div class="colab-df-buttons">
 
   <div class="colab-df-container">
-    <button class="colab-df-convert" onclick="convertToInteractive('df-347cc3c5-e0ea-48b6-b763-cfa1c1029989')"
+    <button class="colab-df-convert" onclick="convertToInteractive('df-908e1a01-4b90-4538-ad73-852bfce42751')"
             title="Convert this dataframe to an interactive table."
             style="display:none;">
 
@@ -785,12 +785,12 @@
 
     <script>
       const buttonEl =
-        document.querySelector('#df-347cc3c5-e0ea-48b6-b763-cfa1c1029989 button.colab-df-convert');
+        document.querySelector('#df-908e1a01-4b90-4538-ad73-852bfce42751 button.colab-df-convert');
       buttonEl.style.display =
         google.colab.kernel.accessAllowed ? 'block' : 'none';
 
       async function convertToInteractive(key) {
-        const element = document.querySelector('#df-347cc3c5-e0ea-48b6-b763-cfa1c1029989');
+        const element = document.querySelector('#df-908e1a01-4b90-4538-ad73-852bfce42751');
         const dataTable =
           await google.colab.kernel.invokeFunction('convertToInteractive',
                                                     [key], {});
@@ -837,7 +837,7 @@ Naive model R² (test):  0.610
 </div>
 </div>
 </div>
-<p>The naive model gives R² ≈ 0.79—not terrible, but it’s missing something. The linear model is trying to fit what is fundamentally an <em>exponential</em> relationship with a straight line. It does okay because over a limited range, most curves can be approximated linearly. But we can do better by thinking about the physics.</p>
+<p>The naive model gives R² ≈ 0.61—not terrible, but it’s missing something. The linear model is trying to fit what is fundamentally an <em>exponential</em> relationship with a straight line. It does okay because over a limited range, most curves can be approximated linearly. But we can do better by thinking about the physics.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Domain-informed approach: use Arrhenius-inspired features</span>
@@ -859,6 +859,7 @@ Naive model R² (test):  0.610
     <span class="n">X_engineered</span><span class="p">,</span> <span class="n">y_log</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span>
 <span class="p">)</span>
 
+<span class="c1"># still using Linear Regression</span>
 <span class="n">model_engineered</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
 <span class="n">model_engineered</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_e</span><span class="p">,</span> <span class="n">y_train_e</span><span class="p">)</span>
 
@@ -883,7 +884,7 @@ Extracted parameters:
 </div>
 </div>
 </div>
-<p><strong>Dramatic improvement!</strong> R² jumped from 0.79 to 0.99 with the same linear regression algorithm. The only difference: we transformed the features based on physical knowledge.</p>
+<p><strong>Dramatic improvement!</strong> R² jumped from 0.61 to 0.99 with the same linear regression algorithm. The only difference: we transformed the features based on physical knowledge.</p>
 <p><strong>What happened?</strong></p>
 <ul class="simple">
 <li><p>The Arrhenius equation says: r = A·exp(-Ea/RT)·C^n</p></li>
@@ -895,15 +896,15 @@ Extracted parameters:
 <li><p>The coefficient on log(C) ≈ 1.5 gives us the reaction order (true value: 1.5) ✓</p></li>
 <li><p>The coefficient on 1/T gives us Ea/R ≈ 6000 K, so Ea ≈ 50 kJ/mol (true value: 50 kJ/mol) ✓</p></li>
 </ul>
-<p><strong>The lesson</strong>: Before reaching for complex nonlinear models, ask “Is there a transformation that makes this linear?”</p>
+<p><strong>The lesson: Before reaching for complex nonlinear models, ask “Is there a transformation that makes this linear?”</strong></p>
 </section>
 <section id="key-insight">
 <h3>Key Insight<a class="headerlink" href="#key-insight" title="Link to this heading">#</a></h3>
 <p>The same linear regression algorithm went from poor to excellent performance—not by tuning hyperparameters, but by <strong>encoding domain knowledge into features</strong>.</p>
 <p>Better yet, the coefficients now have physical meaning! This is feature engineering at its best: improving both accuracy and interpretability.</p>
 </section>
-<section id="common-domain-transformations-in-chemical-engineering">
-<h3>Common Domain Transformations in Chemical Engineering<a class="headerlink" href="#common-domain-transformations-in-chemical-engineering" title="Link to this heading">#</a></h3>
+<section id="common-domain-transformations-in-chemical-engineering-keep-these-in-mind">
+<h3>Common Domain Transformations in Chemical Engineering <strong>(Keep these in mind)</strong><a class="headerlink" href="#common-domain-transformations-in-chemical-engineering-keep-these-in-mind" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Physical Law</p></th>
@@ -3054,7 +3055,7 @@ function try_show() {
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#domain-informed-feature-creation">Domain-Informed Feature Creation</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-reaction-rate-prediction">Example: Reaction Rate Prediction</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-insight">Key Insight</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-domain-transformations-in-chemical-engineering">Common Domain Transformations in Chemical Engineering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-domain-transformations-in-chemical-engineering-keep-these-in-mind">Common Domain Transformations in Chemical Engineering <strong>(Keep these in mind)</strong></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-scaling">Feature Scaling</a><ul class="nav section-nav flex-column">
