@@ -1462,7 +1462,9 @@ True informative features: X1_strong, X2_moderate, X3_weak
 <p>The filter method selected the top 5 features, which includes X1, X2, X3, and unfortunately 2 noise features. This illustrates the limitation: with noisy data and weak true effects, perfect selection is impossible.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Embedded method: Lasso regression</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># After class practice</span>
+
+<span class="c1"># Embedded method: Lasso regression</span>
 <span class="c1"># L1 regularization drives coefficients to exactly zero</span>
 
 <span class="c1"># Scale features first (important for Lasso)</span>
@@ -2939,12 +2941,10 @@ function try_show() {
 </section>
 <section id="when-in-doubt">
 <h3>When in Doubt<a class="headerlink" href="#when-in-doubt" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Start simple: raw features, linear model</p></li>
-<li><p>Add complexity only when simple fails</p></li>
-<li><p>Always validate on held-out data</p></li>
-<li><p>If you can derive a feature from physical laws, try it!</p></li>
-</ul>
+<p><strong>- Start simple: raw features, linear model</strong></p>
+<p><strong>- Add complexity only when simple fails</strong></p>
+<p><strong>- Always validate on held-out data</strong></p>
+<p><strong>- If you can derive a feature from physical laws, try it!</strong></p>
 </section>
 <section id="what-s-next">
 <h3>What’s Next<a class="headerlink" href="#what-s-next" title="Link to this heading">#</a></h3>
